@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=19">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=20">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=19">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=19">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=20">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=20">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=19">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=20">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=19">
-  <link rel="icon" href="favicon.ico?v=19" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=19">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=19">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=19">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=19">
+  <link rel="manifest" href="manifest.json?v=20">
+  <link rel="icon" href="favicon.ico?v=20" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=20">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=20">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=20">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=20">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2011,6 +2011,141 @@
       }
     }
 
+
+    /* ===== PATCH 200: DESKTOP - HEADER LỆCH TRÁI, TAB ĐĂNG KÝ 2 CỘT, NÚT ĐĂNG KÝ VỪA PHẢI ===== */
+    @media (min-width:900px){
+      .header-inner{
+        max-width:none!important;
+        width:100%!important;
+        margin:0!important;
+        padding-left:18px!important;
+        padding-right:18px!important;
+        justify-content:space-between!important;
+      }
+
+      .header-brand{
+        justify-content:flex-start!important;
+        text-align:left!important;
+        margin-left:0!important;
+      }
+
+      .header-text{
+        text-align:left!important;
+      }
+
+      #dangkyScreen.active{
+        height:calc(100dvh - var(--header-height) - var(--tabbar-height) - 28px)!important;
+        max-height:calc(100dvh - var(--header-height) - var(--tabbar-height) - 28px)!important;
+        min-height:520px!important;
+        overflow:hidden!important;
+      }
+
+      #dangkyScreen.active > .card{
+        height:100%!important;
+        min-height:0!important;
+        max-height:100%!important;
+        display:flex!important;
+        flex-direction:column!important;
+        overflow:hidden!important;
+        margin-bottom:0!important;
+      }
+
+      #dangkyScreen.active > .card > .screen-title{
+        flex:0 0 auto!important;
+      }
+
+      #registrationForm.registration-desktop-form{
+        flex:1 1 auto!important;
+        min-height:0!important;
+        height:100%!important;
+        max-height:100%!important;
+        overflow:hidden!important;
+      }
+
+      .registration-desktop-layout{
+        grid-template-columns:320px minmax(0,1fr)!important;
+        height:100%!important;
+        max-height:100%!important;
+        min-height:0!important;
+        align-items:stretch!important;
+        overflow:hidden!important;
+      }
+
+      .registration-left-panel,
+      .registration-right-panel{
+        height:100%!important;
+        max-height:100%!important;
+        min-height:0!important;
+        overflow:auto!important;
+        overscroll-behavior:contain!important;
+      }
+
+      .registration-left-panel .form-group{
+        margin-bottom:12px!important;
+      }
+
+      .registration-right-panel{
+        display:flex!important;
+        flex-direction:column!important;
+      }
+
+      .registration-right-panel .optional-test-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+      }
+
+      .registration-submit-row{
+        justify-content:flex-end!important;
+        margin-top:12px!important;
+      }
+
+      .registration-submit-btn{
+        width:auto!important;
+        min-width:180px!important;
+        max-width:240px!important;
+        height:40px!important;
+        min-height:40px!important;
+        padding-left:26px!important;
+        padding-right:26px!important;
+        flex:0 0 auto!important;
+      }
+
+      #registrationMessage{
+        flex:0 0 auto!important;
+      }
+    }
+
+    @supports not (height:100dvh){
+      @media (min-width:900px){
+        #dangkyScreen.active{
+          height:calc(100vh - var(--header-height) - var(--tabbar-height) - 28px)!important;
+          max-height:calc(100vh - var(--header-height) - var(--tabbar-height) - 28px)!important;
+        }
+      }
+    }
+
+    @media (max-width:899px){
+      .registration-desktop-layout{
+        display:block!important;
+      }
+
+      .registration-left-panel,
+      .registration-right-panel{
+        background:transparent!important;
+        border:0!important;
+        box-shadow:none!important;
+        padding:0!important;
+      }
+
+      .registration-left-panel .desktop-panel-head,
+      .registration-right-panel .desktop-panel-head{
+        display:none!important;
+      }
+
+      .registration-submit-btn{
+        width:100%!important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2025,7 +2160,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=19" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=20" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
@@ -2037,121 +2172,136 @@
 
   <main class="app-main">
     <div class="main-inner">
-      <section id="dangkyScreen" class="screen active">
+            <section id="dangkyScreen" class="screen active">
         <div class="card">
           <h2 class="screen-title"><i class="fas fa-edit"></i> PHIẾU ĐĂNG KÝ THỦ THUẬT</h2>
-          <form id="registrationForm" onsubmit="submitRegistrationForm(event)">
-            <div class="form-group">
-              <label for="regDate"><i class="fas fa-calendar-alt"></i> Ngày đăng ký làm thủ thuật <span class="text-red">*</span></label>
-              <input class="field" type="date" id="regDate" required>
-            </div>
+          <form id="registrationForm" class="registration-desktop-form" onsubmit="submitRegistrationForm(event)">
+            <div class="desktop-split registration-desktop-layout">
+              <div class="desktop-left desktop-panel registration-left-panel">
+                <div class="desktop-panel-head">
+                  <div class="desktop-panel-title"><i class="fas fa-calendar-check"></i> Thông tin đăng ký</div>
+                </div>
 
-            <div class="form-group">
-              <label for="location"><i class="fas fa-map-marker-alt"></i> Địa điểm thực hiện thủ thuật <span class="text-red">*</span></label>
-              <select class="field" id="location" required onchange="updateTimeSlots()">
-                <option value="" selected disabled hidden>Chọn địa điểm</option>
-              </select>
-            </div>
+                <div class="form-group">
+                  <label for="regDate"><i class="fas fa-calendar-alt"></i> Ngày đăng ký làm thủ thuật <span class="text-red">*</span></label>
+                  <input class="field" type="date" id="regDate" required>
+                </div>
 
-            <div class="form-group">
-              <label for="type"><i class="fas fa-stethoscope"></i> Tên thủ thuật <span class="text-red">*</span></label>
-              <select class="field" id="type" required>
-                <option value="" selected disabled hidden>Chọn thủ thuật</option>
-              </select>
-            </div>
+                <div class="form-group">
+                  <label for="location"><i class="fas fa-map-marker-alt"></i> Địa điểm thực hiện thủ thuật <span class="text-red">*</span></label>
+                  <select class="field" id="location" required onchange="updateTimeSlots()">
+                    <option value="" selected disabled hidden>Chọn địa điểm</option>
+                  </select>
+                </div>
 
-            <div class="form-group">
-              <label for="timeSelect"><i class="fas fa-clock"></i> Giờ đăng ký <span class="text-red">*</span></label>
-              <select class="field" id="timeSelect" required>
-                <option value="" selected disabled hidden>Chọn giờ</option>
-              </select>
-            </div>
+                <div class="form-group">
+                  <label for="type"><i class="fas fa-stethoscope"></i> Tên thủ thuật <span class="text-red">*</span></label>
+                  <select class="field" id="type" required>
+                    <option value="" selected disabled hidden>Chọn thủ thuật</option>
+                  </select>
+                </div>
 
-            <div class="form-group">
-              <label for="name"><i class="fas fa-user"></i> Họ tên bệnh nhân <span class="text-red">*</span></label>
-              <input class="field" type="text" id="name" required style="text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()">
-            </div>
-
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="age"><i class="fas fa-hashtag"></i> Tuổi <span class="text-red">*</span></label>
-                <input class="field" type="number" id="age" required min="1" max="120" inputmode="numeric">
+                <div class="form-group">
+                  <label for="timeSelect"><i class="fas fa-clock"></i> Giờ đăng ký <span class="text-red">*</span></label>
+                  <select class="field" id="timeSelect" required>
+                    <option value="" selected disabled hidden>Chọn giờ</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="department"><i class="fas fa-hospital"></i> Viện / Trung tâm / Khoa <span class="text-red">*</span></label>
-                <select class="field" id="department" required>
-                  <option value="">Chọn đơn vị</option>
-                </select>
-              </div>
-            </div>
 
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="room"><i class="fas fa-door-open"></i> Đơn nguyên - phòng <span class="text-red">*</span></label>
-                <input class="field" type="text" id="room" required>
-              </div>
-              <div class="form-group">
-                <label for="bed"><i class="fas fa-bed"></i> Giường <span class="text-red">*</span></label>
-                <input class="field" type="text" id="bed" required>
-              </div>
-            </div>
+              <div class="desktop-right desktop-panel registration-right-panel">
+                <div class="desktop-panel-head">
+                  <div class="desktop-panel-title"><i class="fas fa-user-injured"></i> Thông tin bệnh nhân</div>
+                </div>
 
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="code"><i class="fas fa-barcode"></i> Mã điều trị <span class="text-red">*</span></label>
-                <input class="field" type="text" id="code" required inputmode="numeric">
-              </div>
-              <div class="form-group">
-                <label for="phone"><i class="fas fa-phone"></i> SĐT bác sĩ chỉ định <span class="text-red">*</span></label>
-                <input class="field" type="tel" id="phone" required inputmode="tel" pattern="[0-9]{10,11}">
-              </div>
-            </div>
+                <div class="form-group">
+                  <label for="name"><i class="fas fa-user"></i> Họ tên bệnh nhân <span class="text-red">*</span></label>
+                  <input class="field" type="text" id="name" required style="text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()">
+                </div>
 
-            <div id="procedureRequirementSection" class="requirement-section hidden">
-              <div class="requirement-title"><i class="fas fa-clipboard-check"></i> Hồ sơ/chỉ định bắt buộc trước khi đăng ký <span class="text-red">*</span></div>
-              <div class="subnote" style="margin:0 0 10px;">Bác sĩ/đơn vị lâm sàng xác nhận đã chuẩn bị đầy đủ trước khi đưa bệnh nhân đi thực hiện thủ thuật.</div>
-              <div id="requiredDocsList" class="checkbox-list"></div>
-              <div class="button-row" style="margin-top:10px;">
-                <button id="confirmAllRequiredDocsBtn" class="btn btn-full confirm-docs-btn" type="button" onclick="confirmAllRequiredDocuments()">
-                  <span class="btn-label"><i class="fas fa-check-double"></i> Xác nhận đủ hồ sơ</span>
-                </button>
-              </div>
-            </div>
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label for="age"><i class="fas fa-hashtag"></i> Tuổi <span class="text-red">*</span></label>
+                    <input class="field" type="number" id="age" required min="1" max="120" inputmode="numeric">
+                  </div>
+                  <div class="form-group">
+                    <label for="department"><i class="fas fa-hospital"></i> Viện / Trung tâm / Khoa <span class="text-red">*</span></label>
+                    <select class="field" id="department" required>
+                      <option value="">Chọn đơn vị</option>
+                    </select>
+                  </div>
+                </div>
 
-            <div class="form-group">
-              <label><i class="fas fa-vials"></i> Chỉ định XN khác <span class="text-red">*</span></label>
-              <div class="optional-test-grid">
-                <label class="checkbox-item"><input type="checkbox" id="optionalTestNone" value="Không có" data-optional-test="true"> <span>Không có</span></label>
-                <label class="checkbox-item"><input type="checkbox" id="optionalTestKaryotype" value="Công thức nhiễm sắc thể (Karyotype) tuỷ xương" data-optional-test="true"> <span>Công thức nhiễm sắc thể (Karyotype) tuỷ xương</span></label>
-                <label class="checkbox-item"><input type="checkbox" id="optionalTestFISHGene" value="Xác định gen bằng kỹ thuật FISH" data-optional-test="true"> <span>Xác định gen bằng kỹ thuật FISH</span></label>
-                <label class="checkbox-item"><input type="checkbox" id="optionalTestRTPCR" value="Xác định gen bệnh máu bằng kỹ thuật RT-PCR" data-optional-test="true"> <span>Xác định gen bệnh máu bằng kỹ thuật RT-PCR</span></label>
-                <label class="checkbox-item"><input type="checkbox" id="optionalTestRealtimePCR" value="Định lượng gen bệnh máu ác tính bằng kỹ thuật Real - Time PCR" data-optional-test="true"> <span>Định lượng gen bệnh máu ác tính bằng kỹ thuật Real - Time PCR</span></label>
-                <label class="checkbox-item"><input type="checkbox" id="optionalTestFlowPeripheral" value="Phân tích dấu ấn/CD/marker miễn dịch máu ngoại vi, hoặc dịch khác bằng kỹ thuật flow cytometry" data-optional-test="true"> <span>Phân tích dấu ấn/CD/marker miễn dịch máu ngoại vi, hoặc dịch khác bằng kỹ thuật flow cytometry</span></label>
-                <label class="checkbox-item"><input type="checkbox" id="optionalTestFlowMarrow" value="Phân tích dấu ấn/CD/marker miễn dịch mẫu tủy xương, hoặc mẫu hạch, hoặc mẫu tổ chức khác bằng kỹ thuật flow cytometry" data-optional-test="true"> <span>Phân tích dấu ấn/CD/marker miễn dịch mẫu tủy xương, hoặc mẫu hạch, hoặc mẫu tổ chức khác bằng kỹ thuật flow cytometry</span></label>
-                <label class="checkbox-item"><input type="checkbox" id="optionalTestOther" value="Khác" data-optional-test="true"> <span>Khác</span></label>
-              </div>
-              <div id="optionalTestOtherWrap" class="optional-test-other-wrap hidden">
-                <input class="field" type="text" id="optionalTestOtherText" maxlength="100" placeholder="Nhập chỉ định XN khác">
-              </div>
-            </div>
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label for="room"><i class="fas fa-door-open"></i> Đơn nguyên - phòng <span class="text-red">*</span></label>
+                    <input class="field" type="text" id="room" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="bed"><i class="fas fa-bed"></i> Giường <span class="text-red">*</span></label>
+                    <input class="field" type="text" id="bed" required>
+                  </div>
+                </div>
 
-            <div class="form-group">
-              <label for="registrationNote"><i class="fas fa-sticky-note"></i> Ghi chú cho Phòng thủ thuật (nếu có)</label>
-              <textarea class="field" id="registrationNote" maxlength="500" placeholder="Ví dụ: Xin thêm 2 ống mẫu dịch tủy xương nuôi cấy vi sinh"></textarea>
-            </div>
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label for="code"><i class="fas fa-barcode"></i> Mã điều trị <span class="text-red">*</span></label>
+                    <input class="field" type="text" id="code" required inputmode="numeric">
+                  </div>
+                  <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> SĐT bác sĩ chỉ định <span class="text-red">*</span></label>
+                    <input class="field" type="tel" id="phone" required inputmode="tel" pattern="[0-9]{10,11}">
+                  </div>
+                </div>
 
-            <div class="button-row">
-              <button type="submit" id="submitRegistrationBtn" class="btn btn-full">
-                <span class="loader"></span>
-                <span class="btn-label"><i class="fas fa-paper-plane"></i> Đăng ký</span>
-              </button>
+                <div id="procedureRequirementSection" class="requirement-section hidden">
+                  <div class="requirement-title"><i class="fas fa-clipboard-check"></i> Hồ sơ/chỉ định bắt buộc trước khi đăng ký <span class="text-red">*</span></div>
+                  <div class="subnote" style="margin:0 0 10px;">Bác sĩ/đơn vị lâm sàng xác nhận đã chuẩn bị đầy đủ trước khi đưa bệnh nhân đi thực hiện thủ thuật.</div>
+                  <div id="requiredDocsList" class="checkbox-list"></div>
+                  <div class="button-row" style="margin-top:10px;">
+                    <button id="confirmAllRequiredDocsBtn" class="btn btn-full confirm-docs-btn" type="button" onclick="confirmAllRequiredDocuments()">
+                      <span class="btn-label"><i class="fas fa-check-double"></i> Xác nhận đủ hồ sơ</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label><i class="fas fa-vials"></i> Chỉ định XN khác <span class="text-red">*</span></label>
+                  <div class="optional-test-grid">
+                    <label class="checkbox-item"><input type="checkbox" id="optionalTestNone" value="Không có" data-optional-test="true"> <span>Không có</span></label>
+                    <label class="checkbox-item"><input type="checkbox" id="optionalTestKaryotype" value="Công thức nhiễm sắc thể (Karyotype) tuỷ xương" data-optional-test="true"> <span>Công thức nhiễm sắc thể (Karyotype) tuỷ xương</span></label>
+                    <label class="checkbox-item"><input type="checkbox" id="optionalTestFISHGene" value="Xác định gen bằng kỹ thuật FISH" data-optional-test="true"> <span>Xác định gen bằng kỹ thuật FISH</span></label>
+                    <label class="checkbox-item"><input type="checkbox" id="optionalTestRTPCR" value="Xác định gen bệnh máu bằng kỹ thuật RT-PCR" data-optional-test="true"> <span>Xác định gen bệnh máu bằng kỹ thuật RT-PCR</span></label>
+                    <label class="checkbox-item"><input type="checkbox" id="optionalTestRealtimePCR" value="Định lượng gen bệnh máu ác tính bằng kỹ thuật Real - Time PCR" data-optional-test="true"> <span>Định lượng gen bệnh máu ác tính bằng kỹ thuật Real - Time PCR</span></label>
+                    <label class="checkbox-item"><input type="checkbox" id="optionalTestFlowPeripheral" value="Phân tích dấu ấn/CD/marker miễn dịch máu ngoại vi, hoặc dịch khác bằng kỹ thuật flow cytometry" data-optional-test="true"> <span>Phân tích dấu ấn/CD/marker miễn dịch máu ngoại vi, hoặc dịch khác bằng kỹ thuật flow cytometry</span></label>
+                    <label class="checkbox-item"><input type="checkbox" id="optionalTestFlowMarrow" value="Phân tích dấu ấn/CD/marker miễn dịch mẫu tủy xương, hoặc mẫu hạch, hoặc mẫu tổ chức khác bằng kỹ thuật flow cytometry" data-optional-test="true"> <span>Phân tích dấu ấn/CD/marker miễn dịch mẫu tủy xương, hoặc mẫu hạch, hoặc mẫu tổ chức khác bằng kỹ thuật flow cytometry</span></label>
+                    <label class="checkbox-item"><input type="checkbox" id="optionalTestOther" value="Khác" data-optional-test="true"> <span>Khác</span></label>
+                  </div>
+                  <div id="optionalTestOtherWrap" class="optional-test-other-wrap hidden">
+                    <input class="field" type="text" id="optionalTestOtherText" maxlength="100" placeholder="Nhập chỉ định XN khác">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="registrationNote"><i class="fas fa-sticky-note"></i> Ghi chú cho Phòng thủ thuật (nếu có)</label>
+                  <textarea class="field" id="registrationNote" maxlength="500" placeholder="Ví dụ: Xin thêm 2 ống mẫu dịch tủy xương nuôi cấy vi sinh"></textarea>
+                </div>
+
+                <div class="button-row registration-submit-row">
+                  <button type="submit" id="submitRegistrationBtn" class="btn registration-submit-btn">
+                    <span class="loader"></span>
+                    <span class="btn-label"><i class="fas fa-paper-plane"></i> Đăng ký</span>
+                  </button>
+                </div>
+
+                <div id="registrationMessage" class="message"></div>
+              </div>
             </div>
           </form>
-          <div id="registrationMessage" class="message"></div>
         </div>
       </section>
 
-      <section id="kiemtraScreen" class="screen">
+<section id="kiemtraScreen" class="screen">
         <div class="card">
           <h2 class="screen-title"><i class="fas fa-ban"></i> HỦY ĐĂNG KÝ</h2>
           <div class="desktop-split cancel-desktop-layout">
