@@ -8,12 +8,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>ĐĂNG KÝ THỦ THUẬT KHOA HUYẾT HỌC VÀ TRUYỀN MÁU</title>
-  <link rel="manifest" href="manifest.json?v=8">
-  <link rel="icon" href="favicon.ico?v=8" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=8">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=8">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=8">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=8">
+  <link rel="manifest" href="manifest.json?v=9">
+  <link rel="icon" href="favicon.ico?v=9" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=9">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=9">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=9">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=9">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -1466,7 +1466,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=8" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=9" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
@@ -2230,13 +2230,13 @@
 
     function getDefaultTimeSlotConfigForClient() {
       return [
-        { time: '07:30 - 08:00', capacity: 5, scope: 'Tại phòng' },
-        { time: '08:00 - 08:30', capacity: 5, scope: 'Tại phòng' },
-        { time: '08:30 - 09:00', capacity: 5, scope: 'Tại phòng' },
-        { time: '09:00 - 09:30', capacity: 5, scope: 'Tại phòng' },
-        { time: '09:30 - 10:00', capacity: 5, scope: 'Tại phòng' },
-        { time: '10:00 - 10:30', capacity: 5, scope: 'Tại phòng' },
-        { time: '10:30 - 11:00', capacity: 5, scope: 'Tại phòng' },
+        { time: '07:30 - 08:00', capacity: 5, scope: 'Tại phòng thủ thuật' },
+        { time: '08:00 - 08:30', capacity: 5, scope: 'Tại phòng thủ thuật' },
+        { time: '08:30 - 09:00', capacity: 5, scope: 'Tại phòng thủ thuật' },
+        { time: '09:00 - 09:30', capacity: 5, scope: 'Tại phòng thủ thuật' },
+        { time: '09:30 - 10:00', capacity: 5, scope: 'Tại phòng thủ thuật' },
+        { time: '10:00 - 10:30', capacity: 5, scope: 'Tại phòng thủ thuật' },
+        { time: '10:30 - 11:00', capacity: 5, scope: 'Tại phòng thủ thuật' },
         { time: '10:30 - 11:30', capacity: 5, scope: 'Tại giường' }
       ];
     }
@@ -2249,11 +2249,11 @@
 
     function slotMatchesLocation(slot, locationText) {
       const location = normalizeCompare_(locationText || '');
-      const scope = normalizeCompare_((slot && slot.scope) || 'Tại phòng');
+      const scope = normalizeCompare_((slot && slot.scope) || 'Tại phòng thủ thuật');
       const isBedside = location.indexOf('tai giuong') !== -1;
       if (scope === normalizeCompare_('Tất cả')) return true;
       if (isBedside) return scope === normalizeCompare_('Tại giường');
-      return scope === normalizeCompare_('Tại phòng');
+      return scope === normalizeCompare_('Tại phòng thủ thuật');
     }
 
     function updateTimeSlots() {
@@ -3790,8 +3790,9 @@
       return '' +
         '<div class="setting-section">' +
           '<h3 class="setting-title"><i class="fas fa-clock"></i> Cấu hình khung giờ đăng ký</h3>' +
-          '<div class="subnote" style="margin:0 0 10px;">Admin có thể thêm/bớt khung giờ và đặt số lượt đăng ký tối đa cho từng khung. Phạm vi "Tại phòng" áp dụng cho địa điểm không phải tại giường; "Tại giường" chỉ áp dụng cho địa điểm tại giường.</div>' +
+          '<div class="subnote" style="margin:0 0 10px;">Admin có thể thêm/bớt khung giờ và đặt số lượt đăng ký tối đa cho từng khung. Phạm vi "Tại phòng thủ thuật" áp dụng cho địa điểm thực hiện tại phòng thủ thuật; "Tại giường" chỉ áp dụng cho địa điểm tại giường.</div>' +
           '<div id="timeSlotConfigList" class="time-slot-config-list">' + rows.map(function (item, index) { return renderTimeSlotConfigRow(item, index); }).join('') + '</div>' +
+          '<div id="timeSlotConfigMessage" class="message"></div>' +
           '<div class="button-row" style="margin-top:12px;">' +
             '<button class="btn btn-secondary" type="button" onclick="addTimeSlotConfigRow()"><span class="btn-label"><i class="fas fa-plus"></i> Thêm khung giờ</span></button>' +
             '<button id="saveTimeSlotConfigBtn" class="btn" type="button" onclick="saveTimeSlotConfig()"><span class="loader"></span><span class="btn-label"><i class="fas fa-save"></i> Lưu khung giờ</span></button>' +
@@ -3803,7 +3804,7 @@
       item = item || {};
       const time = item.time || '';
       const capacity = item.capacity == null ? 5 : item.capacity;
-      const scope = item.scope || 'Tại phòng';
+      const scope = item.scope || 'Tại phòng thủ thuật';
       const rowId = 'timeSlotRow_' + index + '_' + Math.floor(Math.random() * 1000000);
       return '' +
         '<div id="' + rowId + '" class="time-slot-config-row" data-time-slot-row="true">' +
@@ -3818,7 +3819,7 @@
           '<div class="form-group">' +
             '<label><i class="fas fa-map-marker-alt"></i> Áp dụng</label>' +
             '<select class="field" data-time-slot-scope="true">' +
-              renderTimeSlotScopeOption('Tại phòng', scope) +
+              renderTimeSlotScopeOption('Tại phòng thủ thuật', scope) +
               renderTimeSlotScopeOption('Tại giường', scope) +
               renderTimeSlotScopeOption('Tất cả', scope) +
             '</select>' +
@@ -3831,14 +3832,14 @@
     }
 
     function renderTimeSlotScopeOption(value, selectedValue) {
-      const selected = normalizeCompare_(value) === normalizeCompare_(selectedValue || '') ? ' selected' : '';
+      const selected = normalizeTimeSlotScopeForClient(value) === normalizeTimeSlotScopeForClient(selectedValue || '') ? ' selected' : '';
       return '<option value="' + escapeHtml(value) + '"' + selected + '>' + escapeHtml(value) + '</option>';
     }
 
     function addTimeSlotConfigRow() {
       const list = document.getElementById('timeSlotConfigList');
       if (!list) return;
-      list.insertAdjacentHTML('beforeend', renderTimeSlotConfigRow({ time: '', capacity: 5, scope: 'Tại phòng' }, list.children.length));
+      list.insertAdjacentHTML('beforeend', renderTimeSlotConfigRow({ time: '', capacity: 5, scope: 'Tại phòng thủ thuật' }, list.children.length));
     }
 
     function deleteTimeSlotConfigRow(button) {
@@ -3859,7 +3860,7 @@
       rows.forEach(function (row, index) {
         const time = (row.querySelector('[data-time-slot-time="true"]') || {}).value || '';
         const capacity = (row.querySelector('[data-time-slot-capacity="true"]') || {}).value || '';
-        const scope = (row.querySelector('[data-time-slot-scope="true"]') || {}).value || 'Tại phòng';
+        const scope = (row.querySelector('[data-time-slot-scope="true"]') || {}).value || 'Tại phòng thủ thuật';
         const cleanedTime = time.trim();
         if (!cleanedTime && !String(capacity).trim()) return;
         if (!/^\d{1,2}:\d{2}\s*-\s*\d{1,2}:\d{2}$/.test(cleanedTime)) {
@@ -3878,32 +3879,49 @@
       return result;
     }
 
+
+    function showTimeSlotConfigMessage(type, message, duration) {
+      const localId = 'timeSlotConfigMessage';
+      if (document.getElementById(localId)) {
+        showInlineMessage(localId, type, message, duration || 6000);
+      }
+      if (document.getElementById('setupMessage')) {
+        showInlineMessage('setupMessage', type, message, duration || 6000);
+      }
+    }
+
     function saveTimeSlotConfig() {
-      if (!hasSetupAccess()) return;
+      if (!hasSetupAccess()) {
+        showTimeSlotConfigMessage('error', 'Bạn cần đăng nhập Admin để lưu cấu hình khung giờ.');
+        return;
+      }
       let payload;
       try {
         payload = { timeSlots: collectTimeSlotConfigPayload() };
       } catch (error) {
-        showInlineMessage('setupMessage', 'error', error.message);
+        showTimeSlotConfigMessage('error', error.message);
         return;
       }
+
       const btn = document.getElementById('saveTimeSlotConfigBtn');
       setButtonLoading(btn, true);
       google.script.run
         .withSuccessHandler(function (result) {
           setButtonLoading(btn, false);
           if (result && result.success) {
-            showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu cấu hình khung giờ.');
-            loadSetupData();
-            renderSetupProtectedArea();
+            if (result.timeSlots && result.timeSlots.length) {
+              appData.timeSlots = result.timeSlots;
+              registrationState.timeSlots = result.timeSlots;
+            }
+            showTimeSlotConfigMessage('success', result.message || 'Đã lưu cấu hình khung giờ đăng ký.', 7000);
             refreshSlotsForSelectedDate();
           } else {
-            showInlineMessage('setupMessage', 'error', result && result.message ? result.message : 'Không thể lưu cấu hình khung giờ.');
+            showTimeSlotConfigMessage('error', result && result.message ? result.message : 'Không thể lưu cấu hình khung giờ.');
           }
         })
         .withFailureHandler(function (error) {
           setButtonLoading(btn, false);
-          showInlineMessage('setupMessage', 'error', 'Lỗi khi lưu cấu hình khung giờ: ' + error.message);
+          showTimeSlotConfigMessage('error', 'Lỗi khi lưu cấu hình khung giờ: ' + error.message + '. Nếu vừa cập nhật Code.gs, hãy triển khai lại Web App phiên bản mới.');
         })
         .saveTimeSlotConfig(authState, payload);
     }
