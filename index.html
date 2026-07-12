@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=20">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=21">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=20">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=20">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=21">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=21">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=20">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=21">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=20">
-  <link rel="icon" href="favicon.ico?v=20" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=20">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=20">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=20">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=20">
+  <link rel="manifest" href="manifest.json?v=21">
+  <link rel="icon" href="favicon.ico?v=21" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=21">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=21">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=21">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=21">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2146,6 +2146,182 @@
       }
     }
 
+
+    /* ===== PATCH 201: DESKTOP - ĐĂNG KÝ CĂN 2 DÒNG THÔNG TIN BN + SỬA SELECT ĐỊA ĐIỂM DS ===== */
+    @media (min-width:900px){
+      .header-inner{
+        max-width:none!important;
+        width:100%!important;
+        margin:0!important;
+        padding-left:18px!important;
+        padding-right:18px!important;
+      }
+
+      .header-brand{
+        justify-content:flex-start!important;
+        text-align:left!important;
+        margin-left:0!important;
+        margin-right:auto!important;
+      }
+
+      .header-logo{
+        margin-left:0!important;
+      }
+
+      .header-text{
+        text-align:left!important;
+      }
+
+      .registration-right-panel{
+        display:grid!important;
+        grid-template-columns:repeat(12,minmax(0,1fr))!important;
+        gap:8px!important;
+        align-content:start!important;
+        overflow:auto!important;
+      }
+
+      .registration-right-panel > .desktop-panel-head{
+        grid-column:1 / -1!important;
+        margin-bottom:2px!important;
+      }
+
+      .registration-right-panel > .form-group,
+      .registration-right-panel > .grid-2,
+      .registration-right-panel > .requirement-section,
+      .registration-right-panel > .button-row,
+      .registration-right-panel > .message{
+        min-width:0!important;
+      }
+
+      .registration-right-panel > .grid-2{
+        display:contents!important;
+      }
+
+      .registration-right-panel > .grid-2 > .form-group{
+        min-width:0!important;
+      }
+
+      .registration-right-panel .form-group:has(#name){
+        grid-column:1 / span 5!important;
+        grid-row:2!important;
+      }
+
+      .registration-right-panel .form-group:has(#age){
+        grid-column:6 / span 2!important;
+        grid-row:2!important;
+      }
+
+      .registration-right-panel .form-group:has(#code){
+        grid-column:8 / span 5!important;
+        grid-row:2!important;
+      }
+
+      .registration-right-panel .form-group:has(#department){
+        grid-column:1 / span 4!important;
+        grid-row:3!important;
+      }
+
+      .registration-right-panel .form-group:has(#room){
+        grid-column:5 / span 3!important;
+        grid-row:3!important;
+      }
+
+      .registration-right-panel .form-group:has(#bed){
+        grid-column:8 / span 2!important;
+        grid-row:3!important;
+      }
+
+      .registration-right-panel .form-group:has(#phone){
+        grid-column:10 / span 3!important;
+        grid-row:3!important;
+      }
+
+      .registration-right-panel #procedureRequirementSection{
+        grid-column:1 / -1!important;
+        grid-row:4!important;
+      }
+
+      .registration-right-panel .form-group:has(#optionalTestNone){
+        grid-column:1 / -1!important;
+        grid-row:5!important;
+      }
+
+      .registration-right-panel .form-group:has(#registrationNote){
+        grid-column:1 / -1!important;
+        grid-row:6!important;
+      }
+
+      .registration-right-panel .registration-submit-row{
+        grid-column:1 / -1!important;
+        grid-row:7!important;
+      }
+
+      .registration-right-panel #registrationMessage{
+        grid-column:1 / -1!important;
+        grid-row:8!important;
+      }
+
+      .registration-right-panel .form-group{
+        margin-bottom:0!important;
+      }
+
+      .registration-right-panel label{
+        white-space:nowrap!important;
+        overflow:hidden!important;
+        text-overflow:ellipsis!important;
+      }
+
+      .registration-right-panel .field{
+        width:100%!important;
+        min-width:0!important;
+      }
+
+      #listLocation{
+        pointer-events:auto!important;
+        position:relative!important;
+        z-index:5!important;
+        width:100%!important;
+        min-width:0!important;
+        cursor:pointer!important;
+      }
+
+      .list-filter-panel,
+      .list-filter-panel .form-group,
+      .list-filter-panel select{
+        overflow:visible!important;
+      }
+    }
+
+    @media (min-width:900px) and (max-width:1180px){
+      .registration-right-panel .form-group:has(#name){
+        grid-column:1 / span 5!important;
+      }
+      .registration-right-panel .form-group:has(#age){
+        grid-column:6 / span 2!important;
+      }
+      .registration-right-panel .form-group:has(#code){
+        grid-column:8 / span 5!important;
+      }
+      .registration-right-panel .form-group:has(#department){
+        grid-column:1 / span 4!important;
+      }
+      .registration-right-panel .form-group:has(#room){
+        grid-column:5 / span 3!important;
+      }
+      .registration-right-panel .form-group:has(#bed){
+        grid-column:8 / span 2!important;
+      }
+      .registration-right-panel .form-group:has(#phone){
+        grid-column:10 / span 3!important;
+      }
+    }
+
+    @media (max-width:899px){
+      .registration-right-panel{
+        display:block!important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2160,7 +2336,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=20" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=21" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
@@ -2698,6 +2874,11 @@
           appData = data || { departments: [], procedureTypes: [], locations: [], needles: {}, timeSlots: [] };
           populateDropdowns();
           refreshSlotsForSelectedDate();
+
+          if (hasListAccess()) {
+            if (document.getElementById('listProtectedArea')) renderListProtectedArea(true);
+            if (document.getElementById('waitingProtectedArea')) renderWaitingProtectedArea(true);
+          }
           if (hasSetupAccess() && currentTab === 'caidat') renderSetupProtectedArea();
         })
         .withFailureHandler(function (error) {
