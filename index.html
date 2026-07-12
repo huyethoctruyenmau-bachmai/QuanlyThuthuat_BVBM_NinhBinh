@@ -1226,6 +1226,46 @@
       .setting-input-row .btn{min-width:92px;}
       .needle-config-grid{grid-template-columns:1fr;}
     }
+
+    /* FIX 2026-07-12: Header Ninh Bình dài hơn, cho phép xuống dòng để không cắt dấu tiếng Việt */
+    .header-inner{
+      min-height:var(--header-height);
+      height:auto;
+      align-items:center;
+    }
+
+    .header-text{
+      line-height:1.28;
+      padding-top:1px;
+      padding-bottom:1px;
+    }
+
+    .hospital-name{
+      white-space:normal;
+      overflow:visible;
+      text-overflow:clip;
+      line-height:1.25;
+      max-height:none;
+      display:block;
+    }
+
+    .department-name{
+      white-space:normal;
+      overflow:visible;
+      text-overflow:clip;
+      line-height:1.25;
+      max-height:none;
+      display:block;
+    }
+
+    @media (max-width:768px){
+      .hospital-name{font-size:13px; line-height:1.25;}
+      .department-name{font-size:11px; line-height:1.25;}
+      .header-brand{gap:8px;}
+      .header-auth{max-width:38%;}
+      .auth-chip{max-width:110px;}
+    }
+
   </style>
 </head>
 <body>
@@ -1240,7 +1280,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="https://i.postimg.cc/15TP5D8v/LOGO-TRON-BVBM.png" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
@@ -1514,7 +1554,7 @@
   </button>
 
   <script>
-    const GAS_WEB_APP_URL = 'DAN_WEB_APP_EXEC_URL_VAO_DAY';
+    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx6UNn8WlJJR3VpynyieK-EhNgQIxc9fYaDoL__CYYm-ibbJweJuuTwH9K2T4w2XwGC/exec';
 
     function getGasWebAppUrl() {
       try {
