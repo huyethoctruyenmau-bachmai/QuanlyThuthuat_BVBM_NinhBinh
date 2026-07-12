@@ -5,18 +5,18 @@
   <meta charset="UTF-8">
   <title>ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình</title>
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
+  <meta name="description" content="Ứng dụng đăng ký thủ thuật - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=23">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=24">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
-  <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=23">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=23">
+  <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT">
+  <meta property="og:description" content="Ứng dụng đăng ký thủ thuật - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=24">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=24">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=23">
+  <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=24">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=23">
-  <link rel="icon" href="favicon.ico?v=23" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=23">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=23">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=23">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=23">
+  <link rel="manifest" href="manifest.json?v=24">
+  <link rel="icon" href="favicon.ico?v=24" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=24">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=24">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=24">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=24">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2443,6 +2443,14 @@
       }
     }
 
+
+    /* ===== PATCH 204: TIÊU ĐỀ BẢNG ĐĂNG NHẬP VIẾT HOA, KHÔNG IN ĐẬM ===== */
+    .protected-login-title{
+      font-weight:400!important;
+      text-transform:uppercase!important;
+      letter-spacing:.2px!important;
+    }
+
   </style>
 </head>
 <body>
@@ -2457,7 +2465,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=23" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=24" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
@@ -3586,14 +3594,14 @@
 
     function renderAuthForm(targetId, purpose, forceAdmin) {
       const target = document.getElementById(targetId);
-      const title = forceAdmin ? 'Đăng nhập Admin' : (purpose === 'setup' ? 'Đăng nhập để vào cài đặt' : 'Đăng nhập để xem nội dung');
+      const title = 'ĐĂNG NHẬP';
       const note = forceAdmin
         ? 'Nội dung dành cho Quản trị viên (Admin).'
         : 'Nội dung dành cho nhân viên Phòng thủ thuật - Khoa Huyết học và Truyền máu.';
       target.innerHTML =
         '<div class="protected-login-wrap">' +
           '<div class="protected-login-card">' +
-            '<div class="protected-login-title"><i class="fas fa-lock"></i> ' + title + '</div>' +
+            '<div class="protected-login-title">' + title + '</div>' +
             '<div class="subnote protected-login-note">' + note + '</div>' +
             '<div class="form-group">' +
               '<label for="' + purpose + 'User"><i class="fas fa-user"></i> Tên đăng nhập <span class="text-red">*</span></label>' +
