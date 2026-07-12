@@ -8,6 +8,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>QUẢN LÝ BỆNH NHÂN THỰC HIỆN THỦ THUẬT</title>
+  <link rel="manifest" href="manifest.json?v=6">
+  <link rel="icon" href="favicon.ico?v=6" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=6">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=6">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=6">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=6">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     :root{
@@ -1266,6 +1273,142 @@
       .auth-chip{max-width:110px;}
     }
 
+
+    /* FIX 2026-07-12 v5: Khung, input và nút theo dáng Google Material gọn, ít bo tròn */
+    .card,
+    .setting-section,
+    .needle-config-card,
+    .patient-card,
+    .empty-state,
+    .requirement-section{
+      border-radius:8px;
+      border:1px solid #dadce0;
+      box-shadow:0 1px 2px rgba(60,64,67,.16);
+    }
+
+    .field,
+    .field-readonly,
+    textarea.field,
+    .search-box{
+      min-height:44px;
+      height:44px;
+      border:1px solid #dadce0;
+      border-radius:4px;
+      box-shadow:none;
+      background:#fff;
+    }
+
+    textarea.field{
+      min-height:88px;
+      height:auto;
+    }
+
+    input[type="date"].field{
+      min-height:44px;
+      height:44px;
+      border-radius:4px;
+    }
+
+    .field:focus,
+    textarea.field:focus{
+      border-color:#1a73e8;
+      box-shadow:0 0 0 1px #1a73e8;
+      transform:none;
+    }
+
+    .btn{
+      min-height:40px;
+      height:40px;
+      border-radius:4px;
+      box-shadow:none;
+      background:#1a73e8;
+      color:#fff;
+      font-weight:600;
+      letter-spacing:.1px;
+      padding:0 16px;
+    }
+
+    .btn:hover{
+      transform:none;
+      box-shadow:0 1px 2px rgba(60,64,67,.24);
+      filter:brightness(.98);
+    }
+
+    .btn:active{
+      transform:none;
+      box-shadow:none;
+      filter:brightness(.95);
+    }
+
+    .btn.btn-secondary{
+      background:#fff;
+      color:#1a73e8;
+      border:1px solid #dadce0;
+      box-shadow:none;
+    }
+
+    .btn.btn-red{
+      background:#d93025;
+      color:#fff;
+      box-shadow:none;
+    }
+
+    .confirm-docs-btn{
+      background:#5f6368;
+      color:#fff;
+      box-shadow:none;
+    }
+
+    .message,
+    .app-modal-card,
+    #cancelModal > div{
+      border-radius:8px !important;
+      box-shadow:0 8px 24px rgba(60,64,67,.24) !important;
+    }
+
+    .badge{
+      border-radius:4px;
+      padding:5px 8px;
+    }
+
+    .chip{
+      border-radius:4px;
+      border:1px solid #dadce0;
+      background:#fff;
+    }
+
+    .chip .chip-delete,
+    .scroll-top-btn{
+      border-radius:50%;
+    }
+
+    .tab-button.active::before{
+      border-radius:0;
+    }
+
+    @media (max-width:768px){
+      .card,
+      .setting-section,
+      .needle-config-card,
+      .patient-card,
+      .empty-state,
+      .requirement-section{
+        border-radius:8px;
+      }
+
+      .field,
+      .field-readonly,
+      textarea.field,
+      .search-box,
+      input[type="date"].field{
+        border-radius:4px;
+      }
+
+      .btn{
+        border-radius:4px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1280,7 +1423,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=6" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
