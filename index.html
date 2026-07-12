@@ -1,1 +1,3851 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>QUẢN LÝ BỆNH NHÂN THỰC HIỆN THỦ THUẬT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root{
+      --green-800:#1b5e20;
+      --green-700:#2e7d32;
+      --green-600:#388e3c;
+      --green-500:#43a047;
+      --green-100:#e8f5e9;
+      --green-50:#f6fbf6;
+      --yellow:#f59e0b;
+      --yellow-bg:#fff7dc;
+      --red:#c62828;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --line:#dfe7e1;
+      --header-height:70px;
+      --tabbar-height:60px;
+      --footer-gap:calc(var(--tabbar-height) + 10px);
+    }
 
+    *{
+      box-sizing:border-box;
+      font-family:'Roboto', Arial, sans-serif;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    html, body{
+      width:100%;
+      height:100%;
+      margin:0;
+      padding:0;
+      overflow:hidden;
+      background:#f1f6f1;
+      overscroll-behavior:none;
+      touch-action:pan-x pan-y;
+      -webkit-text-size-adjust:100%;
+      -moz-text-size-adjust:100%;
+      -ms-text-size-adjust:100%;
+      text-size-adjust:100%;
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+    }
+
+    input, textarea, select{
+      -webkit-user-select:text;
+      -moz-user-select:text;
+      -ms-user-select:text;
+      user-select:text;
+      font-size:16px !important;
+      -webkit-appearance:auto;
+      -moz-appearance:auto;
+      appearance:auto;
+      color:var(--text);
+      background-color:#fff;
+      opacity:1;
+    }
+
+    input::placeholder, textarea::placeholder{
+      color:#9ca3af;
+      opacity:1;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(67,160,71,.08), transparent 22%),
+        radial-gradient(circle at 80% 10%, rgba(46,125,50,.06), transparent 18%),
+        linear-gradient(180deg, #f8fbf8 0%, #eef5ef 100%);
+      z-index:-1;
+    }
+
+    .app-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      height:var(--header-height);
+      z-index:1000;
+      background:linear-gradient(135deg, var(--green-700) 0%, var(--green-800) 100%);
+      box-shadow:0 2px 10px rgba(0,0,0,.16);
+      color:#fff;
+    }
+
+    .header-inner{
+      max-width:980px;
+      height:100%;
+      margin:0 auto;
+      padding:4px 12px 8px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .header-auth{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:8px;
+      max-width:46%;
+      min-height:28px;
+      flex:0 0 auto;
+      order:2;
+      align-self:flex-start;
+      margin-top:0;
+    }
+
+    .header-auth.hidden{
+      display:none;
+    }
+
+    .auth-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      min-height:28px;
+      padding:0;
+      border-radius:0;
+      background:transparent;
+      border:none;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:180px;
+    }
+
+    .logout-btn{
+      width:34px;
+      min-width:34px;
+      height:34px;
+      border:none;
+      border-radius:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      background:transparent;
+      color:#fff;
+      position:relative;
+      padding:0;
+    }
+
+    .logout-btn .loader{
+      width:14px;
+      height:14px;
+      border-width:2px;
+    }
+
+    .logout-btn .btn-label i{
+      font-size:20px;
+    }
+
+    .header-brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+      flex:1 1 auto;
+      text-align:left;
+      justify-content:flex-start;
+      order:1;
+    }
+
+    .header-logo{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:#fff;
+      overflow:hidden;
+      flex:0 0 36px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+
+    .header-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .header-text{
+      min-width:0;
+      line-height:1.15;
+    }
+
+    .hospital-name{
+      font-size:16px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .department-name{
+      font-size:13px;
+      margin-top:2px;
+      text-transform:uppercase;
+      opacity:.95;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .app-main{
+      position:fixed;
+      top:var(--header-height);
+      left:0;
+      right:0;
+      bottom:var(--tabbar-height);
+      overflow-y:auto;
+      overflow-x:hidden;
+      overscroll-behavior-y:contain;
+      -webkit-overflow-scrolling:touch;
+      padding:8px 8px 12px;
+    }
+
+    .main-inner{
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .screen{display:none;}
+    .screen.active{display:block;}
+
+    .card{
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 3px 14px rgba(0,0,0,.08);
+      border:1px solid rgba(46,125,50,.08);
+      padding:14px 12px;
+      margin-bottom:10px;
+    }
+
+    .screen-title{
+      margin:0 0 12px;
+      font-size:20px;
+      font-weight:700;
+      color:var(--green-700);
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding-bottom:10px;
+      border-bottom:3px solid #edf2ee;
+    }
+
+    .screen-title i{
+      width:22px;
+      text-align:center;
+      color:var(--green-700);
+    }
+
+    .subnote{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+      margin:-2px 0 12px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:10px;
+    }
+
+    .form-group{
+      margin-bottom:10px;
+    }
+
+    .form-group label{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      color:var(--green-700);
+      font-size:15px;
+      font-weight:700;
+      margin-bottom:5px;
+    }
+
+    .form-group label i{
+      width:17px;
+      text-align:center;
+    }
+
+    .field, .field-readonly, textarea.field{
+      width:100%;
+      min-height:40px;
+      height:40px;
+      padding:8px 11px;
+      border:2px solid var(--line);
+      border-radius:9px;
+      background:#fff;
+      color:var(--text);
+      transition:all .2s ease;
+      line-height:1.2;
+    }
+
+    input[type="date"].field{
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      display:block;
+      line-height:20px;
+      padding:8px 11px;
+      min-height:40px;
+      height:40px;
+    }
+
+    input[type="date"].field::-webkit-date-and-time-value{
+      min-height:20px;
+      text-align:left;
+    }
+
+    input[type="date"].field::-webkit-calendar-picker-indicator{
+      opacity:1;
+    }
+
+    textarea.field{
+      min-height:76px;
+      height:auto;
+      resize:vertical;
+    }
+
+    .field:focus, textarea.field:focus{
+      outline:none;
+      border-color:var(--green-600);
+      box-shadow:0 0 0 3px rgba(56,142,60,.14);
+      transform:translateY(-1px);
+    }
+
+    .field-readonly{
+      display:flex;
+      align-items:center;
+      background:#f7faf7;
+      color:#374151;
+      font-weight:500;
+    }
+
+    .inline-row{
+      display:flex;
+      gap:10px;
+      align-items:flex-end;
+      flex-wrap:wrap;
+    }
+
+    .inline-row > .form-group{margin-bottom:0;}
+
+    .inline-fill{flex:1 1 220px;}
+    .inline-small{flex:0 0 160px;}
+
+    .search-box{
+      display:flex;
+      align-items:center;
+      border:2px solid var(--line);
+      border-radius:10px;
+      overflow:hidden;
+      background:#fff;
+      min-height:40px;
+      height:40px;
+    }
+
+    .search-box input, .search-box select{
+      flex:1;
+      height:100%;
+      border:none;
+      padding:0 12px;
+      background:transparent;
+      color:var(--text);
+    }
+
+    .search-box input:focus, .search-box select:focus{
+      outline:none;
+      box-shadow:none;
+      transform:none;
+    }
+
+    .search-box button{
+      border:none;
+      width:46px;
+      min-width:46px;
+      height:100%;
+      background:rgba(46,125,50,.12);
+      color:var(--green-700);
+      cursor:pointer;
+      font-size:17px;
+    }
+
+    .slot-note{
+      color:#b91c1c;
+      font-size:13px;
+      line-height:1.4;
+      margin-top:7px;
+      min-height:18px;
+    }
+
+    .btn{
+      min-height:40px;
+      height:40px;
+      border:none;
+      border-radius:10px;
+      padding:0 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      cursor:pointer;
+      color:#fff;
+      background:linear-gradient(135deg, var(--green-500) 0%, var(--green-700) 100%);
+      box-shadow:0 3px 10px rgba(67,160,71,.16);
+      font-size:15px;
+      font-weight:700;
+      transition:all .2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 6px 14px rgba(67,160,71,.2);
+    }
+
+    .btn:active{transform:none;}
+
+    .btn:disabled, .logout-btn:disabled{
+      cursor:not-allowed !important;
+      box-shadow:none !important;
+      transform:none !important;
+      opacity:.8;
+    }
+
+    .btn.btn-secondary{
+      background:linear-gradient(135deg, #eef2ef 0%, #e3e8e4 100%);
+      color:#374151;
+      box-shadow:none;
+    }
+
+    .btn.btn-red{
+      background:linear-gradient(135deg, #d15b5b 0%, #a93636 100%);
+      box-shadow:0 3px 10px rgba(198,40,40,.14);
+    }
+
+    .btn.btn-full{width:100%;}
+
+    .button-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+
+    .message{
+      display:none;
+      border-radius:12px;
+      padding:11px 13px;
+      font-size:14px;
+      line-height:1.45;
+      margin-top:12px;
+      border-left:4px solid transparent;
+    }
+
+    .message.success{
+      background:#eaf7eb;
+      color:var(--green-800);
+      border-left-color:var(--green-700);
+    }
+
+    .message.error{
+      background:#fff1f1;
+      color:#b91c1c;
+      border-left-color:var(--red);
+    }
+
+    .patient-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .summary-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      color:var(--text);
+      font-size:14px;
+      font-weight:700;
+      margin:6px 0 10px;
+    }
+
+    .summary-pending{color:#8a5a00;}
+    .summary-waiting{color:#0d47a1;}
+    .summary-done{color:#1b5e20;}
+    .summary-no-show{color:#263238;}
+    .summary-failed{color:#e65100;}
+    .summary-total{color:var(--green-800);}
+
+    .patient-card{
+      background:#fff;
+      border-radius:14px;
+      padding:12px;
+      box-shadow:0 3px 14px rgba(0,0,0,.07);
+      border-left:5px solid var(--yellow);
+    }
+
+    .patient-card.waiting{
+      border-left-color:#1976d2;
+      background:#f7fbff;
+    }
+
+    .patient-card.done{
+      border-left-color:var(--green-600);
+      background:#f9fcf9;
+    }
+
+    .patient-card.no-show{
+      border-left-color:#607d8b;
+      background:#fbfbfb;
+    }
+
+    .patient-card.failed{
+      border-left-color:#fb8c00;
+      background:#fffaf3;
+    }
+
+    .patient-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .patient-name{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      font-size:16px;
+      font-weight:700;
+      line-height:1.35;
+      color:#111827;
+    }
+
+    .copy-btn{
+      min-width:0;
+      width:auto;
+      height:auto;
+      border:none;
+      border-radius:0;
+      background:transparent;
+      color:var(--green-700);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:none;
+      padding:0;
+      font-size:15px;
+      line-height:1;
+    }
+
+    .copy-btn:hover{
+      color:var(--green-800);
+    }
+
+    .copy-btn:active{
+      transform:scale(.98);
+    }
+
+    .badge{
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      white-space:nowrap;
+      min-width:92px;
+      text-align:center;
+    }
+
+    .badge.pending{background:var(--yellow-bg); color:#8a5a00;}
+    .badge.waiting{background:#e3f2fd; color:#0d47a1;}
+    .badge.done{background:#e8f5e9; color:#1b5e20;}
+    .badge.no-show{background:#eceff1; color:#263238;}
+    .badge.failed{background:#fff3e0; color:#e65100;}
+
+    .patient-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px 14px;
+    }
+
+    .patient-item{
+      display:flex;
+      align-items:flex-start;
+      gap:6px;
+      font-size:14px;
+      line-height:1.4;
+      color:#374151;
+      min-width:0;
+      padding:1px 0;
+    }
+
+    .patient-item strong{
+      min-width:88px;
+      flex:0 0 88px;
+      color:var(--green-700);
+    }
+
+    .patient-item span, .patient-item a{
+      min-width:0;
+      word-break:break-word;
+      color:inherit;
+    }
+
+    .patient-item .patient-item-value{
+      display:flex;
+      align-items:flex-start;
+      gap:6px;
+      min-width:0;
+      flex:1 1 auto;
+    }
+
+    .patient-item .patient-item-value span,
+    .patient-item .patient-item-value a{
+      min-width:0;
+      word-break:break-word;
+    }
+
+    .patient-item a{
+      color:#0d47a1;
+      text-decoration:underline;
+    }
+
+    .text-red{
+      color:#c62828 !important;
+      font-weight:700;
+    }
+
+    .patient-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      flex-wrap:wrap;
+      padding-top:9px;
+      margin-top:10px;
+      border-top:1px solid #edf2ee;
+    }
+
+    .requirement-section{
+      border:1px dashed #cfe0d2;
+      border-radius:12px;
+      padding:12px;
+      margin-bottom:12px;
+      background:#fcfffc;
+    }
+
+    .requirement-title{
+      margin:0 0 9px;
+      color:var(--green-700);
+      font-size:16px;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      gap:7px;
+    }
+
+    .checkbox-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .checkbox-item{
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+      color:#1f2937;
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .requirement-section .subnote,
+    .requirement-section .checkbox-item{
+      font-size:16px;
+    }
+
+    .checkbox-item input{
+      width:18px;
+      height:18px;
+      min-width:18px;
+      margin:1px 0 0;
+      accent-color:var(--green-700);
+      -webkit-appearance:auto;
+      -moz-appearance:auto;
+      appearance:auto;
+    }
+
+    .optional-test-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:8px;
+    }
+
+    .form-group .optional-test-grid .checkbox-item{
+      color:#1f2937 !important;
+      font-size:16px;
+      font-weight:400 !important;
+      margin-bottom:0;
+    }
+
+    .form-group .optional-test-grid .checkbox-item span{
+      color:#1f2937 !important;
+      font-weight:400 !important;
+    }
+
+    .optional-test-other-wrap{
+      margin-top:8px;
+    }
+
+    .confirm-docs-btn{
+      background:linear-gradient(135deg, #7b8494 0%, #5f6876 100%);
+      box-shadow:0 3px 10px rgba(75,85,99,.14);
+      color:#fff;
+    }
+
+    .confirm-docs-btn:disabled{
+      background:#d1d5db;
+      color:#6b7280;
+      box-shadow:none;
+      opacity:1;
+    }
+
+    .patient-extra-info{
+      margin-top:10px;
+      padding-top:9px;
+      border-top:1px solid #edf2ee;
+      display:grid;
+      gap:7px;
+    }
+
+    .patient-extra-item{
+      display:flex;
+      align-items:flex-start;
+      gap:6px;
+      font-size:14px;
+      line-height:1.45;
+      color:#374151;
+    }
+
+    .patient-extra-item strong{
+      min-width:118px;
+      flex:0 0 118px;
+      color:var(--green-700);
+    }
+
+    .patient-extra-item span{
+      min-width:0;
+      word-break:break-word;
+    }
+
+    .optional-tests-lines{
+      display:grid;
+      gap:3px;
+    }
+
+    .optional-tests-lines div{
+      min-width:0;
+      word-break:break-word;
+    }
+
+    .note-text-blue{
+      color:#2563eb !important;
+    }
+
+    .optional-tests-highlight{
+      color:#8b3a2f !important;
+    }
+
+    .procedure-highlight{
+      color:#2563eb !important;
+      font-weight:700;
+    }
+
+    .patient-item a.phone-link{
+      color:#1f2937 !important;
+      text-decoration:none;
+      font-weight:400;
+    }
+
+    .empty-state{
+      text-align:center;
+      color:var(--muted);
+      padding:26px 14px;
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 3px 14px rgba(0,0,0,.06);
+    }
+
+    .setting-section{
+      border:1px solid #e5ede6;
+      border-radius:14px;
+      padding:12px;
+      margin-bottom:12px;
+      background:#fcfffc;
+    }
+
+    .setting-title{
+      margin:0 0 12px;
+      font-size:17px;
+      font-weight:700;
+      color:var(--green-700);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+
+
+    .needle-config-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .needle-config-card{
+      border:1px solid #e5ede6;
+      border-radius:12px;
+      padding:12px;
+      background:#fff;
+    }
+
+    .needle-config-name{
+      margin:0 0 10px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--green-700);
+    }
+
+    .list-toolbar{
+      display:grid;
+      grid-template-columns:180px minmax(0, 1fr) minmax(0, 1fr) 150px;
+      gap:10px;
+      align-items:end;
+    }
+
+    .list-toolbar.list-main-toolbar{
+      grid-template-columns:repeat(4, minmax(0, 1fr)) minmax(300px, 320px);
+    }
+
+    .list-toolbar.list-main-toolbar .toolbar-date{
+      min-width:0;
+    }
+
+    .list-toolbar.waiting-toolbar{
+      grid-template-columns:180px minmax(0, 1fr) 150px;
+    }
+
+    .list-toolbar .form-group{
+      margin-bottom:0;
+      min-width:0;
+      width:100%;
+    }
+
+    .list-toolbar .toolbar-date{
+      min-width:180px;
+    }
+
+    .list-toolbar .toolbar-search,
+    .list-toolbar .toolbar-location,
+    .list-toolbar .toolbar-status{
+      min-width:0;
+      width:100%;
+    }
+
+    .list-toolbar .toolbar-date .field,
+    .list-toolbar .toolbar-search .field,
+    .list-toolbar .toolbar-location .field,
+    .list-toolbar .toolbar-status .field{
+      width:100%;
+    }
+
+    .list-toolbar label{
+      white-space:nowrap;
+    }
+
+    .list-toolbar .btn{
+      min-width:150px;
+      margin-bottom:0;
+      width:100%;
+    }
+
+    .list-toolbar .toolbar-action{
+      min-width:150px;
+    }
+
+    .list-toolbar .toolbar-actions{
+      display:flex;
+      gap:8px;
+      min-width:300px;
+      width:100%;
+    }
+
+    .list-toolbar .toolbar-actions .btn{
+      min-width:145px;
+      width:auto;
+      flex:1 1 0;
+    }
+
+    .setting-input-row{
+      display:flex;
+      align-items:flex-end;
+      gap:10px;
+    }
+
+    .setting-input-row .form-group{
+      flex:1 1 auto;
+      margin-bottom:0;
+    }
+
+    .setting-input-row .btn{
+      min-width:104px;
+      flex:0 0 auto;
+    }
+
+    .chip-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .chip{
+      width:100%;
+      background:#f1f7f2;
+      color:#1f2937;
+      border:1px solid #d7e4d9;
+      border-radius:10px;
+      padding:8px 10px;
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    .chip .chip-delete{
+      width:22px;
+      height:22px;
+      border:none;
+      border-radius:999px;
+      background:#fff;
+      color:#b91c1c;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+    }
+
+    .chip .chip-delete .loader{
+      width:12px;
+      height:12px;
+      border-width:2px;
+      border-top-color:#b91c1c;
+      border-color:rgba(185,28,28,.3);
+    }
+
+    .tab-bar{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      height:var(--tabbar-height);
+      background:#fff;
+      border-top:1px solid #dde5df;
+      box-shadow:0 -2px 10px rgba(0,0,0,.08);
+      z-index:1001;
+      display:flex;
+      justify-content:center;
+    }
+
+    .tab-bar-inner{
+      width:100%;
+      max-width:980px;
+      display:flex;
+    }
+
+    .tab-button{
+      position:relative;
+      flex:1;
+      border:none;
+      background:#fff;
+      color:#6b7280;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:3px;
+      font-size:12.5px;
+      cursor:pointer;
+      transition:all .2s ease;
+      font-weight:600;
+    }
+
+    .tab-button i{font-size:19px;}
+    .tab-button.active{color:var(--green-700); font-weight:700;}
+    .tab-button.active::before{
+      content:'';
+      position:absolute;
+      top:0;
+      width:40px;
+      height:3px;
+      border-radius:0 0 999px 999px;
+      background:var(--green-700);
+    }
+
+    .loader{
+      width:16px;
+      height:16px;
+      border:2px solid rgba(255,255,255,.45);
+      border-top-color:#fff;
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+      display:none;
+      flex:0 0 16px;
+    }
+
+    .btn-secondary .loader{
+      border-color:rgba(107,114,128,.3);
+      border-top-color:#374151;
+    }
+
+    .btn-red .loader{
+      border-color:rgba(255,255,255,.35);
+      border-top-color:#fff;
+    }
+
+    .logout-btn .loader{
+      border-color:rgba(255,255,255,.35);
+      border-top-color:#fff;
+    }
+
+    .btn.loading .loader, .logout-btn.loading .loader, .chip-delete.loading .loader{display:inline-block;}
+    .btn.loading .btn-label, .logout-btn.loading .btn-label, .chip-delete.loading .btn-label{display:none;}
+
+    .app-modal{
+      position:fixed;
+      inset:0;
+      z-index:3000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      background:rgba(0,0,0,.52);
+    }
+
+    .app-modal-card{
+      width:100%;
+      max-width:560px;
+      max-height:86vh;
+      overflow:auto;
+      background:#fff;
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 18px 42px rgba(0,0,0,.26);
+    }
+
+    .app-modal-title{
+      margin:0 0 12px;
+      color:var(--green-700);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:19px;
+      font-weight:700;
+    }
+
+    .app-modal-message{
+      color:#1f2937;
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .app-modal-message ul{
+      margin:8px 0 0 20px;
+      padding:0;
+    }
+
+    .app-modal-message li{
+      margin:5px 0;
+    }
+
+    .review-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:8px;
+      font-size:14px;
+    }
+
+    .review-table td{
+      padding:7px 6px;
+      border-bottom:1px solid #edf2ee;
+      vertical-align:top;
+    }
+
+    .review-table td:first-child{
+      width:132px;
+      color:var(--green-700);
+      font-weight:700;
+    }
+
+    .scroll-top-btn{
+      position:fixed;
+      right:14px;
+      bottom:calc(var(--tabbar-height) + 14px);
+      z-index:1800;
+      width:44px;
+      height:44px;
+      border:none;
+      border-radius:999px;
+      background:var(--green-700);
+      color:#fff;
+      box-shadow:0 8px 22px rgba(0,0,0,.24);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      font-size:18px;
+    }
+
+    .scroll-top-btn.show{display:flex;}
+
+    .hidden{display:none !important;}
+
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    @media (max-width:768px){
+      :root{
+        --header-height:66px;
+        --tabbar-height:56px;
+      }
+
+      .app-main{padding:6px 6px 10px;}
+      .card{padding:12px 10px; border-radius:13px;}
+      .screen-title{font-size:19px;}
+      .grid-2, .grid-3{grid-template-columns:1fr;}
+      .patient-grid{grid-template-columns:1fr;}
+      .optional-test-grid{grid-template-columns:1fr;}
+      .patient-extra-item{display:block;}
+      .patient-extra-item strong{display:block;min-width:0;margin-bottom:2px;}
+      .inline-row{display:grid; grid-template-columns:1fr;}
+  
+    .needle-config-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .needle-config-card{
+      border:1px solid #e5ede6;
+      border-radius:12px;
+      padding:12px;
+      background:#fff;
+    }
+
+    .needle-config-name{
+      margin:0 0 10px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--green-700);
+    }
+
+    .list-toolbar{
+        display:block;
+      }
+      .list-toolbar .form-group{
+        margin-bottom:12px;
+      }
+      .list-toolbar .toolbar-date,
+      .list-toolbar .toolbar-search,
+      .list-toolbar .toolbar-location,
+      .list-toolbar .toolbar-status,
+      .list-toolbar .toolbar-action,
+      .list-toolbar .toolbar-actions{
+        width:100%;
+        min-width:0;
+      }
+      .list-toolbar label{
+        white-space:normal;
+      }
+      .list-toolbar .btn{width:100%; min-width:0;}
+      .list-toolbar .toolbar-actions{display:grid; grid-template-columns:1fr; gap:8px;}
+      .header-inner{padding:3px 10px 8px;}
+      .header-auth{max-width:48%; margin-top:0;}
+      .auth-chip{max-width:150px; font-size:12px;}
+      .header-logo{width:32px; height:32px; flex-basis:32px;}
+      .hospital-name{font-size:15px;}
+      .department-name{font-size:12px;}
+      .patient-item strong{min-width:84px; flex-basis:84px;}
+      .setting-input-row{align-items:stretch;}
+      .setting-input-row .btn{min-width:92px;}
+      .needle-config-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div id="headerAuth" class="header-auth hidden">
+        <div id="headerAuthName" class="auth-chip"></div>
+        <button id="logoutBtn" class="logout-btn" type="button" onclick="logoutCurrentUser()" title="Đăng xuất">
+          <span class="loader"></span>
+          <span class="btn-label"><i class="fas fa-sign-out-alt"></i></span>
+        </button>
+      </div>
+      <div class="header-brand">
+        <div class="header-logo">
+          <img src="https://i.postimg.cc/15TP5D8v/LOGO-TRON-BVBM.png" alt="Logo Bệnh viện Bạch Mai">
+        </div>
+        <div class="header-text">
+          <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
+          <div class="department-name">KHOA HUYẾT HỌC VÀ TRUYỀN MÁU</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="main-inner">
+      <section id="dangkyScreen" class="screen active">
+        <div class="card">
+          <h2 class="screen-title"><i class="fas fa-edit"></i> PHIẾU ĐĂNG KÝ THỦ THUẬT</h2>
+          <form id="registrationForm" onsubmit="submitRegistrationForm(event)">
+            <div class="form-group">
+              <label for="regDate"><i class="fas fa-calendar-alt"></i> Ngày đăng ký làm thủ thuật <span class="text-red">*</span></label>
+              <input class="field" type="date" id="regDate" required>
+            </div>
+
+            <div class="form-group">
+              <label for="location"><i class="fas fa-map-marker-alt"></i> Địa điểm thực hiện thủ thuật <span class="text-red">*</span></label>
+              <select class="field" id="location" required onchange="updateTimeSlots()">
+                <option value="" selected disabled hidden>Chọn địa điểm</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="type"><i class="fas fa-stethoscope"></i> Tên thủ thuật <span class="text-red">*</span></label>
+              <select class="field" id="type" required>
+                <option value="" selected disabled hidden>Chọn thủ thuật</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="timeSelect"><i class="fas fa-clock"></i> Giờ đăng ký <span class="text-red">*</span></label>
+              <select class="field" id="timeSelect" required>
+                <option value="" selected disabled hidden>Chọn giờ</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="name"><i class="fas fa-user"></i> Họ tên bệnh nhân <span class="text-red">*</span></label>
+              <input class="field" type="text" id="name" required style="text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()">
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="age"><i class="fas fa-hashtag"></i> Tuổi <span class="text-red">*</span></label>
+                <input class="field" type="number" id="age" required min="1" max="120" inputmode="numeric">
+              </div>
+              <div class="form-group">
+                <label for="department"><i class="fas fa-hospital"></i> Viện / Trung tâm / Khoa <span class="text-red">*</span></label>
+                <select class="field" id="department" required>
+                  <option value="">Chọn đơn vị</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="room"><i class="fas fa-door-open"></i> Đơn nguyên - phòng <span class="text-red">*</span></label>
+                <input class="field" type="text" id="room" required>
+              </div>
+              <div class="form-group">
+                <label for="bed"><i class="fas fa-bed"></i> Giường <span class="text-red">*</span></label>
+                <input class="field" type="text" id="bed" required>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="code"><i class="fas fa-barcode"></i> Mã điều trị <span class="text-red">*</span></label>
+                <input class="field" type="text" id="code" required inputmode="numeric">
+              </div>
+              <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> SĐT bác sĩ chỉ định <span class="text-red">*</span></label>
+                <input class="field" type="tel" id="phone" required inputmode="tel" pattern="[0-9]{10,11}">
+              </div>
+            </div>
+
+            <div id="procedureRequirementSection" class="requirement-section hidden">
+              <div class="requirement-title"><i class="fas fa-clipboard-check"></i> Hồ sơ/chỉ định bắt buộc trước khi đăng ký <span class="text-red">*</span></div>
+              <div class="subnote" style="margin:0 0 10px;">Bác sĩ/đơn vị lâm sàng xác nhận đã chuẩn bị đầy đủ trước khi đưa bệnh nhân đi thực hiện thủ thuật.</div>
+              <div id="requiredDocsList" class="checkbox-list"></div>
+              <div class="button-row" style="margin-top:10px;">
+                <button id="confirmAllRequiredDocsBtn" class="btn btn-full confirm-docs-btn" type="button" onclick="confirmAllRequiredDocuments()">
+                  <span class="btn-label"><i class="fas fa-check-double"></i> Xác nhận đủ hồ sơ</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-vials"></i> Chỉ định XN khác <span class="text-red">*</span></label>
+              <div class="optional-test-grid">
+                <label class="checkbox-item"><input type="checkbox" id="optionalTestNone" value="Không có" data-optional-test="true"> <span>Không có</span></label>
+                <label class="checkbox-item"><input type="checkbox" id="optionalTestKaryotype" value="Công thức nhiễm sắc thể (Karyotype) tuỷ xương" data-optional-test="true"> <span>Công thức nhiễm sắc thể (Karyotype) tuỷ xương</span></label>
+                <label class="checkbox-item"><input type="checkbox" id="optionalTestFISHGene" value="Xác định gen bằng kỹ thuật FISH" data-optional-test="true"> <span>Xác định gen bằng kỹ thuật FISH</span></label>
+                <label class="checkbox-item"><input type="checkbox" id="optionalTestRTPCR" value="Xác định gen bệnh máu bằng kỹ thuật RT-PCR" data-optional-test="true"> <span>Xác định gen bệnh máu bằng kỹ thuật RT-PCR</span></label>
+                <label class="checkbox-item"><input type="checkbox" id="optionalTestRealtimePCR" value="Định lượng gen bệnh máu ác tính bằng kỹ thuật Real - Time PCR" data-optional-test="true"> <span>Định lượng gen bệnh máu ác tính bằng kỹ thuật Real - Time PCR</span></label>
+                <label class="checkbox-item"><input type="checkbox" id="optionalTestFlowPeripheral" value="Phân tích dấu ấn/CD/marker miễn dịch máu ngoại vi, hoặc dịch khác bằng kỹ thuật flow cytometry" data-optional-test="true"> <span>Phân tích dấu ấn/CD/marker miễn dịch máu ngoại vi, hoặc dịch khác bằng kỹ thuật flow cytometry</span></label>
+                <label class="checkbox-item"><input type="checkbox" id="optionalTestFlowMarrow" value="Phân tích dấu ấn/CD/marker miễn dịch mẫu tủy xương, hoặc mẫu hạch, hoặc mẫu tổ chức khác bằng kỹ thuật flow cytometry" data-optional-test="true"> <span>Phân tích dấu ấn/CD/marker miễn dịch mẫu tủy xương, hoặc mẫu hạch, hoặc mẫu tổ chức khác bằng kỹ thuật flow cytometry</span></label>
+                <label class="checkbox-item"><input type="checkbox" id="optionalTestOther" value="Khác" data-optional-test="true"> <span>Khác</span></label>
+              </div>
+              <div id="optionalTestOtherWrap" class="optional-test-other-wrap hidden">
+                <input class="field" type="text" id="optionalTestOtherText" maxlength="100" placeholder="Nhập chỉ định XN khác">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="registrationNote"><i class="fas fa-sticky-note"></i> Ghi chú cho Phòng thủ thuật (nếu có)</label>
+              <textarea class="field" id="registrationNote" maxlength="500" placeholder="Ví dụ: Xin thêm 2 ống mẫu dịch tủy xương nuôi cấy vi sinh"></textarea>
+            </div>
+
+            <div class="button-row">
+              <button type="submit" id="submitRegistrationBtn" class="btn btn-full">
+                <span class="loader"></span>
+                <span class="btn-label"><i class="fas fa-paper-plane"></i> Đăng ký</span>
+              </button>
+            </div>
+          </form>
+          <div id="registrationMessage" class="message"></div>
+        </div>
+      </section>
+
+      <section id="kiemtraScreen" class="screen">
+        <div class="card">
+          <h2 class="screen-title"><i class="fas fa-ban"></i> HỦY ĐĂNG KÝ</h2>
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="cancelDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký <span class="text-red">*</span></label>
+              <input class="field" type="date" id="cancelDate">
+            </div>
+            <div class="form-group">
+              <label for="cancelCode"><i class="fas fa-barcode"></i> Mã điều trị <span class="text-red">*</span></label>
+              <input class="field" type="text" id="cancelCode" inputmode="numeric" placeholder="Nhập mã điều trị">
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button id="searchCancelBtn" class="btn btn-full" type="button" onclick="searchRegistrationsForCancel()">
+              <span class="loader"></span>
+              <span class="btn-label"><i class="fas fa-search"></i> Tìm</span>
+            </button>
+          </div>
+
+          <div id="cancelSearchResult" class="patient-list"></div>
+          <div id="cancelMessage" class="message"></div>
+        </div>
+      </section>
+
+      <section id="danhsachScreen" class="screen">
+        <div class="card">
+          <h2 class="screen-title"><i class="fas fa-list"></i> DANH SÁCH BỆNH NHÂN ĐĂNG KÝ</h2>
+          <div id="listProtectedArea"></div>
+        </div>
+      </section>
+
+      <section id="phongchoScreen" class="screen">
+        <div class="card">
+          <h2 class="screen-title"><i class="fas fa-door-open"></i> PHÒNG CHỜ</h2>
+          <div id="waitingProtectedArea"></div>
+        </div>
+      </section>
+
+      <section id="caidatScreen" class="screen">
+        <div class="card">
+          <h2 class="screen-title"><i class="fas fa-cog"></i> CÀI ĐẶT</h2>
+          <div id="setupProtectedArea"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="tab-bar">
+    <div class="tab-bar-inner">
+      <button class="tab-button active" data-tab="dangky" onclick="showTab('dangky')">
+        <i class="fas fa-edit"></i>
+        <span>Đăng ký</span>
+      </button>
+      <button class="tab-button" data-tab="kiemtra" onclick="showTab('kiemtra')">
+        <i class="fas fa-ban"></i>
+        <span>Hủy ĐK</span>
+      </button>
+      <button class="tab-button" data-tab="danhsach" onclick="showTab('danhsach')">
+        <i class="fas fa-list"></i>
+        <span>Danh sách</span>
+      </button>
+      <button class="tab-button" data-tab="phongcho" onclick="showTab('phongcho')">
+        <i class="fas fa-door-open"></i>
+        <span>Phòng chờ</span>
+      </button>
+      <button class="tab-button" data-tab="caidat" onclick="showTab('caidat')">
+        <i class="fas fa-cog"></i>
+        <span>Cài đặt</span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="cancelModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;align-items:center;justify-content:center;padding:14px;">
+    <div style="background:#fff;border-radius:16px;padding:14px;width:100%;max-width:520px;box-shadow:0 18px 40px rgba(0,0,0,.25);">
+      <h3 style="margin:0 0 12px;color:var(--red);display:flex;align-items:center;gap:8px;font-size:19px;">
+        <i class="fas fa-exclamation-triangle"></i> Xác nhận hủy đăng ký
+      </h3>
+      <div class="form-group">
+        <label for="cancelBy"><i class="fas fa-user"></i> Người hủy <span class="text-red">*</span></label>
+        <input class="field" type="text" id="cancelBy">
+      </div>
+      <div class="form-group">
+        <label for="cancelReason"><i class="fas fa-comment-alt"></i> Lý do hủy <span class="text-red">*</span></label>
+        <textarea class="field" id="cancelReason"></textarea>
+      </div>
+      <div class="button-row">
+        <button class="btn btn-secondary btn-full" type="button" onclick="closeCancelModal()"><span class="btn-label"><i class="fas fa-times"></i> Quay lại</span></button>
+        <button id="confirmCancelBtn" class="btn btn-red btn-full" type="button" onclick="confirmCancelRegistration()">
+          <span class="loader"></span>
+          <span class="btn-label"><i class="fas fa-check"></i> Xác nhận</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="alertModal" class="app-modal">
+    <div class="app-modal-card">
+      <h3 id="alertModalTitle" class="app-modal-title"><i class="fas fa-info-circle"></i> Thông báo</h3>
+      <div id="alertModalMessage" class="app-modal-message"></div>
+      <div class="button-row" style="margin-top:14px;">
+        <button id="alertModalOkBtn" class="btn btn-full" type="button" onclick="closeAlertModal()">
+          <span class="btn-label"><i class="fas fa-check"></i> OK</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirmActionModal" class="app-modal">
+    <div class="app-modal-card">
+      <h3 id="confirmActionTitle" class="app-modal-title"><i class="fas fa-question-circle"></i> Xác nhận</h3>
+      <div id="confirmActionMessage" class="app-modal-message"></div>
+      <div class="button-row" style="margin-top:14px;">
+        <button class="btn btn-secondary btn-full" type="button" onclick="closeConfirmActionModal()">
+          <span class="btn-label"><i class="fas fa-times"></i> Quay lại</span>
+        </button>
+        <button id="confirmActionBtn" class="btn btn-full" type="button" onclick="executeConfirmActionModal()">
+          <span class="loader"></span>
+          <span class="btn-label"><i class="fas fa-check"></i> Xác nhận</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="failedModal" class="app-modal">
+    <div class="app-modal-card">
+      <h3 class="app-modal-title"><i class="fas fa-exclamation-circle"></i> Không thực hiện được</h3>
+      <div id="failedModalMessage" class="app-modal-message" style="margin-bottom:12px;"></div>
+      <div class="form-group">
+        <label for="failedReason"><i class="fas fa-comment-alt"></i> Lý do không thực hiện được <span class="text-red">*</span></label>
+        <textarea class="field" id="failedReason"></textarea>
+      </div>
+      <div class="button-row">
+        <button class="btn btn-secondary btn-full" type="button" onclick="closeFailedModal()"><span class="btn-label"><i class="fas fa-times"></i> Quay lại</span></button>
+        <button id="confirmFailedBtn" class="btn btn-red btn-full" type="button" onclick="confirmFailedFromWaiting()">
+          <span class="loader"></span>
+          <span class="btn-label"><i class="fas fa-check"></i> Xác nhận</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button id="scrollTopBtn" class="scroll-top-btn" type="button" onclick="scrollCurrentScreenTop()" title="Lên đầu trang">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    const GAS_WEB_APP_URL = 'DAN_WEB_APP_EXEC_URL_VAO_DAY';
+
+    function getGasWebAppUrl() {
+      try {
+        const params = new URLSearchParams(window.location.search || '');
+        const apiFromUrl = (params.get('api') || '').trim();
+        if (apiFromUrl) {
+          localStorage.setItem('dktt_api_url', apiFromUrl);
+          return apiFromUrl;
+        }
+      } catch (e) {}
+      try {
+        const savedUrl = (localStorage.getItem('dktt_api_url') || '').trim();
+        if (savedUrl) return savedUrl;
+      } catch (e) {}
+      return GAS_WEB_APP_URL.trim();
+    }
+
+    function apiCall(action, args) {
+      const apiUrl = getGasWebAppUrl();
+      if (!apiUrl || apiUrl === 'DAN_WEB_APP_EXEC_URL_VAO_DAY') {
+        return Promise.reject(new Error('Chưa cấu hình GAS_WEB_APP_URL trong index.html. Hãy dán URL Web App /exec của Google Apps Script vào biến GAS_WEB_APP_URL.'));
+      }
+
+      return fetch(apiUrl, {
+        method: 'POST',
+        redirect: 'follow',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: String(action || ''),
+          args: Array.isArray(args) ? args : []
+        })
+      })
+        .then(function (response) { return response.text(); })
+        .then(function (text) {
+          let payload;
+          try {
+            payload = JSON.parse(text);
+          } catch (parseError) {
+            throw new Error('Backend không trả JSON hợp lệ. Kiểm tra lại URL Web App /exec và quyền truy cập triển khai.');
+          }
+          if (!payload || payload.ok !== true) {
+            throw new Error(payload && payload.message ? payload.message : 'Lỗi không xác định từ backend.');
+          }
+          return payload.data;
+        });
+    }
+
+    function createGithubAppsScriptRunner(successHandler, failureHandler) {
+      return new Proxy({}, {
+        get: function (_, prop) {
+          if (prop === 'withSuccessHandler') {
+            return function (handler) {
+              return createGithubAppsScriptRunner(handler, failureHandler);
+            };
+          }
+          if (prop === 'withFailureHandler') {
+            return function (handler) {
+              return createGithubAppsScriptRunner(successHandler, handler);
+            };
+          }
+          return function () {
+            const callArgs = Array.prototype.slice.call(arguments);
+            apiCall(prop, callArgs)
+              .then(function (data) {
+                if (typeof successHandler === 'function') successHandler(data);
+              })
+              .catch(function (error) {
+                if (typeof failureHandler === 'function') failureHandler(error);
+                else console.error(error);
+              });
+          };
+        }
+      });
+    }
+
+    (function enableGithubPagesBridge() {
+      window.google = window.google || {};
+      window.google.script = window.google.script || {};
+      if (!window.google.script.run) {
+        window.google.script.run = createGithubAppsScriptRunner();
+      }
+    })();
+    let appData = { departments: [], procedureTypes: [], locations: [], needles: {} };
+    let registrationState = { slotAvailability: {}, needleInventory: {}, procedureAvailability: [] };
+    let currentCancelRow = null;
+    let currentListRows = [];
+    let currentWaitingRows = [];
+    let failedTargetRow = null;
+    let failedSource = 'waiting';
+    let authState = null;
+    let currentTab = 'dangky';
+    const inlineMessageTimers = {};
+    let alertModalCallback = null;
+    let confirmActionCallback = null;
+
+    const REQUIRED_PROCEDURE_DOCUMENTS = {
+      common: [
+        'Giấy cam kết chấp thuận phẫu thuật, thủ thuật và gây mê hồi sức'
+      ],
+      aspiration: [
+        'Chỉ định "Thủ thuật chọc hút làm tủy đồ (chưa bao gồm kim chọc tủy 1 lần)"',
+        'Chỉ định "Xét nghiệm tế bào học tủy xương (không bao gồm thủ thuật chọc hút tủy)"',
+        'Chỉ định "Huyết đồ (bằng máy đếm laser)[chỉ định kèm tủy đồ]"'
+      ],
+      biopsy: [
+        'Chỉ định "Thủ thuật sinh thiết tủy xương (chưa bao gồm kim sinh thiết một lần)"',
+        'Chỉ định "Xét nghiệm mô bệnh học tủy xương (không bao gồm thủ thuật sinh thiết tủy xương)"'
+      ]
+    };
+
+    function initApp() {
+      loadAuthState();
+      preventZoom();
+      preventPullToRefresh();
+
+      const today = new Date();
+      const isoToday = toIsoDate(today);
+      document.getElementById('regDate').value = isoToday;
+      document.getElementById('cancelDate').value = isoToday;
+
+      document.getElementById('regDate').addEventListener('change', refreshSlotsForSelectedDate);
+      document.getElementById('type').addEventListener('change', renderProcedureRequirementSection);
+      document.querySelectorAll('input[data-optional-test="true"]').forEach(function (input) {
+        input.addEventListener('change', function () { handleOptionalTestsChange(input); });
+      });
+      document.getElementById('cancelDate').addEventListener('change', function () {
+        document.getElementById('cancelSearchResult').innerHTML = '';
+        hideInlineMessage('cancelMessage');
+      });
+      document.getElementById('cancelCode').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') searchRegistrationsForCancel();
+      });
+
+      updateHeaderAuth();
+      loadSetupData();
+      renderListProtectedArea(true);
+      renderWaitingProtectedArea(true);
+      renderSetupProtectedArea();
+      setupScrollTopButton();
+      showTab(currentTab);
+    }
+
+    function preventZoom() {
+      document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+      document.addEventListener('dblclick', function (e) { e.preventDefault(); }, { passive: false });
+      document.addEventListener('keydown', function (e) {
+        if ((e.ctrlKey || e.metaKey) && ['+', '-', '=', '_'].includes(e.key)) e.preventDefault();
+      });
+    }
+
+    function preventPullToRefresh() {
+      const main = document.querySelector('.app-main');
+      if (!main) return;
+      let startY = 0;
+      let currentY = 0;
+      let isScrollableInput = false;
+
+      main.addEventListener('touchstart', function (e) {
+        if (!e.touches || e.touches.length !== 1) return;
+        startY = e.touches[0].clientY;
+        currentY = startY;
+        isScrollableInput = !!(e.target && e.target.closest && e.target.closest('textarea, select, input'));
+      }, { passive: true });
+
+      main.addEventListener('touchmove', function (e) {
+        if (!e.touches || e.touches.length !== 1 || isScrollableInput) return;
+        currentY = e.touches[0].clientY;
+        const pullingDown = currentY > startY;
+        if (pullingDown && main.scrollTop <= 0) e.preventDefault();
+      }, { passive: false });
+    }
+
+    function showTab(tabName) {
+      currentTab = tabName;
+      document.querySelectorAll('.screen').forEach(function (el) { el.classList.remove('active'); });
+      document.getElementById(tabName + 'Screen').classList.add('active');
+      document.querySelectorAll('.tab-button').forEach(function (btn) { btn.classList.remove('active'); });
+      const tabBtn = document.querySelector('.tab-button[data-tab="' + tabName + '"]');
+      if (tabBtn) tabBtn.classList.add('active');
+
+      if (tabName === 'danhsach') renderListProtectedArea(false);
+      if (tabName === 'phongcho') renderWaitingProtectedArea(false);
+      if (tabName === 'caidat') renderSetupProtectedArea();
+    }
+
+    function updateHeaderAuth() {
+      const wrap = document.getElementById('headerAuth');
+      const name = document.getElementById('headerAuthName');
+      if (authState && authState.displayName) {
+        name.textContent = authState.displayName;
+        wrap.classList.remove('hidden');
+      } else {
+        wrap.classList.add('hidden');
+      }
+    }
+
+    function loadAuthState() {
+      try {
+        authState = JSON.parse(localStorage.getItem('dktt_auth') || 'null');
+      } catch (e) {
+        authState = null;
+      }
+    }
+
+    function saveAuthState() {
+      localStorage.setItem('dktt_auth', JSON.stringify(authState));
+      updateHeaderAuth();
+    }
+
+    function clearAuthState() {
+      authState = null;
+      localStorage.removeItem('dktt_auth');
+      updateHeaderAuth();
+      renderListProtectedArea();
+      renderWaitingProtectedArea();
+      renderSetupProtectedArea();
+    }
+
+    function logoutCurrentUser() {
+      const btn = document.getElementById('logoutBtn');
+      setButtonLoading(btn, true);
+      setTimeout(function () {
+        setButtonLoading(btn, false);
+        clearAuthState();
+        showTab(currentTab);
+      }, 250);
+    }
+
+    function hasListAccess() {
+      return authState && (authState.role === 'list' || authState.role === 'admin');
+    }
+
+    function hasSetupAccess() {
+      return authState && authState.role === 'admin';
+    }
+
+    function loadSetupData() {
+      google.script.run
+        .withSuccessHandler(function (data) {
+          appData = data || { departments: [], procedureTypes: [], locations: [], needles: {} };
+          populateDropdowns();
+          refreshSlotsForSelectedDate();
+          if (hasSetupAccess() && currentTab === 'caidat') renderSetupProtectedArea();
+        })
+        .withFailureHandler(function (error) {
+          showInlineMessage('registrationMessage', 'error', 'Lỗi khi tải dữ liệu SETUP: ' + error.message);
+        })
+        .getSetupData();
+    }
+
+    function populateDropdowns() {
+      fillSelect('department', appData.departments, 'Chọn đơn vị');
+      fillSelect('location', appData.locations, 'Chọn địa điểm');
+      setHiddenPlaceholder('location', 'Chọn địa điểm');
+      updateProcedureOptions();
+    }
+
+    function fillSelect(id, items, placeholder, selectedValue) {
+      const select = document.getElementById(id);
+      if (!select) return;
+      select.innerHTML = '<option value="">' + escapeHtml(placeholder) + '</option>';
+      (items || []).forEach(function (item) {
+        const option = document.createElement('option');
+        option.value = item;
+        option.textContent = item;
+        if (selectedValue && normalizeCompare_(item) === normalizeCompare_(selectedValue)) option.selected = true;
+        select.appendChild(option);
+      });
+    }
+
+    function setHiddenPlaceholder(id, placeholder) {
+      const select = document.getElementById(id);
+      if (!select || !select.options.length) return;
+      const option = select.options[0];
+      option.value = '';
+      option.text = placeholder;
+      option.disabled = true;
+      option.hidden = true;
+      if (!select.value) option.selected = true;
+    }
+
+    function normalizeListLocationLabel(value) {
+      const text = String(value == null ? '' : value).trim();
+      return normalizeCompare_(text).indexOf('tai giuong') !== -1 ? 'Tại giường' : text;
+    }
+
+    function getListLocationOptions() {
+      const seen = {};
+      const result = [];
+      (appData.locations || []).forEach(function (item) {
+        const label = normalizeListLocationLabel(item);
+        const key = normalizeCompare_(label);
+        if (!label || !key || seen[key]) return;
+        seen[key] = true;
+        result.push(label);
+      });
+      result.sort(function (a, b) {
+        return normalizeCompare_(a).localeCompare(normalizeCompare_(b));
+      });
+      return result;
+    }
+
+
+    function getProcedureRequirementFlags(procedureType) {
+      const normalized = normalizeCompare_(procedureType).replace(/\s+/g, ' ');
+      return {
+        aspiration: normalized.indexOf('choc tuy') !== -1,
+        biopsy: normalized.indexOf('sinh thiet tuy xuong') !== -1
+      };
+    }
+
+    function getRequiredDocumentsForProcedure(procedureType) {
+      const flags = getProcedureRequirementFlags(procedureType);
+      const docs = [];
+      if (flags.aspiration || flags.biopsy) {
+        REQUIRED_PROCEDURE_DOCUMENTS.common.forEach(function (item) { docs.push(item); });
+      }
+      if (flags.aspiration) {
+        REQUIRED_PROCEDURE_DOCUMENTS.aspiration.forEach(function (item) { docs.push(item); });
+      }
+      if (flags.biopsy) {
+        REQUIRED_PROCEDURE_DOCUMENTS.biopsy.forEach(function (item) { docs.push(item); });
+      }
+      return docs;
+    }
+
+    function renderProcedureRequirementSection() {
+      const section = document.getElementById('procedureRequirementSection');
+      const list = document.getElementById('requiredDocsList');
+      const procedureType = document.getElementById('type').value || '';
+      const requiredDocs = getRequiredDocumentsForProcedure(procedureType);
+      if (!section || !list) return;
+
+      if (!procedureType || !requiredDocs.length) {
+        section.classList.add('hidden');
+        list.innerHTML = '';
+        updateRequiredDocumentsConfirmButton();
+        return;
+      }
+
+      section.classList.remove('hidden');
+      list.innerHTML = requiredDocs.map(function (doc, index) {
+        const id = 'requiredDoc_' + index;
+        return '<label class="checkbox-item" for="' + id + '">' +
+          '<input type="checkbox" id="' + id + '" data-required-doc="true" data-doc-label="' + escapeHtml(doc) + '" onchange="updateRequiredDocumentsConfirmButton()">' +
+          '<span>' + escapeHtml(doc) + '</span>' +
+        '</label>';
+      }).join('');
+      updateRequiredDocumentsConfirmButton();
+    }
+
+    function updateRequiredDocumentsConfirmButton() {
+      const btn = document.getElementById('confirmAllRequiredDocsBtn');
+      if (!btn) return;
+      const inputs = Array.from(document.querySelectorAll('#requiredDocsList input[data-required-doc="true"]'));
+      const allChecked = inputs.length > 0 && inputs.every(function (input) { return input.checked; });
+      btn.disabled = inputs.length === 0 || allChecked;
+    }
+
+    function confirmAllRequiredDocuments() {
+      document.querySelectorAll('#requiredDocsList input[data-required-doc="true"]').forEach(function (input) {
+        input.checked = true;
+      });
+      updateRequiredDocumentsConfirmButton();
+    }
+
+    function getSelectedRequiredDocuments() {
+      return Array.from(document.querySelectorAll('#requiredDocsList input[data-required-doc="true"]:checked')).map(function (input) {
+        return input.dataset.docLabel || '';
+      }).filter(Boolean);
+    }
+
+    function getMissingRequiredDocuments(procedureType) {
+      const requiredDocs = getRequiredDocumentsForProcedure(procedureType);
+      const selectedMap = {};
+      getSelectedRequiredDocuments().forEach(function (item) {
+        selectedMap[normalizeCompare_(item)] = true;
+      });
+      return requiredDocs.filter(function (item) {
+        return !selectedMap[normalizeCompare_(item)];
+      });
+    }
+
+    function handleOptionalTestsChange(source) {
+      const noneInput = document.getElementById('optionalTestNone');
+      const inputs = Array.from(document.querySelectorAll('input[data-optional-test="true"]'));
+      if (source && source.id === 'optionalTestNone' && source.checked) {
+        inputs.forEach(function (input) {
+          if (input.id !== 'optionalTestNone') input.checked = false;
+        });
+      } else if (source && source.checked && noneInput) {
+        noneInput.checked = false;
+      }
+      toggleOptionalTestOtherInput();
+    }
+
+    function toggleOptionalTestOtherInput() {
+      const other = document.getElementById('optionalTestOther');
+      const checked = other && other.checked;
+      const wrap = document.getElementById('optionalTestOtherWrap');
+      const input = document.getElementById('optionalTestOtherText');
+      if (checked) {
+        wrap.classList.remove('hidden');
+      } else {
+        wrap.classList.add('hidden');
+        input.value = '';
+      }
+    }
+
+    function getSelectedOptionalTests() {
+      const tests = [];
+      const inputs = Array.from(document.querySelectorAll('input[data-optional-test="true"]:checked'));
+      const otherChecked = document.getElementById('optionalTestOther').checked;
+      const otherText = (document.getElementById('optionalTestOtherText').value || '').trim();
+
+      inputs.forEach(function (input) {
+        if (input.id !== 'optionalTestOther') tests.push(input.value);
+      });
+      if (otherChecked && otherText) tests.push(otherText);
+
+      return { tests: tests, otherChecked: otherChecked, otherText: otherText };
+    }
+
+    function resetSupplementalRegistrationFields() {
+      ['optionalTestNone', 'optionalTestKaryotype', 'optionalTestFISHGene', 'optionalTestRTPCR', 'optionalTestRealtimePCR', 'optionalTestFlowPeripheral', 'optionalTestFlowMarrow', 'optionalTestOther'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.checked = false;
+      });
+      const note = document.getElementById('registrationNote');
+      const otherText = document.getElementById('optionalTestOtherText');
+      if (note) note.value = '';
+      if (otherText) otherText.value = '';
+      toggleOptionalTestOtherInput();
+      renderProcedureRequirementSection();
+    }
+
+    function refreshSlotsForSelectedDate() {
+      const regDate = document.getElementById('regDate').value || toIsoDate(new Date());
+      document.getElementById('regDate').value = regDate;
+      document.getElementById('timeSelect').innerHTML = '<option value="">Đang tải giờ...</option>';
+      document.getElementById('type').innerHTML = '<option value="">Đang tải thủ thuật...</option>';
+      const slotInfo = document.getElementById('slotInfoText');
+      if (slotInfo) slotInfo.textContent = '';
+      const typeInfo = document.getElementById('typeInfoText');
+      if (typeInfo) typeInfo.textContent = '';
+
+      google.script.run
+        .withSuccessHandler(function (data) {
+          registrationState = data || { slotAvailability: {}, needleInventory: {}, procedureAvailability: [] };
+          updateProcedureOptions();
+          updateTimeSlots();
+        })
+        .withFailureHandler(function (error) {
+          document.getElementById('timeSelect').innerHTML = '<option value="">Lỗi tải giờ</option>';
+          document.getElementById('type').innerHTML = '<option value="">Lỗi tải thủ thuật</option>';
+          showInlineMessage('registrationMessage', 'error', 'Lỗi khi tải dữ liệu đăng ký: ' + error.message);
+        })
+        .getRegistrationAvailability(isoToDisplayDate(regDate));
+    }
+
+    function updateProcedureOptions() {
+      const select = document.getElementById('type');
+      if (!select) return;
+      const currentValue = select.value;
+      const options = registrationState.procedureAvailability && registrationState.procedureAvailability.length
+        ? registrationState.procedureAvailability
+        : (appData.procedureTypes || []).map(function (name) { return { name: name, enabled: true, reason: '' }; });
+
+      select.innerHTML = '<option value="" disabled hidden' + (currentValue ? '' : ' selected') + '>Chọn thủ thuật</option>';
+      let hasSelected = false;
+
+      options.forEach(function (item) {
+        const option = document.createElement('option');
+        option.value = item.name;
+        option.textContent = item.enabled || !item.reason ? item.name : item.name + ' (' + item.reason + ')';
+        option.disabled = !item.enabled;
+        if (!hasSelected && item.enabled && normalizeCompare_(item.name) === normalizeCompare_(currentValue)) {
+          option.selected = true;
+          hasSelected = true;
+        }
+        select.appendChild(option);
+      });
+
+      if (!hasSelected) select.value = '';
+      renderProcedureRequirementSection();
+    }
+
+    function updateTimeSlots() {
+      const location = (document.getElementById('location').value || '').trim().toLowerCase();
+      const select = document.getElementById('timeSelect');
+      const slotInfo = document.getElementById('slotInfoText');
+      const selectedValue = (select.value || '').split(' (')[0];
+      const slotAvailability = registrationState.slotAvailability || {};
+      select.innerHTML = '<option value="" disabled hidden' + (selectedValue ? '' : ' selected') + '>Chọn giờ</option>';
+      if (slotInfo) slotInfo.textContent = '';
+      if (!location || !slotAvailability) return;
+
+      const isBedside = location.indexOf('tại giường') !== -1;
+      const timeSlots = isBedside
+        ? ['10:30 - 11:30']
+        : ['07:30 - 08:00','08:00 - 08:30','08:30 - 09:00','09:00 - 09:30','09:30 - 10:00','10:00 - 10:30','10:30 - 11:00'];
+
+      let availableCount = 0;
+      timeSlots.forEach(function (time) {
+        const remain = Number(slotAvailability[time] || 0);
+        if (remain > 0) {
+          availableCount++;
+          const option = document.createElement('option');
+          option.value = time;
+          option.textContent = time + ' (còn ' + remain + ' lượt)';
+          if (selectedValue === time) option.selected = true;
+          select.appendChild(option);
+        }
+      });
+
+      if (slotInfo) {
+        slotInfo.textContent = availableCount > 0
+          ? 'Đã cập nhật slot trống theo ngày và địa điểm.'
+          : 'Không còn khung giờ trống cho lựa chọn hiện tại.';
+      }
+
+      if (availableCount === 0) select.innerHTML = '<option value="">Đã hết lượt đăng ký</option>';
+    }
+
+    function resetRegistrationFormKeepDate() {
+      const dateValue = document.getElementById('regDate').value || toIsoDate(new Date());
+      document.getElementById('registrationForm').reset();
+      document.getElementById('regDate').value = dateValue;
+      populateDropdowns();
+      document.getElementById('timeSelect').innerHTML = '<option value="" selected disabled hidden>Chọn giờ</option>';
+      const slotInfo = document.getElementById('slotInfoText');
+      if (slotInfo) slotInfo.textContent = '';
+      const typeInfo = document.getElementById('typeInfoText');
+      if (typeInfo) typeInfo.textContent = '';
+      resetSupplementalRegistrationFields();
+      refreshSlotsForSelectedDate();
+    }
+
+    function submitRegistrationForm(event) {
+      event.preventDefault();
+      const formData = {
+        date: isoToDisplayDate(document.getElementById('regDate').value || toIsoDate(new Date())),
+        time: (document.getElementById('timeSelect').value || '').split(' (')[0],
+        location: document.getElementById('location').value,
+        type: document.getElementById('type').value,
+        name: document.getElementById('name').value,
+        age: document.getElementById('age').value,
+        department: document.getElementById('department').value,
+        room: document.getElementById('room').value,
+        bed: document.getElementById('bed').value,
+        code: document.getElementById('code').value,
+        phone: document.getElementById('phone').value,
+        requiredDocuments: getSelectedRequiredDocuments(),
+        optionalTests: getSelectedOptionalTests().tests,
+        registrationNote: (document.getElementById('registrationNote').value || '').trim()
+      };
+
+      if (!formData.date || !formData.time || !formData.location || !formData.type || !formData.name || !formData.age || !formData.department || !formData.room || !formData.bed || !formData.code || !formData.phone) {
+        showAlertModal('Vui lòng nhập đầy đủ thông tin bắt buộc.');
+        return;
+      }
+
+      const missingRequiredDocuments = getMissingRequiredDocuments(formData.type);
+      if (missingRequiredDocuments.length) {
+        showAlertModal(formatMissingRequiredDocumentsMessage(missingRequiredDocuments), 'Chưa đủ hồ sơ/chỉ định');
+        return;
+      }
+
+      const optionalTestData = getSelectedOptionalTests();
+      if (optionalTestData.otherChecked && !optionalTestData.otherText) {
+        showAlertModal('Vui lòng nhập nội dung Chỉ định XN khác khi chọn Khác.');
+        return;
+      }
+      if (!optionalTestData.tests.length) {
+        showAlertModal('Vui lòng lựa chọn Chỉ định XN khác.');
+        return;
+      }
+      formData.optionalTests = optionalTestData.tests;
+
+      if (formData.registrationNote.length > 500) {
+        showAlertModal('Ghi chú không được vượt quá 500 ký tự.');
+        return;
+      }
+
+      const btn = document.getElementById('submitRegistrationBtn');
+      setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function (result) {
+          setButtonLoading(btn, false);
+          if (result && result.success) {
+            showAlertModal(buildRegistrationReviewHtml(result.registeredData || formData), 'Đăng ký thành công', function () {
+              resetRegistrationFormKeepDate();
+            });
+          } else {
+            showAlertModal(result && result.message ? formatServerMessage(result.message) : 'Không thể đăng ký.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          setButtonLoading(btn, false);
+          showAlertModal('Lỗi khi đăng ký: ' + formatServerMessage(error.message));
+        })
+        .submitRegistration(formData);
+    }
+
+    function searchRegistrationsForCancel() {
+      const cancelDate = document.getElementById('cancelDate').value || toIsoDate(new Date());
+      const code = (document.getElementById('cancelCode').value || '').trim();
+      if (!cancelDate || !code) {
+        showInlineMessage('cancelMessage', 'error', 'Vui lòng chọn ngày và nhập mã điều trị.');
+        return;
+      }
+      const btn = document.getElementById('searchCancelBtn');
+      setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function (rows) {
+          setButtonLoading(btn, false);
+          renderCancelSearchResult(rows || []);
+        })
+        .withFailureHandler(function (error) {
+          setButtonLoading(btn, false);
+          showInlineMessage('cancelMessage', 'error', 'Lỗi khi tìm kiếm: ' + error.message);
+        })
+        .searchPatientsByCodeAndDate(isoToDisplayDate(cancelDate), code);
+    }
+
+    function renderCancelSearchResult(rows) {
+      const container = document.getElementById('cancelSearchResult');
+      container.innerHTML = '';
+      if (!rows || !rows.length) {
+        showInlineMessage('cancelMessage', 'error', 'Không tìm thấy bệnh nhân với mã điều trị vào ngày đã chọn.');
+        return;
+      }
+      hideInlineMessage('cancelMessage');
+      rows.forEach(function (item, index) {
+        const statusClass = getPatientStatusClass(item);
+        const statusText = getPatientStatusLabel(item);
+        const card = document.createElement('div');
+        card.className = 'patient-card ' + statusClass;
+        card.innerHTML =
+          '<div class="patient-header">' +
+            '<div class="patient-name">' + (index + 1) + '. ' + escapeHtml(item.name || '') + '</div>' +
+            '<div class="badge ' + statusClass + '">' + statusText + '</div>' +
+          '</div>' +
+          '<div class="patient-grid">' +
+            patientItem('Tuổi', item.age) +
+            patientItem('Mã điều trị', item.code) +
+            patientItem('Thủ thuật', escapeHtml(item.type || ''), null, null, 'procedure-highlight') +
+            patientItem('Giờ', item.time) +
+            patientItem('Địa điểm', item.isAtBed ? '<span class="text-red">' + escapeHtml(item.location) + '</span>' : escapeHtml(item.location || '')) +
+            patientItem('Khoa', item.department) +
+            patientItem('Phòng', item.room) +
+            patientItem('Giường', item.bed) +
+            patientItem('SĐT', item.phone ? '<a class="phone-link" href="tel:' + escapeHtml(item.phone) + '">' + escapeHtml(item.phone) + '</a>' : '') +
+          '</div>' +
+          renderListSupplementalInfo(item) +
+          '<div class="patient-actions">' +
+            (getPatientStatusKey(item) !== 'PENDING' ? '' :
+            '<button id="cancelRowBtn_' + item.row + '" class="btn btn-red" type="button" onclick="openCancelModal(' + item.row + ')">' +
+              '<span class="loader"></span><span class="btn-label"><i class="fas fa-times-circle"></i> Hủy đăng ký</span>' +
+            '</button>') +
+          '</div>';
+        container.appendChild(card);
+      });
+    }
+
+    function patientItem(label, value, copyValue, copyLabel, valueClass) {
+      return '<div class="patient-item"><strong>' + escapeHtml(label) + ':</strong><div class="patient-item-value"><span' + (valueClass ? ' class="' + escapeHtml(valueClass) + '"' : '') + '>' + value + '</span>' + (copyValue ? copyInlineButtonHtml(copyValue, copyLabel || label) : '') + '</div></div>';
+    }
+
+
+    function patientExtraItem(label, value, valueClass) {
+      return '<div class="patient-extra-item"><strong>' + escapeHtml(label) + ':</strong><span' + (valueClass ? ' class="' + escapeHtml(valueClass) + '"' : '') + '>' + value + '</span></div>';
+    }
+
+    function splitDisplayLines(value) {
+      if (Array.isArray(value)) {
+        return value.map(function (item) { return String(item == null ? '' : item).trim(); }).filter(Boolean);
+      }
+      const text = String(value == null ? '' : value).trim();
+      if (!text) return [];
+      return text.split(';').map(function (item) { return item.trim(); }).filter(Boolean);
+    }
+
+    function formatOptionalTestsDisplay(value) {
+      const items = splitDisplayLines(value);
+      const hasContent = items.some(function (item) {
+        return normalizeCompare_(item) !== normalizeCompare_('Không có');
+      });
+      if (!items.length) items.push('Không có');
+      const hasBullets = items.length >= 2;
+      return '<div class="optional-tests-lines' + (hasContent ? ' optional-tests-highlight' : '') + '"' + (hasBullets ? ' data-bullets="true"' : '') + '>' + items.map(function (item) {
+        return '<div>' + (hasBullets ? '<span class="optional-test-bullet">•</span> ' : '') + escapeHtml(item) + '</div>';
+      }).join('') + '</div>';
+    }
+
+    function renderListSupplementalInfo(item) {
+      const optionalTests = item.optionalTests || '';
+      const note = (item.registrationNote || '').trim();
+      const unfinishedReason = (item.unfinishedReason || '').trim();
+      let html = '<div class="patient-extra-info">' + patientExtraItem('Chỉ định XN khác', formatOptionalTestsDisplay(optionalTests));
+      if (note) html += patientExtraItem('Ghi chú', escapeHtml(note), 'note-text-blue');
+      if (unfinishedReason) html += patientExtraItem('Lý do không hoàn tất', escapeHtml(unfinishedReason), 'text-red');
+      html += '</div>';
+      return html;
+    }
+
+    function copyInlineButtonHtml(value, label) {
+      return '<button class="copy-btn" type="button" title="Sao chép ' + escapeHtml(label || '') + '" onclick="copyQuickText(this.dataset.copyValue, this.dataset.copyLabel)" data-copy-value="' + escapeHtml(value || '') + '" data-copy-label="' + escapeHtml(label || '') + '"><i class="fas fa-copy"></i></button>';
+    }
+
+    function copyQuickText(value, label) {
+      const text = String(value == null ? '' : value);
+      if (!text) return;
+      const done = function () {
+        showInlineMessage('listMessage', 'success', 'Đã sao chép ' + escapeHtml(label || 'nội dung') + '.', 4000);
+      };
+      const fallbackCopy = function () {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(temp);
+        done();
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    }
+
+    function openCancelModal(row) {
+      currentCancelRow = row;
+      document.getElementById('cancelBy').value = '';
+      document.getElementById('cancelReason').value = '';
+      const modal = document.getElementById('cancelModal');
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+    }
+
+    function closeCancelModal() {
+      const modal = document.getElementById('cancelModal');
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+      currentCancelRow = null;
+    }
+
+    function confirmCancelRegistration() {
+      const canceledBy = (document.getElementById('cancelBy').value || '').trim();
+      const cancelReason = (document.getElementById('cancelReason').value || '').trim();
+      if (!currentCancelRow || !canceledBy || !cancelReason) {
+        showInlineMessage('cancelMessage', 'error', 'Vui lòng nhập đầy đủ người hủy và lý do hủy.');
+        return;
+      }
+      const btn = document.getElementById('confirmCancelBtn');
+      const canceledRow = currentCancelRow;
+      setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function () {
+          setButtonLoading(btn, false);
+          closeCancelModal();
+          showInlineMessage('cancelMessage', 'success', 'Đã hủy đăng ký thành công.');
+          searchRegistrationsForCancel();
+          if (hasListAccess() && document.getElementById('listProtectedArea').dataset.loaded === 'true') {
+            currentListRows = removeRowFromRows(currentListRows, canceledRow);
+            renderListCards(currentListRows);
+          }
+        })
+        .withFailureHandler(function (error) {
+          setButtonLoading(btn, false);
+          showInlineMessage('cancelMessage', 'error', 'Lỗi khi hủy đăng ký: ' + error.message);
+        })
+        .cancelRegistration(currentCancelRow, canceledBy, cancelReason);
+    }
+
+    function renderAuthForm(targetId, purpose, forceAdmin) {
+      const target = document.getElementById(targetId);
+      const title = forceAdmin ? 'Đăng nhập' : (purpose === 'setup' ? 'Đăng nhập để vào cài đặt' : 'Đăng nhập để xem danh sách');
+      const note = forceAdmin
+        ? 'Nội dung dành cho Quản trị viên (Admin).'
+        : 'Nội dung dành cho nhân viên Phòng thủ thuật - Khoa Huyết học và Truyền máu.';
+      target.innerHTML =
+        '<div class="subnote">' + note + '</div>' +
+        '<div class="form-group">' +
+          '<label for="' + purpose + 'User"><i class="fas fa-user"></i> Tên đăng nhập <span class="text-red">*</span></label>' +
+          '<input class="field" type="text" id="' + purpose + 'User" autocomplete="off">' +
+        '</div>' +
+        '<div class="form-group">' +
+          '<label for="' + purpose + 'Pass"><i class="fas fa-lock"></i> Mật khẩu <span class="text-red">*</span></label>' +
+          '<input class="field" type="password" id="' + purpose + 'Pass" autocomplete="off">' +
+        '</div>' +
+        '<div class="button-row">' +
+          '<button id="' + purpose + 'LoginBtn" class="btn btn-full" type="button" onclick="loginForTab(\'' + purpose + '\',' + (forceAdmin ? 'true' : 'false') + ')">' +
+            '<span class="loader"></span><span class="btn-label"><i class="fas fa-sign-in-alt"></i> ' + title + '</span>' +
+          '</button>' +
+        '</div>' +
+        '<div id="' + purpose + 'LoginMessage" class="message"></div>';
+
+      const submitOnEnter = function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          loginForTab(purpose, forceAdmin);
+        }
+      };
+      document.getElementById(purpose + 'User').addEventListener('keydown', submitOnEnter);
+      document.getElementById(purpose + 'Pass').addEventListener('keydown', submitOnEnter);
+    }
+
+    function loginForTab(purpose, forceAdmin) {
+      const username = (document.getElementById(purpose + 'User').value || '').trim();
+      const password = (document.getElementById(purpose + 'Pass').value || '').trim();
+      if (!username || !password) {
+        showInlineMessage(purpose + 'LoginMessage', 'error', 'Vui lòng nhập tên đăng nhập và mật khẩu.');
+        return;
+      }
+      const btn = document.getElementById(purpose + 'LoginBtn');
+      setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function (result) {
+          if (result && result.success) {
+            if (forceAdmin && result.role !== 'admin') {
+              setButtonLoading(btn, false);
+              showInlineMessage(purpose + 'LoginMessage', 'error', 'Nội dung dành cho Quản trị viên (Admin).');
+              return;
+            }
+            authState = {
+              username: username,
+              password: password,
+              role: result.role,
+              displayName: result.displayName
+            };
+            saveAuthState();
+            renderListProtectedArea(true);
+            renderWaitingProtectedArea(true);
+            if (purpose === 'setup') {
+              renderSetupProtectedArea(function () {
+                setButtonLoading(btn, false);
+              });
+              return;
+            }
+            setButtonLoading(btn, false);
+            renderSetupProtectedArea();
+            showTab(currentTab);
+          } else {
+            setButtonLoading(btn, false);
+            showInlineMessage(purpose + 'LoginMessage', 'error', result && result.message ? result.message : 'Đăng nhập không thành công.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          setButtonLoading(btn, false);
+          showInlineMessage(purpose + 'LoginMessage', 'error', 'Lỗi đăng nhập: ' + error.message);
+        })
+        .authenticateUser(username, password);
+    }
+
+    function getPatientStatusKey(item) {
+      const raw = item && item.statusKey ? String(item.statusKey) : '';
+      if (raw) return raw;
+      const normalized = normalizeCompare_(item && item.status ? item.status : '');
+      if (normalized.indexOf('khong thuc hien duoc') !== -1) return 'FAILED';
+      if (normalized.indexOf('bn khong den') !== -1 || normalized.indexOf('benh nhan khong den') !== -1) return 'NO_SHOW';
+      if (normalized.indexOf('dang vao phong cho') !== -1 || normalized.indexOf('phong cho') !== -1) return 'WAITING';
+      if (normalized.indexOf('da thuc hien') !== -1) return 'DONE';
+      if (normalized.indexOf('chua thuc hien') !== -1) return 'PENDING';
+      return item && item.confirmed ? 'DONE' : 'PENDING';
+    }
+
+    function getPatientStatusClass(item) {
+      const key = getPatientStatusKey(item);
+      if (key === 'WAITING') return 'waiting';
+      if (key === 'DONE') return 'done';
+      if (key === 'NO_SHOW') return 'no-show';
+      if (key === 'FAILED') return 'failed';
+      return 'pending';
+    }
+
+    function getPatientStatusLabel(item) {
+      const key = getPatientStatusKey(item);
+      if (key === 'WAITING') return 'Đang vào phòng chờ';
+      if (key === 'DONE') return 'Đã thực hiện';
+      if (key === 'NO_SHOW') return 'BN không đến';
+      if (key === 'FAILED') return 'Không thực hiện được';
+      return 'Chưa thực hiện';
+    }
+
+    function getPatientByRow(rows, row) {
+      const targetRow = Number(row);
+      return (rows || []).find(function (item) { return Number(item.row) === targetRow; }) || null;
+    }
+
+    function buildPatientConfirmHtml(item, actionText) {
+      item = item || {};
+      return '<div style="margin-bottom:8px;">' + escapeHtml(actionText || 'Xác nhận thao tác với bệnh nhân này?') + '</div>' +
+        '<ul>' +
+          '<li><strong>Họ tên:</strong> ' + escapeHtml(item.name || '') + '</li>' +
+          '<li><strong>Mã điều trị:</strong> ' + escapeHtml(item.code || '') + '</li>' +
+          '<li><strong>Giờ đăng ký:</strong> ' + escapeHtml(item.time || '') + '</li>' +
+          '<li><strong>Thủ thuật:</strong> ' + escapeHtml(item.procedure || item.type || '') + '</li>' +
+          '<li><strong>Địa điểm:</strong> ' + escapeHtml(item.location || '') + '</li>' +
+        '</ul>';
+    }
+
+
+    function getStatusRank(key) {
+      const ranks = { PENDING: 1, WAITING: 2, DONE: 3, NO_SHOW: 4, FAILED: 5 };
+      return ranks[key] || 99;
+    }
+
+    function sortListRowsLocal(rows) {
+      return (rows || []).sort(function (a, b) {
+        const statusDiff = getStatusRank(getPatientStatusKey(a)) - getStatusRank(getPatientStatusKey(b));
+        if (statusDiff !== 0) return statusDiff;
+        const timeDiff = normalizeText_(a.time || '').localeCompare(normalizeText_(b.time || ''));
+        if (timeDiff !== 0) return timeDiff;
+        return normalizeCompare_(a.name || '').localeCompare(normalizeCompare_(b.name || ''));
+      });
+    }
+
+    function sortWaitingRowsLocal(rows) {
+      return (rows || []).sort(function (a, b) {
+        const aClass = normalizeCompare_(a.waitingClass || '') === normalizeCompare_('Đúng khung giờ') ? 0 : 1;
+        const bClass = normalizeCompare_(b.waitingClass || '') === normalizeCompare_('Đúng khung giờ') ? 0 : 1;
+        if (aClass !== bClass) return aClass - bClass;
+        const timeDiff = normalizeText_(a.waitingTime || '').localeCompare(normalizeText_(b.waitingTime || ''));
+        if (timeDiff !== 0) return timeDiff;
+        return normalizeCompare_(a.name || '').localeCompare(normalizeCompare_(b.name || ''));
+      });
+    }
+
+    function replaceRowInRows(rows, item) {
+      const targetRow = Number(item && item.row);
+      let found = false;
+      const updated = (rows || []).map(function (rowItem) {
+        if (Number(rowItem.row) === targetRow) {
+          found = true;
+          return item;
+        }
+        return rowItem;
+      });
+      if (!found && item) updated.push(item);
+      return updated;
+    }
+
+    function removeRowFromRows(rows, row) {
+      const targetRow = Number(row);
+      return (rows || []).filter(function (item) { return Number(item.row) !== targetRow; });
+    }
+
+    function patientMatchesListFilters(item) {
+      if (!item) return false;
+      const dateEl = document.getElementById('listDate');
+      const searchEl = document.getElementById('listSearch');
+      const locationEl = document.getElementById('listLocation');
+      const statusEl = document.getElementById('listStatus');
+      if (!dateEl) return false;
+
+      const selectedDate = isoToDisplayDate(dateEl.value || toIsoDate(new Date()));
+      if (item.date && item.date !== selectedDate) return false;
+
+      const status = statusEl ? (statusEl.value || '').trim() : '';
+      if (status && getPatientStatusKey(item) !== status) return false;
+
+      const location = locationEl ? normalizeListLocationLabel(locationEl.value || '') : '';
+      if (location && normalizeCompare_(normalizeListLocationLabel(item.location || '')) !== normalizeCompare_(location)) return false;
+
+      const keyword = searchEl ? normalizeCompare_(searchEl.value || '') : '';
+      if (keyword && normalizeCompare_((item.name || '') + ' ' + (item.code || '')).indexOf(keyword) === -1) return false;
+      return true;
+    }
+
+    function patientMatchesWaitingFilters(item) {
+      if (!item || getPatientStatusKey(item) !== 'WAITING') return false;
+      const dateEl = document.getElementById('waitingDate');
+      const searchEl = document.getElementById('waitingSearch');
+      if (!dateEl) return false;
+
+      const selectedDate = isoToDisplayDate(dateEl.value || toIsoDate(new Date()));
+      if (item.date && item.date !== selectedDate) return false;
+
+      const keyword = searchEl ? normalizeCompare_(searchEl.value || '') : '';
+      if (keyword && normalizeCompare_((item.name || '') + ' ' + (item.code || '')).indexOf(keyword) === -1) return false;
+      return true;
+    }
+
+    function patchListCards(changedItem) {
+      const summary = document.getElementById('listSummary');
+      const container = document.getElementById('listCards');
+      if (!summary || !container) return;
+      if (!currentListRows || !currentListRows.length) {
+        renderListCards(currentListRows);
+        return;
+      }
+
+      const changedRow = Number(changedItem && changedItem.row);
+      const oldCard = changedRow ? document.getElementById('listCard_' + changedRow) : null;
+      const emptyState = container.querySelector('.empty-state');
+      if (emptyState) emptyState.remove();
+      if (changedItem && patientMatchesListFilters(changedItem)) {
+        const index = currentListRows.findIndex(function (x) { return Number(x.row) === changedRow; });
+        const newCard = createListCardElement(changedItem, index < 0 ? 0 : index);
+        if (oldCard) oldCard.replaceWith(newCard);
+        else container.appendChild(newCard);
+        const reference = container.children[index];
+        if (reference && reference !== newCard) container.insertBefore(newCard, reference);
+        else if (!reference && newCard.parentNode !== container) container.appendChild(newCard);
+      } else if (oldCard) {
+        oldCard.remove();
+      }
+
+      (currentListRows || []).forEach(function (rowItem) {
+        const card = document.getElementById('listCard_' + rowItem.row);
+        if (card) container.appendChild(card);
+      });
+      updateListSummary(currentListRows);
+      syncListCardIndexes();
+    }
+
+    function patchWaitingCards(changedItem) {
+      const area = document.getElementById('waitingProtectedArea');
+      const summary = document.getElementById('waitingSummary');
+      const container = document.getElementById('waitingCards');
+      if (!area || area.dataset.loaded !== 'true' || !summary || !container) return;
+      if (!currentWaitingRows || !currentWaitingRows.length) {
+        renderWaitingCards(currentWaitingRows);
+        return;
+      }
+
+      const changedRow = Number(changedItem && changedItem.row);
+      const oldCard = changedRow ? document.getElementById('waitingCard_' + changedRow) : null;
+      const emptyState = container.querySelector('.empty-state');
+      if (emptyState) emptyState.remove();
+      if (changedItem && patientMatchesWaitingFilters(changedItem)) {
+        const index = currentWaitingRows.findIndex(function (x) { return Number(x.row) === changedRow; });
+        const newCard = createWaitingCardElement(changedItem, index < 0 ? 0 : index);
+        if (oldCard) oldCard.replaceWith(newCard);
+        else container.appendChild(newCard);
+        const reference = container.children[index];
+        if (reference && reference !== newCard) container.insertBefore(newCard, reference);
+        else if (!reference && newCard.parentNode !== container) container.appendChild(newCard);
+      } else if (oldCard) {
+        oldCard.remove();
+      }
+
+      (currentWaitingRows || []).forEach(function (rowItem) {
+        const card = document.getElementById('waitingCard_' + rowItem.row);
+        if (card) container.appendChild(card);
+      });
+      updateWaitingSummary(currentWaitingRows);
+      syncWaitingCardIndexes();
+    }
+
+    function applyListItemUpdate(item) {
+      if (!item || !document.getElementById('listCards')) return;
+      if (patientMatchesListFilters(item)) {
+        currentListRows = sortListRowsLocal(replaceRowInRows(currentListRows, item));
+      } else {
+        currentListRows = removeRowFromRows(currentListRows, item.row);
+      }
+      patchListCards(item);
+    }
+
+    function applyWaitingItemUpdate(item) {
+      const area = document.getElementById('waitingProtectedArea');
+      if (!item || !area || area.dataset.loaded !== 'true' || !document.getElementById('waitingCards')) return;
+      if (patientMatchesWaitingFilters(item)) {
+        currentWaitingRows = sortWaitingRowsLocal(replaceRowInRows(currentWaitingRows, item));
+      } else {
+        currentWaitingRows = removeRowFromRows(currentWaitingRows, item.row);
+      }
+      patchWaitingCards(item);
+    }
+
+    function removeWaitingItem(row) {
+      if (!document.getElementById('waitingCards')) return;
+      const oldItem = getPatientByRow(currentWaitingRows, row) || { row: row };
+      currentWaitingRows = removeRowFromRows(currentWaitingRows, row);
+      patchWaitingCards(oldItem);
+    }
+
+    function renderListProtectedArea(forceReset) {
+      const target = document.getElementById('listProtectedArea');
+      forceReset = forceReset === true;
+      if (!forceReset && hasListAccess() && target.dataset.loaded === 'true') return;
+      target.dataset.loaded = 'false';
+      if (!hasListAccess()) {
+        renderAuthForm('listProtectedArea', 'list', false);
+        return;
+      }
+
+      const currentDate = document.getElementById('listDate') ? document.getElementById('listDate').value : toIsoDate(new Date());
+      const currentSearch = document.getElementById('listSearch') ? document.getElementById('listSearch').value : '';
+      const currentLocation = document.getElementById('listLocation') ? document.getElementById('listLocation').value : '';
+      const currentStatus = document.getElementById('listStatus') ? document.getElementById('listStatus').value : '';
+
+      target.innerHTML =
+        '<div class="list-toolbar list-main-toolbar">' +
+          '<div class="form-group inline-small toolbar-date">' +
+            '<label for="listDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký</label>' +
+            '<input class="field" type="date" id="listDate">' +
+          '</div>' +
+          '<div class="form-group inline-fill toolbar-search">' +
+            '<label for="listSearch"><i class="fas fa-search"></i> Tên BN/mã điều trị</label>' +
+            '<input class="field" type="text" id="listSearch" placeholder="Tên BN/mã điều trị">' +
+          '</div>' +
+          '<div class="form-group inline-fill toolbar-location">' +
+            '<label for="listLocation"><i class="fas fa-map-marker-alt"></i> Địa điểm thực hiện</label>' +
+            '<select class="field" id="listLocation"></select>' +
+          '</div>' +
+          '<div class="form-group inline-fill toolbar-status">' +
+            '<label for="listStatus"><i class="fas fa-filter"></i> Lọc trạng thái</label>' +
+            '<select class="field" id="listStatus">' +
+              '<option value="">Tất cả</option>' +
+              '<option value="PENDING">Chưa thực hiện</option>' +
+              '<option value="WAITING">Đang vào phòng chờ</option>' +
+              '<option value="DONE">Đã thực hiện</option>' +
+              '<option value="NO_SHOW">BN không đến</option>' +
+              '<option value="FAILED">Không thực hiện được</option>' +
+            '</select>' +
+          '</div>' +
+          '<div class="toolbar-actions">' +
+            '<button id="viewListBtn" class="btn toolbar-action" type="button" onclick="refreshListData(true)">' +
+              '<span class="loader"></span><span class="btn-label"><i class="fas fa-list"></i> Xem danh sách</span>' +
+            '</button>' +
+            '<button id="exportListBtn" class="btn btn-secondary toolbar-action" type="button" onclick="exportCurrentListToExcel()">' +
+              '<span class="loader"></span><span class="btn-label"><i class="fas fa-file-excel"></i> Xuất danh sách</span>' +
+            '</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="summary-row" id="listSummary"></div>' +
+        '<div id="listMessage" class="message"></div>' +
+        '<div id="listCards" class="patient-list"></div>';
+
+      document.getElementById('listDate').value = currentDate || toIsoDate(new Date());
+      const listLocationOptions = getListLocationOptions();
+      fillSelect('listLocation', listLocationOptions, 'Tất cả');
+      const listLocationSelect = document.getElementById('listLocation');
+      const normalizedCurrentLocation = normalizeCompare_(normalizeListLocationLabel(currentLocation || ''));
+      const hasCurrentLocation = listLocationOptions.some(function (item) {
+        return normalizeCompare_(item) === normalizedCurrentLocation;
+      });
+      listLocationSelect.value = hasCurrentLocation ? normalizeListLocationLabel(currentLocation) : '';
+      document.getElementById('listStatus').value = ['PENDING', 'WAITING', 'DONE', 'NO_SHOW', 'FAILED'].indexOf(currentStatus) !== -1 ? currentStatus : '';
+      document.getElementById('listSearch').value = currentSearch || '';
+      document.getElementById('listSearch').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') refreshListData(true);
+      });
+      target.dataset.loaded = 'true';
+    }
+
+    function getExportTestDefinitions() {
+      return [
+        { key: 'cellMarrow', title: 'Xét nghiệm tế bào học tủy xương (không bao gồm thủ thuật chọc hút tủy)', source: 'required', terms: ['xet nghiem te bao hoc tuy xuong', 'te bao hoc tuy xuong'] },
+        { key: 'bloodCount', title: 'Huyết đồ (bằng máy đếm laser)[chỉ định kèm tủy đồ]', source: 'required', terms: ['huyet do'] },
+        { key: 'histology', title: 'Xét nghiệm mô bệnh học tủy xương (không bao gồm thủ thuật sinh thiết tủy xương)', source: 'required', terms: ['xet nghiem mo benh hoc tuy xuong', 'mo benh hoc tuy xuong'] },
+        { key: 'fishGene', title: 'Xác định gen bằng kỹ thuật FISH', source: 'optional', terms: ['xac dinh gen bang ky thuat fish', 'fish'] },
+        { key: 'rtPcrGene', title: 'Xác định gen bệnh máu bằng kỹ thuật RT-PCR', source: 'optional', terms: ['xac dinh gen benh mau bang ky thuat rt pcr', 'rt pcr'] },
+        { key: 'geneQuant', title: 'Định lượng gen bệnh máu ác tính bằng kỹ thuật Real - Time PCR', source: 'optional', terms: ['dinh luong gen benh mau ac tinh bang ky thuat real time pcr', 'dinh luong gen'] },
+        { key: 'karyotype', title: 'Công thức nhiễm sắc thể (Karyotype) tủy xương', source: 'optional', terms: ['cong thuc nhiem sac the', 'karyotype'] },
+        { key: 'flowMarrow', title: 'Phân tích dấu ấn/CD/marker miễn dịch mẫu tủy xương, hoặc mẫu hạch, hoặc mẫu tổ chức khác bằng kỹ thuật flow cytometry', source: 'optional', terms: ['phan tich dau an cd marker mien dich mau tuy xuong', 'mau tuy xuong', 'mau tuy'] },
+        { key: 'flowPeripheral', title: 'Phân tích dấu ấn/CD/marker miễn dịch máu ngoại vi, hoặc dịch khác bằng kỹ thuật flow cytometry', source: 'optional', terms: ['phan tich dau an cd marker mien dich mau ngoai vi', 'mau ngoai vi'] },
+        { key: 'other', title: 'Khác', source: 'optional', terms: [] }
+      ];
+    }
+
+    function textMatchesAnyTerm(text, terms) {
+      const normalized = normalizeCompare_(text || '');
+      return (terms || []).some(function (term) {
+        return normalized.indexOf(normalizeCompare_(term)) !== -1;
+      });
+    }
+
+    function getExportTestMarks(item) {
+      const requiredText = (item && item.requiredDocuments) || '';
+      const optionalItems = splitDisplayLines((item && item.optionalTests) || '').filter(function (line) {
+        return normalizeCompare_(line) !== normalizeCompare_('Không có');
+      });
+      const optionalText = optionalItems.join('; ');
+      const defs = getExportTestDefinitions();
+      const marks = {};
+      defs.forEach(function (def) {
+        if (def.key === 'other') return;
+        marks[def.key] = textMatchesAnyTerm(def.source === 'required' ? requiredText : optionalText, def.terms) ? 'X' : '';
+      });
+      marks.other = optionalItems.some(function (line) {
+        const normalized = normalizeCompare_(line);
+        const known = defs.some(function (def) {
+          return def.key !== 'other' && def.source === 'optional' && textMatchesAnyTerm(normalized, def.terms);
+        });
+        return !known;
+      }) ? 'X' : '';
+      return marks;
+    }
+
+    function xlsxXmlEscape(value) {
+      return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n');
+    }
+
+    function xlsxColumnName(index) {
+      let name = '';
+      let num = index + 1;
+      while (num > 0) {
+        const rem = (num - 1) % 26;
+        name = String.fromCharCode(65 + rem) + name;
+        num = Math.floor((num - 1) / 26);
+      }
+      return name;
+    }
+
+    function buildXlsxSheetXml(headers, rows, centerIndexes) {
+      const allRows = [headers].concat(rows);
+      const lastCol = xlsxColumnName(headers.length - 1);
+      const lastRow = Math.max(allRows.length, 1);
+      const centerMap = {};
+      (centerIndexes || []).forEach(function (idx) { centerMap[idx] = true; });
+      const baseWidths = [6, 16, 28, 7, 22];
+      const noteWidth = 34;
+      const testWidth = 18;
+      let xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">' +
+        '<dimension ref="A1:' + lastCol + lastRow + '"/>' +
+        '<sheetViews><sheetView workbookViewId="0"/></sheetViews>' +
+        '<sheetFormatPr defaultRowHeight="18"/>' +
+        '<cols>';
+      headers.forEach(function (_, index) {
+        const width = index < baseWidths.length ? baseWidths[index] : (index === headers.length - 1 ? noteWidth : testWidth);
+        xml += '<col min="' + (index + 1) + '" max="' + (index + 1) + '" width="' + width + '" customWidth="1"/>';
+      });
+      xml += '</cols><sheetData>';
+      allRows.forEach(function (row, rowIndex) {
+        const rowNumber = rowIndex + 1;
+        xml += '<row r="' + rowNumber + '"' + (rowIndex === 0 ? ' ht="90" customHeight="1"' : '') + '>';
+        headers.forEach(function (_, colIndex) {
+          const cellRef = xlsxColumnName(colIndex) + rowNumber;
+          const style = rowIndex === 0 ? 1 : (centerMap[colIndex] ? 2 : 3);
+          const value = row[colIndex] == null ? '' : row[colIndex];
+          xml += '<c r="' + cellRef + '" t="inlineStr" s="' + style + '"><is><t xml:space="preserve">' + xlsxXmlEscape(value) + '</t></is></c>';
+        });
+        xml += '</row>';
+      });
+      xml += '</sheetData><autoFilter ref="A1:' + lastCol + '1"/><pageMargins left="0.7" right="0.7" top="0.75" bottom="0.75" header="0.3" footer="0.3"/></worksheet>';
+      return xml;
+    }
+
+    function buildXlsxStylesXml() {
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+        '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">' +
+        '<fonts count="2"><font><sz val="11"/><name val="Arial"/></font><font><b/><sz val="11"/><name val="Arial"/></font></fonts>' +
+        '<fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE8F5E9"/><bgColor indexed="64"/></patternFill></fill></fills>' +
+        '<borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color rgb="FF999999"/></left><right style="thin"><color rgb="FF999999"/></right><top style="thin"><color rgb="FF999999"/></top><bottom style="thin"><color rgb="FF999999"/></bottom><diagonal/></border></borders>' +
+        '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>' +
+        '<cellXfs count="4">' +
+        '<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>' +
+        '<xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>' +
+        '<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>' +
+        '<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>' +
+        '</cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>';
+    }
+
+    let xlsxCrcTable = null;
+
+    function getXlsxCrcTable() {
+      if (xlsxCrcTable) return xlsxCrcTable;
+      xlsxCrcTable = [];
+      for (let n = 0; n < 256; n++) {
+        let c = n;
+        for (let k = 0; k < 8; k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+        xlsxCrcTable[n] = c >>> 0;
+      }
+      return xlsxCrcTable;
+    }
+
+    function xlsxCrc32(bytes) {
+      const table = getXlsxCrcTable();
+      let crc = 0xffffffff;
+      for (let i = 0; i < bytes.length; i++) crc = table[(crc ^ bytes[i]) & 0xff] ^ (crc >>> 8);
+      return (crc ^ 0xffffffff) >>> 0;
+    }
+
+    function xlsxDosTimeDate() {
+      const d = new Date();
+      const time = (d.getHours() << 11) | (d.getMinutes() << 5) | Math.floor(d.getSeconds() / 2);
+      const date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+      return { time: time, date: date };
+    }
+
+    function uint8(size) {
+      return new Uint8Array(size);
+    }
+
+    function writeZipUint16(view, offset, value) {
+      view.setUint16(offset, value, true);
+    }
+
+    function writeZipUint32(view, offset, value) {
+      view.setUint32(offset, value >>> 0, true);
+    }
+
+    function makeXlsxZip(files) {
+      const encoder = new TextEncoder();
+      const parts = [];
+      const centralParts = [];
+      const dos = xlsxDosTimeDate();
+      let offset = 0;
+      files.forEach(function (file) {
+        const nameBytes = encoder.encode(file.name);
+        const dataBytes = encoder.encode(file.content);
+        const crc = xlsxCrc32(dataBytes);
+        const local = uint8(30 + nameBytes.length);
+        const localView = new DataView(local.buffer);
+        writeZipUint32(localView, 0, 0x04034b50);
+        writeZipUint16(localView, 4, 20);
+        writeZipUint16(localView, 6, 0x0800);
+        writeZipUint16(localView, 8, 0);
+        writeZipUint16(localView, 10, dos.time);
+        writeZipUint16(localView, 12, dos.date);
+        writeZipUint32(localView, 14, crc);
+        writeZipUint32(localView, 18, dataBytes.length);
+        writeZipUint32(localView, 22, dataBytes.length);
+        writeZipUint16(localView, 26, nameBytes.length);
+        writeZipUint16(localView, 28, 0);
+        local.set(nameBytes, 30);
+        parts.push(local, dataBytes);
+
+        const central = uint8(46 + nameBytes.length);
+        const centralView = new DataView(central.buffer);
+        writeZipUint32(centralView, 0, 0x02014b50);
+        writeZipUint16(centralView, 4, 20);
+        writeZipUint16(centralView, 6, 20);
+        writeZipUint16(centralView, 8, 0x0800);
+        writeZipUint16(centralView, 10, 0);
+        writeZipUint16(centralView, 12, dos.time);
+        writeZipUint16(centralView, 14, dos.date);
+        writeZipUint32(centralView, 16, crc);
+        writeZipUint32(centralView, 20, dataBytes.length);
+        writeZipUint32(centralView, 24, dataBytes.length);
+        writeZipUint16(centralView, 28, nameBytes.length);
+        writeZipUint16(centralView, 30, 0);
+        writeZipUint16(centralView, 32, 0);
+        writeZipUint16(centralView, 34, 0);
+        writeZipUint16(centralView, 36, 0);
+        writeZipUint32(centralView, 38, 0);
+        writeZipUint32(centralView, 42, offset);
+        central.set(nameBytes, 46);
+        centralParts.push(central);
+        offset += local.length + dataBytes.length;
+      });
+      const centralOffset = offset;
+      let centralSize = 0;
+      centralParts.forEach(function (part) { centralSize += part.length; });
+      const end = uint8(22);
+      const endView = new DataView(end.buffer);
+      writeZipUint32(endView, 0, 0x06054b50);
+      writeZipUint16(endView, 4, 0);
+      writeZipUint16(endView, 6, 0);
+      writeZipUint16(endView, 8, files.length);
+      writeZipUint16(endView, 10, files.length);
+      writeZipUint32(endView, 12, centralSize);
+      writeZipUint32(endView, 16, centralOffset);
+      writeZipUint16(endView, 20, 0);
+      return new Blob(parts.concat(centralParts, [end]), { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    }
+
+    function createXlsxBlob(headers, rows) {
+      const centerIndexes = [0, 1, 3];
+      for (let i = 5; i < headers.length - 1; i++) centerIndexes.push(i);
+      const sheetXml = buildXlsxSheetXml(headers, rows, centerIndexes);
+      const files = [
+        { name: '[Content_Types].xml', content: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>' },
+        { name: '_rels/.rels', content: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>' },
+        { name: 'xl/workbook.xml', content: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Danh sách" sheetId="1" r:id="rId1"/></sheets></workbook>' },
+        { name: 'xl/_rels/workbook.xml.rels', content: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>' },
+        { name: 'xl/styles.xml', content: buildXlsxStylesXml() },
+        { name: 'xl/worksheets/sheet1.xml', content: sheetXml }
+      ];
+      return makeXlsxZip(files);
+    }
+
+    function exportCurrentListToExcel() {
+      const rows = currentListRows || [];
+      if (!rows.length) {
+        showInlineMessage('listMessage', 'error', 'Chưa có dữ liệu để xuất. Vui lòng bấm Xem danh sách trước.');
+        return;
+      }
+      const btn = document.getElementById('exportListBtn');
+      setButtonLoading(btn, true);
+      try {
+        const tests = getExportTestDefinitions();
+        const headers = ['STT', 'Ngày làm thủ thuật', 'Họ và tên', 'Tuổi', 'Khoa']
+          .concat(tests.map(function (item) { return item.title; }))
+          .concat(['Ghi chú']);
+        const dataRows = rows.map(function (item, index) {
+          const marks = getExportTestMarks(item);
+          return [index + 1, item.date || '', item.name || '', item.age || '', item.department || '']
+            .concat(tests.map(function (test) { return marks[test.key] || ''; }))
+            .concat([item.registrationNote || '']);
+        });
+        const dateIso = document.getElementById('listDate') ? (document.getElementById('listDate').value || toIsoDate(new Date())) : toIsoDate(new Date());
+        const blob = createXlsxBlob(headers, dataRows);
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Danh_sach_thu_thuat_' + dateIso + '.xlsx';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        showInlineMessage('listMessage', 'success', 'Đã tạo file Excel .xlsx từ danh sách đang hiển thị.', 4000);
+      } catch (error) {
+        showInlineMessage('listMessage', 'error', 'Lỗi khi xuất danh sách: ' + error.message);
+      } finally {
+        setButtonLoading(btn, false);
+      }
+    }
+
+    function refreshListData(showMessageAfter) {
+      if (!hasListAccess()) return;
+      const dateIso = document.getElementById('listDate').value || toIsoDate(new Date());
+      const keyword = (document.getElementById('listSearch').value || '').trim();
+      const location = (document.getElementById('listLocation').value || '').trim();
+      const status = (document.getElementById('listStatus').value || '').trim();
+      const btn = document.getElementById('viewListBtn');
+      if (btn) setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function (rows) {
+          if (btn) setButtonLoading(btn, false);
+          currentListRows = rows || [];
+          renderListCards(currentListRows);
+          hideInlineMessage('listMessage');
+        })
+        .withFailureHandler(function (error) {
+          if (btn) setButtonLoading(btn, false);
+          showInlineMessage('listMessage', 'error', 'Lỗi khi tải danh sách: ' + error.message);
+        })
+        .getDailyPatients(isoToDisplayDate(dateIso), keyword, location, status, authState);
+    }
+
+    function updateListSummary(rows) {
+      const summary = document.getElementById('listSummary');
+      if (!summary) return;
+      if (!rows || !rows.length) {
+        summary.textContent = 'Không có bệnh nhân phù hợp.';
+        return;
+      }
+      const counts = { PENDING: 0, WAITING: 0, DONE: 0, NO_SHOW: 0, FAILED: 0 };
+      rows.forEach(function (item) {
+        const key = getPatientStatusKey(item);
+        if (counts[key] != null) counts[key]++;
+      });
+      summary.innerHTML =
+        '<span class="summary-pending">Chưa thực hiện: ' + counts.PENDING + '</span>' +
+        '<span class="summary-waiting">Đang phòng chờ: ' + counts.WAITING + '</span>' +
+        '<span class="summary-done">Đã thực hiện: ' + counts.DONE + '</span>' +
+        '<span class="summary-no-show">BN không đến: ' + counts.NO_SHOW + '</span>' +
+        '<span class="summary-failed">Không thực hiện được: ' + counts.FAILED + '</span>' +
+        '<span class="summary-total">Tổng: ' + rows.length + '</span>';
+    }
+
+    function createListCardElement(item, index) {
+      const statusKey = getPatientStatusKey(item);
+      const statusClass = getPatientStatusClass(item);
+      const card = document.createElement('div');
+      card.id = 'listCard_' + item.row;
+      card.className = 'patient-card ' + statusClass;
+      card.dataset.row = item.row;
+      card.innerHTML =
+        '<div class="patient-header">' +
+          '<div class="patient-name">' +
+            '<span>' + (index + 1) + '. ' + escapeHtml(item.name || '') + '</span>' +
+            copyInlineButtonHtml(item.name || '', 'Tên bệnh nhân') +
+          '</div>' +
+          '<div id="badge_' + item.row + '" class="badge ' + statusClass + '">' + getPatientStatusLabel(item) + '</div>' +
+        '</div>' +
+        '<div class="patient-grid">' +
+          patientItem('Tuổi', escapeHtml(item.age || '')) +
+          patientItem('Mã điều trị', escapeHtml(item.code || ''), item.code || '', 'Mã điều trị') +
+          patientItem('Thủ thuật', escapeHtml(item.procedure || ''), null, null, 'procedure-highlight') +
+          patientItem('Giờ', escapeHtml(item.time || '')) +
+          patientItem('Địa điểm', item.isAtBed ? '<span class="text-red">' + escapeHtml(item.location || '') + '</span>' : escapeHtml(item.location || '')) +
+          patientItem('Khoa', escapeHtml(item.department || '')) +
+          patientItem('ĐN / Phòng', escapeHtml(item.unit || '')) +
+          patientItem('Giường', escapeHtml(item.bed || '')) +
+          patientItem('SĐT', item.phone ? '<a class="phone-link" href="tel:' + escapeHtml(item.phone) + '">' + escapeHtml(item.phone) + '</a>' : '') +
+        '</div>' +
+        renderListSupplementalInfo(item) +
+        '<div class="patient-actions" id="actions_' + item.row + '">' +
+          (statusKey === 'PENDING'
+            ? (item.isAtBed
+              ? '<button id="doneListBtn_' + item.row + '" class="btn" type="button" onclick="confirmDoneFromList(' + item.row + ')"><span class="loader"></span><span class="btn-label"><i class="fas fa-check-circle"></i> Đã thực hiện</span></button>' +
+                '<button id="failedListBtn_' + item.row + '" class="btn btn-red" type="button" onclick="openFailedModal(' + item.row + ', \'list\')"><span class="loader"></span><span class="btn-label"><i class="fas fa-exclamation-circle"></i> Không thực hiện được</span></button>'
+              : '<button id="waitingListBtn_' + item.row + '" class="btn" type="button" onclick="moveToWaitingFromList(' + item.row + ')"><span class="loader"></span><span class="btn-label"><i class="fas fa-door-open"></i> Vào phòng chờ</span></button>' +
+                '<button id="noShowListBtn_' + item.row + '" class="btn btn-red" type="button" onclick="markNoShowFromList(' + item.row + ')"><span class="loader"></span><span class="btn-label"><i class="fas fa-user-times"></i> BN không đến</span></button>')
+            : '') +
+        '</div>';
+      return card;
+    }
+
+    function syncListCardIndexes() {
+      (currentListRows || []).forEach(function (item, index) {
+        const card = document.getElementById('listCard_' + item.row);
+        const nameSpan = card ? card.querySelector('.patient-name span') : null;
+        if (nameSpan) nameSpan.textContent = (index + 1) + '. ' + (item.name || '');
+      });
+    }
+
+    function renderListCards(rows) {
+      const container = document.getElementById('listCards');
+      if (!container) return;
+      container.innerHTML = '';
+      updateListSummary(rows);
+      if (!rows || !rows.length) {
+        container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox" style="font-size:34px;color:#9ca3af;margin-bottom:10px;"></i><div>Danh sách trống.</div></div>';
+        return;
+      }
+      const fragment = document.createDocumentFragment();
+      rows.forEach(function (item, index) {
+        fragment.appendChild(createListCardElement(item, index));
+      });
+      container.appendChild(fragment);
+    }
+
+    function resetListPatientActionButtons(row) {
+      ['doneListBtn_', 'failedListBtn_', 'waitingListBtn_', 'noShowListBtn_'].forEach(function (prefix) {
+        const btn = document.getElementById(prefix + row);
+        if (btn) {
+          setButtonLoading(btn, false);
+          btn.disabled = false;
+        }
+      });
+    }
+
+    function resetWaitingPatientActionButtons(row) {
+      ['doneWaitingBtn_', 'failedWaitingBtn_'].forEach(function (prefix) {
+        const btn = document.getElementById(prefix + row);
+        if (btn) {
+          setButtonLoading(btn, false);
+          btn.disabled = false;
+        }
+      });
+    }
+
+    function resetPatientActionButtons(row, source) {
+      if (source === 'waiting') resetWaitingPatientActionButtons(row);
+      else if (source === 'list') resetListPatientActionButtons(row);
+      else {
+        resetListPatientActionButtons(row);
+        resetWaitingPatientActionButtons(row);
+      }
+    }
+
+    function refreshListDataSafe() {
+      try {
+        refreshListData(false);
+      } catch (e) {}
+    }
+
+    function refreshWaitingDataSafe() {
+      try {
+        refreshWaitingData(false);
+      } catch (e) {}
+    }
+
+    function confirmDoneFromList(row) {
+      if (!hasListAccess()) return;
+      const item = getPatientByRow(currentListRows, row);
+      showConfirmActionModal(
+        buildPatientConfirmHtml(item, 'Xác nhận bệnh nhân tại giường đã thực hiện thủ thuật?'),
+        'Xác nhận đã thực hiện',
+        function () { doConfirmDoneFromList(row); },
+        false
+      );
+    }
+
+    function doConfirmDoneFromList(row) {
+      const btn = document.getElementById('doneListBtn_' + row);
+      const failedBtn = document.getElementById('failedListBtn_' + row);
+      if (btn) setButtonLoading(btn, true);
+      if (failedBtn) failedBtn.disabled = true;
+      google.script.run
+        .withSuccessHandler(function (result) {
+          if (result && result.success) {
+            try {
+              if (result.item) applyListItemUpdate(result.item);
+              else refreshListDataSafe();
+            } catch (updateError) {
+              refreshListDataSafe();
+            }
+            resetPatientActionButtons(row, 'list');
+            showInlineMessage('listMessage', 'success', result.message || 'Đã xác nhận đã thực hiện.');
+          } else {
+            resetPatientActionButtons(row, 'list');
+            showInlineMessage('listMessage', 'error', result && result.message ? result.message : 'Không thể xác nhận đã thực hiện.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          resetPatientActionButtons(row, 'list');
+          showInlineMessage('listMessage', 'error', 'Lỗi khi xác nhận đã thực hiện: ' + error.message);
+        })
+        .completeAtBedPatientFromList(authState, row);
+    }
+
+
+    function moveToWaitingFromList(row) {
+      if (!hasListAccess()) return;
+      const item = getPatientByRow(currentListRows, row);
+      showConfirmActionModal(
+        buildPatientConfirmHtml(item, 'Xác nhận đưa bệnh nhân này vào phòng chờ?'),
+        'Xác nhận vào phòng chờ',
+        function () { doMoveToWaitingFromList(row); },
+        false
+      );
+    }
+
+    function doMoveToWaitingFromList(row) {
+      const btn = document.getElementById('waitingListBtn_' + row);
+      const noShowBtn = document.getElementById('noShowListBtn_' + row);
+      if (btn) setButtonLoading(btn, true);
+      if (noShowBtn) noShowBtn.disabled = true;
+      google.script.run
+        .withSuccessHandler(function (result) {
+          if (result && result.success) {
+            try {
+              if (result.item) {
+                applyListItemUpdate(result.item);
+                applyWaitingItemUpdate(result.item);
+              } else {
+                refreshListDataSafe();
+                refreshWaitingDataSafe();
+              }
+            } catch (updateError) {
+              refreshListDataSafe();
+              refreshWaitingDataSafe();
+            }
+            resetPatientActionButtons(row, 'list');
+            showInlineMessage('listMessage', 'success', result.message || 'Đã đưa bệnh nhân vào phòng chờ.');
+          } else {
+            resetPatientActionButtons(row, 'list');
+            showInlineMessage('listMessage', 'error', result && result.message ? result.message : 'Không thể đưa bệnh nhân vào phòng chờ.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          resetPatientActionButtons(row, 'list');
+          showInlineMessage('listMessage', 'error', 'Lỗi khi đưa vào phòng chờ: ' + error.message);
+        })
+        .movePatientToWaitingRoom(authState, row);
+    }
+
+
+    function markNoShowFromList(row) {
+      if (!hasListAccess()) return;
+      const item = getPatientByRow(currentListRows, row);
+      showConfirmActionModal(
+        buildPatientConfirmHtml(item, 'Xác nhận bệnh nhân không đến?'),
+        'Xác nhận BN không đến',
+        function () { doMarkNoShowFromList(row); },
+        true
+      );
+    }
+
+    function doMarkNoShowFromList(row) {
+      const btn = document.getElementById('noShowListBtn_' + row);
+      const waitingBtn = document.getElementById('waitingListBtn_' + row);
+      if (btn) setButtonLoading(btn, true);
+      if (waitingBtn) waitingBtn.disabled = true;
+      google.script.run
+        .withSuccessHandler(function (result) {
+          if (result && result.success) {
+            try {
+              if (result.item) applyListItemUpdate(result.item);
+              else refreshListDataSafe();
+            } catch (updateError) {
+              refreshListDataSafe();
+            }
+            resetPatientActionButtons(row, 'list');
+            showInlineMessage('listMessage', 'success', result.message || 'Đã ghi nhận BN không đến.');
+          } else {
+            resetPatientActionButtons(row, 'list');
+            showInlineMessage('listMessage', 'error', result && result.message ? result.message : 'Không thể cập nhật BN không đến.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          resetPatientActionButtons(row, 'list');
+          showInlineMessage('listMessage', 'error', 'Lỗi khi cập nhật BN không đến: ' + error.message);
+        })
+        .markPatientNoShow(authState, row);
+    }
+
+
+    function renderWaitingProtectedArea(forceReset) {
+      const target = document.getElementById('waitingProtectedArea');
+      if (!target) return;
+      forceReset = forceReset === true;
+      if (!forceReset && hasListAccess() && target.dataset.loaded === 'true') return;
+      target.dataset.loaded = 'false';
+      if (!hasListAccess()) {
+        renderAuthForm('waitingProtectedArea', 'waiting', false);
+        return;
+      }
+
+      const currentDate = document.getElementById('waitingDate') ? document.getElementById('waitingDate').value : toIsoDate(new Date());
+      const currentSearch = document.getElementById('waitingSearch') ? document.getElementById('waitingSearch').value : '';
+
+      target.innerHTML =
+        '<div class="list-toolbar waiting-toolbar">' +
+          '<div class="form-group inline-small toolbar-date">' +
+            '<label for="waitingDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký</label>' +
+            '<input class="field" type="date" id="waitingDate">' +
+          '</div>' +
+          '<div class="form-group inline-fill toolbar-search">' +
+            '<label for="waitingSearch"><i class="fas fa-search"></i> Tìm theo tên hoặc mã điều trị</label>' +
+            '<input class="field" type="text" id="waitingSearch" placeholder="Nhập tên bệnh nhân hoặc mã điều trị">' +
+          '</div>' +
+          '<button id="viewWaitingBtn" class="btn toolbar-action" style="margin-bottom:0;min-width:150px;" type="button" onclick="refreshWaitingData(true)">' +
+            '<span class="loader"></span><span class="btn-label"><i class="fas fa-door-open"></i> Xem phòng chờ</span>' +
+          '</button>' +
+        '</div>' +
+        '<div class="summary-row" id="waitingSummary"></div>' +
+        '<div id="waitingMessage" class="message"></div>' +
+        '<div id="waitingCards" class="patient-list"></div>';
+
+      document.getElementById('waitingDate').value = currentDate || toIsoDate(new Date());
+      document.getElementById('waitingSearch').value = currentSearch || '';
+      document.getElementById('waitingSearch').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') refreshWaitingData(true);
+      });
+      target.dataset.loaded = 'true';
+    }
+
+    function refreshWaitingData(showMessageAfter) {
+      if (!hasListAccess()) return;
+      const dateIso = document.getElementById('waitingDate').value || toIsoDate(new Date());
+      const keyword = (document.getElementById('waitingSearch').value || '').trim();
+      const btn = document.getElementById('viewWaitingBtn');
+      if (btn) setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function (rows) {
+          if (btn) setButtonLoading(btn, false);
+          currentWaitingRows = rows || [];
+          renderWaitingCards(currentWaitingRows);
+          hideInlineMessage('waitingMessage');
+        })
+        .withFailureHandler(function (error) {
+          if (btn) setButtonLoading(btn, false);
+          showInlineMessage('waitingMessage', 'error', 'Lỗi khi tải phòng chờ: ' + error.message);
+        })
+        .getWaitingRoomPatients(isoToDisplayDate(dateIso), keyword, authState);
+    }
+
+    function updateWaitingSummary(rows) {
+      const summary = document.getElementById('waitingSummary');
+      if (!summary) return;
+      if (!rows || !rows.length) {
+        summary.textContent = 'Không có bệnh nhân đang trong phòng chờ.';
+        return;
+      }
+      const onTimeCount = rows.filter(function (x) { return normalizeCompare_(x.waitingClass) === normalizeCompare_('Đúng khung giờ'); }).length;
+      const wrongTimeCount = rows.length - onTimeCount;
+      summary.textContent = 'Đang phòng chờ: ' + rows.length + ' | Đúng khung giờ: ' + onTimeCount + ' | Sai khung giờ: ' + wrongTimeCount;
+    }
+
+    function createWaitingCardElement(item, index) {
+      const card = document.createElement('div');
+      card.id = 'waitingCard_' + item.row;
+      card.className = 'patient-card waiting';
+      card.dataset.row = item.row;
+      card.innerHTML =
+        '<div class="patient-header">' +
+          '<div class="patient-name">' +
+            '<span>' + (index + 1) + '. ' + escapeHtml(item.name || '') + '</span>' +
+            copyInlineButtonHtml(item.name || '', 'Tên bệnh nhân') +
+          '</div>' +
+          '<div class="badge waiting">' + escapeHtml(item.waitingClass || 'Đang vào phòng chờ') + '</div>' +
+        '</div>' +
+        '<div class="patient-grid">' +
+          patientItem('Tuổi', escapeHtml(item.age || '')) +
+          patientItem('Mã điều trị', escapeHtml(item.code || ''), item.code || '', 'Mã điều trị') +
+          patientItem('Thủ thuật', escapeHtml(item.procedure || ''), null, null, 'procedure-highlight') +
+          patientItem('Giờ ĐK', escapeHtml(item.time || '')) +
+          patientItem('Giờ đến', escapeHtml(item.waitingTime || '')) +
+          patientItem('Địa điểm', item.isAtBed ? '<span class="text-red">' + escapeHtml(item.location || '') + '</span>' : escapeHtml(item.location || '')) +
+          patientItem('Khoa', escapeHtml(item.department || '')) +
+          patientItem('ĐN / Phòng', escapeHtml(item.unit || '')) +
+          patientItem('Giường', escapeHtml(item.bed || '')) +
+          patientItem('SĐT', item.phone ? '<a class="phone-link" href="tel:' + escapeHtml(item.phone) + '">' + escapeHtml(item.phone) + '</a>' : '') +
+        '</div>' +
+        renderListSupplementalInfo(item) +
+        '<div class="patient-actions" id="waitingActions_' + item.row + '">' +
+          '<button id="doneWaitingBtn_' + item.row + '" class="btn" type="button" onclick="confirmDoneFromWaiting(' + item.row + ')"><span class="loader"></span><span class="btn-label"><i class="fas fa-check-circle"></i> Đã thực hiện</span></button>' +
+          '<button id="failedWaitingBtn_' + item.row + '" class="btn btn-red" type="button" onclick="openFailedModal(' + item.row + ', \'waiting\')"><span class="loader"></span><span class="btn-label"><i class="fas fa-exclamation-circle"></i> Không thực hiện được</span></button>' +
+        '</div>';
+      return card;
+    }
+
+    function syncWaitingCardIndexes() {
+      (currentWaitingRows || []).forEach(function (item, index) {
+        const card = document.getElementById('waitingCard_' + item.row);
+        const nameSpan = card ? card.querySelector('.patient-name span') : null;
+        if (nameSpan) nameSpan.textContent = (index + 1) + '. ' + (item.name || '');
+      });
+    }
+
+    function renderWaitingCards(rows) {
+      const container = document.getElementById('waitingCards');
+      if (!container) return;
+      container.innerHTML = '';
+      updateWaitingSummary(rows);
+      if (!rows || !rows.length) {
+        container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox" style="font-size:34px;color:#9ca3af;margin-bottom:10px;"></i><div>Phòng chờ trống.</div></div>';
+        return;
+      }
+      const fragment = document.createDocumentFragment();
+      rows.forEach(function (item, index) {
+        fragment.appendChild(createWaitingCardElement(item, index));
+      });
+      container.appendChild(fragment);
+    }
+
+    function confirmDoneFromWaiting(row) {
+      if (!hasListAccess()) return;
+      const item = getPatientByRow(currentWaitingRows, row);
+      showConfirmActionModal(
+        buildPatientConfirmHtml(item, 'Xác nhận bệnh nhân đã thực hiện thủ thuật?'),
+        'Xác nhận đã thực hiện',
+        function () { doConfirmDoneFromWaiting(row); },
+        false
+      );
+    }
+
+    function doConfirmDoneFromWaiting(row) {
+      const btn = document.getElementById('doneWaitingBtn_' + row);
+      const failedBtn = document.getElementById('failedWaitingBtn_' + row);
+      if (btn) setButtonLoading(btn, true);
+      if (failedBtn) failedBtn.disabled = true;
+      google.script.run
+        .withSuccessHandler(function (result) {
+          if (result && result.success) {
+            try {
+              removeWaitingItem(row);
+              if (result.item) applyListItemUpdate(result.item);
+              else refreshListDataSafe();
+            } catch (updateError) {
+              refreshWaitingDataSafe();
+              refreshListDataSafe();
+            }
+            resetPatientActionButtons(row, 'waiting');
+            showInlineMessage('waitingMessage', 'success', result.message || 'Đã xác nhận đã thực hiện.');
+          } else {
+            resetPatientActionButtons(row, 'waiting');
+            showInlineMessage('waitingMessage', 'error', result && result.message ? result.message : 'Không thể xác nhận đã thực hiện.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          resetPatientActionButtons(row, 'waiting');
+          showInlineMessage('waitingMessage', 'error', 'Lỗi khi xác nhận đã thực hiện: ' + error.message);
+        })
+        .completePatientFromWaitingRoom(authState, row);
+    }
+
+
+    function openFailedModal(row, source) {
+      if (!hasListAccess()) return;
+      failedTargetRow = Number(row);
+      failedSource = source === 'list' ? 'list' : 'waiting';
+      const item = getPatientByRow(failedSource === 'list' ? currentListRows : currentWaitingRows, row);
+      const modal = document.getElementById('failedModal');
+      const message = document.getElementById('failedModalMessage');
+      const reason = document.getElementById('failedReason');
+      if (message) message.innerHTML = buildPatientConfirmHtml(item, 'Nhập lý do bệnh nhân không thực hiện được thủ thuật.');
+      if (reason) reason.value = '';
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.remove('hidden');
+      }
+      setTimeout(function () {
+        if (reason) reason.focus();
+      }, 80);
+    }
+
+    function closeFailedModal() {
+      const modal = document.getElementById('failedModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+      failedTargetRow = null;
+      failedSource = 'waiting';
+    }
+
+    function confirmFailedFromWaiting() {
+      const row = failedTargetRow;
+      const source = failedSource === 'list' ? 'list' : 'waiting';
+      const reasonBox = document.getElementById('failedReason');
+      const reason = reasonBox ? reasonBox.value.trim() : '';
+      if (!row) return;
+      if (!reason) {
+        showAlertModal('Vui lòng nhập lý do không thực hiện được.', 'Thiếu thông tin');
+        return;
+      }
+
+      const btn = document.getElementById('confirmFailedBtn');
+      setButtonLoading(btn, true);
+      const runner = google.script.run
+        .withSuccessHandler(function (result) {
+          if (result && result.success) {
+            try {
+              if (source === 'waiting') {
+                removeWaitingItem(row);
+                if (result.item) applyListItemUpdate(result.item);
+                else refreshListDataSafe();
+              } else {
+                if (result.item) applyListItemUpdate(result.item);
+                else refreshListDataSafe();
+              }
+            } catch (updateError) {
+              if (source === 'waiting') refreshWaitingDataSafe();
+              refreshListDataSafe();
+            }
+            setButtonLoading(btn, false);
+            resetPatientActionButtons(row, source);
+            closeFailedModal();
+            showInlineMessage(source === 'list' ? 'listMessage' : 'waitingMessage', 'success', result.message || 'Đã ghi nhận không thực hiện được.');
+          } else {
+            setButtonLoading(btn, false);
+            resetPatientActionButtons(row, source);
+            showInlineMessage(source === 'list' ? 'listMessage' : 'waitingMessage', 'error', result && result.message ? result.message : 'Không thể ghi nhận không thực hiện được.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          setButtonLoading(btn, false);
+          resetPatientActionButtons(row, source);
+          showInlineMessage(source === 'list' ? 'listMessage' : 'waitingMessage', 'error', 'Lỗi khi ghi nhận không thực hiện được: ' + error.message);
+        });
+      if (source === 'list') {
+        runner.markAtBedPatientFailedFromList(authState, row, reason);
+      } else {
+        runner.markPatientFailedFromWaitingRoom(authState, row, reason);
+      }
+    }
+
+
+    function renderSetupProtectedArea(onComplete) {
+      const target = document.getElementById('setupProtectedArea');
+      const done = typeof onComplete === 'function' ? onComplete : function () {};
+      if (!hasSetupAccess()) {
+        renderAuthForm('setupProtectedArea', 'setup', true);
+        done();
+        return;
+      }
+
+      google.script.run
+        .withSuccessHandler(function (data) {
+          const departments = data.departments || [];
+          const procedures = data.procedureTypes || [];
+          const locations = data.locations || [];
+          const needles = data.needles || {};
+          target.innerHTML =
+            renderNeedleConfigSection(needles) +
+            renderSettingSection('department', 'Khoa / Đơn vị', 'fas fa-hospital', departments) +
+            renderSettingSection('procedure', 'Tên thủ thuật', 'fas fa-stethoscope', procedures) +
+            renderSettingSection('location', 'Địa điểm thực hiện', 'fas fa-map-marker-alt', locations) +
+            '<div id="setupMessage" class="message"></div>';
+          done();
+        })
+        .withFailureHandler(function (error) {
+          target.innerHTML = '<div class="message error" style="display:block;">Lỗi khi tải cài đặt: ' + escapeHtml(error.message) + '</div>';
+          done();
+        })
+        .getProtectedSetupData(authState);
+    }
+
+    function renderNeedleConfigSection(needles) {
+      return '' +
+        '<div class="setting-section">' +
+          '<h3 class="setting-title"><i class="fas fa-syringe"></i> Cấu hình kim</h3>' +
+          '<div class="needle-config-grid">' +
+            renderNeedleConfigCard('aspiration', needles.aspiration || {}, 'Kim chọc tủy') +
+            renderNeedleConfigCard('biopsy', needles.biopsy || {}, 'Kim sinh thiết tủy xương') +
+          '</div>' +
+          '<div class="button-row" style="margin-top:12px;">' +
+            '<button id="saveNeedleConfigBtn" class="btn btn-full" type="button" onclick="saveNeedleConfig()">' +
+              '<span class="loader"></span><span class="btn-label"><i class="fas fa-save"></i> Lưu cấu hình kim</span>' +
+            '</button>' +
+          '</div>' +
+        '</div>';
+    }
+
+    function renderNeedleConfigCard(key, data, title) {
+      return '' +
+        '<div class="needle-config-card">' +
+          '<div class="needle-config-name">' + escapeHtml(title) + '</div>' +
+          '<div class="form-group">' +
+            '<label for="needleDate_' + key + '"><i class="fas fa-calendar-alt"></i> Ngày nhập <span class="text-red">*</span></label>' +
+            '<input class="field" type="date" id="needleDate_' + key + '" value="' + escapeHtml(data.importDateInput || '') + '">' +
+          '</div>' +
+          '<div class="form-group">' +
+            '<label for="needleQty_' + key + '"><i class="fas fa-boxes"></i> Số lượng nhập <span class="text-red">*</span></label>' +
+            '<input class="field" type="number" id="needleQty_' + key + '" min="0" step="1" value="' + escapeHtml(String(data.quantity == null ? '' : data.quantity)) + '">' +
+          '</div>' +
+          '<div class="form-group" style="margin-bottom:0;">' +
+            '<label><i class="fas fa-calculator"></i> Số lượng kim còn lại</label>' +
+            '<div class="field-readonly">' + escapeHtml(String(data.remaining == null ? 0 : data.remaining)) + '</div>' +
+          '</div>' +
+        '</div>';
+    }
+
+    function saveNeedleConfig() {
+      if (!hasSetupAccess()) return;
+      const payload = {
+        aspirationDate: document.getElementById('needleDate_aspiration').value || '',
+        aspirationQuantity: document.getElementById('needleQty_aspiration').value || '',
+        biopsyDate: document.getElementById('needleDate_biopsy').value || '',
+        biopsyQuantity: document.getElementById('needleQty_biopsy').value || ''
+      };
+      const btn = document.getElementById('saveNeedleConfigBtn');
+      setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function (result) {
+          setButtonLoading(btn, false);
+          if (result && result.success) {
+            showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu cấu hình kim.');
+            loadSetupData();
+            renderSetupProtectedArea();
+            refreshSlotsForSelectedDate();
+          } else {
+            showInlineMessage('setupMessage', 'error', result && result.message ? result.message : 'Không thể lưu cấu hình kim.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          setButtonLoading(btn, false);
+          showInlineMessage('setupMessage', 'error', 'Lỗi khi lưu cấu hình kim: ' + error.message);
+        })
+        .saveNeedleConfig(authState, payload);
+    }
+
+    function renderSettingSection(type, title, iconClass, items) {
+      let chips = '';
+      (items || []).forEach(function (item, index) {
+        const chipId = type + '_chip_' + index;
+        chips += '<div class="chip">' + escapeHtml(item) +
+          '<button id="' + chipId + '" class="chip-delete" type="button" onclick="deleteSetupItem(\'' + type + '\', \'' + jsEscape(item) + '\', \'' + chipId + '\')">' +
+            '<span class="loader"></span><span class="btn-label"><i class="fas fa-times"></i></span>' +
+          '</button></div>';
+      });
+      if (!chips) chips = '<div class="subnote" style="margin:0;">Chưa có dữ liệu.</div>';
+
+      return '' +
+        '<div class="setting-section">' +
+          '<h3 class="setting-title"><i class="' + iconClass + '"></i> ' + escapeHtml(title) + '</h3>' +
+          '<div class="setting-input-row">' +
+            '<div class="form-group inline-fill" style="margin-bottom:0;">' +
+              '<input class="field" type="text" id="input_' + type + '" placeholder="Nhập nội dung">' +
+            '</div>' +
+            '<button id="save_' + type + '" class="btn" type="button"  onclick="saveSetupItem(\'' + type + '\')">' +
+              '<span class="loader"></span><span class="btn-label"><i class="fas fa-save"></i> Lưu</span>' +
+            '</button>' +
+          '</div>' +
+          '<div class="chip-list">' + chips + '</div>' +
+        '</div>';
+    }
+
+    function saveSetupItem(type) {
+      if (!hasSetupAccess()) return;
+      const input = document.getElementById('input_' + type);
+      const value = (input.value || '').trim();
+      if (!value) {
+        showInlineMessage('setupMessage', 'error', 'Vui lòng nhập nội dung trước khi lưu.');
+        return;
+      }
+      const btn = document.getElementById('save_' + type);
+      setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function (result) {
+          setButtonLoading(btn, false);
+          if (result && result.success) {
+            input.value = '';
+            showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu thành công.');
+            loadSetupData();
+            renderSetupProtectedArea();
+          } else {
+            showInlineMessage('setupMessage', 'error', result && result.message ? result.message : 'Không thể lưu dữ liệu.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          setButtonLoading(btn, false);
+          showInlineMessage('setupMessage', 'error', 'Lỗi khi lưu: ' + error.message);
+        })
+        .saveSetupItem(authState, type, value);
+    }
+
+    function deleteSetupItem(type, value, btnId) {
+      if (!hasSetupAccess()) return;
+      const btn = document.getElementById(btnId);
+      if (btn) setButtonLoading(btn, true);
+      google.script.run
+        .withSuccessHandler(function (result) {
+          if (btn) setButtonLoading(btn, false);
+          if (result && result.success) {
+            showInlineMessage('setupMessage', 'success', result.message || 'Đã xóa.');
+            loadSetupData();
+            renderSetupProtectedArea();
+          } else {
+            showInlineMessage('setupMessage', 'error', result && result.message ? result.message : 'Không thể xóa dữ liệu.');
+          }
+        })
+        .withFailureHandler(function (error) {
+          if (btn) setButtonLoading(btn, false);
+          showInlineMessage('setupMessage', 'error', 'Lỗi khi xóa: ' + error.message);
+        })
+        .deleteSetupItem(authState, type, value);
+    }
+
+    function formatMissingRequiredDocumentsMessage(items) {
+      const list = (items || []).map(function (item) {
+        return '<li>' + escapeHtml(item) + '</li>';
+      }).join('');
+      return 'Chưa đủ hồ sơ/chỉ định bắt buộc trước khi đăng ký:<ul>' + list + '</ul>';
+    }
+
+    function formatServerMessage(message) {
+      const text = String(message == null ? '' : message);
+      const prefix = 'Chưa đủ hồ sơ/chỉ định bắt buộc trước khi đăng ký:';
+      if (text.indexOf(prefix) === 0) {
+        const detail = text.slice(prefix.length).replace(/\.$/, '').trim();
+        const items = detail.split(';').map(function (item) { return item.trim(); }).filter(Boolean);
+        return formatMissingRequiredDocumentsMessage(items);
+      }
+      return escapeHtml(text);
+    }
+
+    function buildRegistrationReviewHtml(data) {
+      data = data || {};
+      const optionalTests = Array.isArray(data.optionalTests) ? data.optionalTests : (data.optionalTests || getSelectedOptionalTests().tests || 'Không có');
+      const note = data.registrationNote || document.getElementById('registrationNote').value || '';
+      return '' +
+        '<div>Thông tin bệnh nhân đã đăng ký:</div>' +
+        '<table class="review-table">' +
+          '<tr><td>Họ tên</td><td>' + escapeHtml(data.name || '') + '</td></tr>' +
+          '<tr><td>Mã điều trị</td><td>' + escapeHtml(data.code || '') + '</td></tr>' +
+          '<tr><td>Ngày</td><td>' + escapeHtml(data.date || '') + '</td></tr>' +
+          '<tr><td>Giờ</td><td>' + escapeHtml(data.time || '') + '</td></tr>' +
+          '<tr><td>Địa điểm</td><td>' + escapeHtml(data.location || '') + '</td></tr>' +
+          '<tr><td>Thủ thuật</td><td>' + escapeHtml(data.type || '') + '</td></tr>' +
+          '<tr><td>Chỉ định XN khác</td><td>' + formatOptionalTestsDisplay(optionalTests) + '</td></tr>' +
+          (note ? '<tr><td>Ghi chú</td><td class="note-text-blue">' + escapeHtml(note) + '</td></tr>' : '') +
+        '</table>';
+    }
+
+    function showConfirmActionModal(message, title, onConfirm, danger) {
+      const modal = document.getElementById('confirmActionModal');
+      const messageBox = document.getElementById('confirmActionMessage');
+      const titleBox = document.getElementById('confirmActionTitle');
+      const btn = document.getElementById('confirmActionBtn');
+      if (!modal || !messageBox || !titleBox || !btn) {
+        if (confirm(String(message == null ? '' : message).replace(/<[^>]*>/g, ''))) {
+          if (typeof onConfirm === 'function') onConfirm();
+        }
+        return;
+      }
+      confirmActionCallback = typeof onConfirm === 'function' ? onConfirm : null;
+      titleBox.innerHTML = '<i class="fas fa-question-circle"></i> ' + escapeHtml(title || 'Xác nhận');
+      messageBox.innerHTML = message;
+      btn.className = danger ? 'btn btn-red btn-full' : 'btn btn-full';
+      modal.style.display = 'flex';
+      modal.classList.remove('hidden');
+    }
+
+    function closeConfirmActionModal() {
+      const modal = document.getElementById('confirmActionModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+      confirmActionCallback = null;
+    }
+
+    function executeConfirmActionModal() {
+      const callback = confirmActionCallback;
+      const modal = document.getElementById('confirmActionModal');
+      confirmActionCallback = null;
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+      if (typeof callback === 'function') callback();
+    }
+
+    function setupScrollTopButton() {
+      const main = document.querySelector('.app-main');
+      const btn = document.getElementById('scrollTopBtn');
+      if (!main || !btn) return;
+      const toggle = function () {
+        if (main.scrollTop > 380) btn.classList.add('show');
+        else btn.classList.remove('show');
+      };
+      main.addEventListener('scroll', toggle, { passive: true });
+      toggle();
+    }
+
+    function scrollCurrentScreenTop() {
+      const main = document.querySelector('.app-main');
+      if (!main) return;
+      main.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showAlertModal(message, title, onOk) {
+      const modal = document.getElementById('alertModal');
+      const messageBox = document.getElementById('alertModalMessage');
+      const titleBox = document.getElementById('alertModalTitle');
+      if (!modal || !messageBox || !titleBox) {
+        alert(String(message == null ? '' : message).replace(/<[^>]*>/g, ''));
+        if (typeof onOk === 'function') onOk();
+        return;
+      }
+      alertModalCallback = typeof onOk === 'function' ? onOk : null;
+      titleBox.innerHTML = '<i class="fas fa-info-circle"></i> ' + escapeHtml(title || 'Thông báo');
+      messageBox.innerHTML = message;
+      modal.style.display = 'flex';
+      modal.classList.remove('hidden');
+    }
+
+    function closeAlertModal() {
+      const modal = document.getElementById('alertModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+      const callback = alertModalCallback;
+      alertModalCallback = null;
+      if (typeof callback === 'function') callback();
+    }
+
+    function showInlineMessage(id, type, text, autoHideMs) {
+      const box = document.getElementById(id);
+      if (!box) return;
+      if (inlineMessageTimers[id]) {
+        clearTimeout(inlineMessageTimers[id]);
+        delete inlineMessageTimers[id];
+      }
+      box.className = 'message ' + type;
+      box.style.display = 'block';
+      box.innerHTML = text;
+      if (autoHideMs && Number(autoHideMs) > 0) {
+        inlineMessageTimers[id] = setTimeout(function () {
+          hideInlineMessage(id);
+        }, Number(autoHideMs));
+      }
+    }
+
+    function hideInlineMessage(id) {
+      const box = document.getElementById(id);
+      if (!box) return;
+      if (inlineMessageTimers[id]) {
+        clearTimeout(inlineMessageTimers[id]);
+        delete inlineMessageTimers[id];
+      }
+      box.style.display = 'none';
+      box.innerHTML = '';
+    }
+
+    function setButtonLoading(target, isLoading) {
+      const btn = typeof target === 'string' ? document.getElementById(target) : target;
+      if (!btn) return;
+      if (isLoading) {
+        btn.classList.add('loading');
+        btn.disabled = true;
+      } else {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    }
+
+    function formatDate(dateObj) {
+      const day = String(dateObj.getDate()).padStart(2, '0');
+      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const year = dateObj.getFullYear();
+      return day + '/' + month + '/' + year;
+    }
+
+    function toIsoDate(dateObj) {
+      const year = dateObj.getFullYear();
+      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const day = String(dateObj.getDate()).padStart(2, '0');
+      return year + '-' + month + '-' + day;
+    }
+
+    function parseIsoDate(value) {
+      if (!value) return null;
+      const parts = value.split('-').map(Number);
+      if (parts.length !== 3) return null;
+      return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    function isoToDisplayDate(value) {
+      const date = parseIsoDate(value);
+      return date ? formatDate(date) : '';
+    }
+
+    function normalizeCompare_(value) {
+      return String(value == null ? '' : value)
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd');
+    }
+
+    function escapeHtml(value) {
+      return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function jsEscape(value) {
+      return String(value == null ? '' : value)
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'");
+    }
+
+    window.onload = initApp;
+  </script>
+</body>
+</html>
