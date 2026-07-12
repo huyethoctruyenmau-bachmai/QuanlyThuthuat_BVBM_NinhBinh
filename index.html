@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=15">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=16">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=15">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=15">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=16">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=16">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=15">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=16">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=15">
-  <link rel="icon" href="favicon.ico?v=15" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=15">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=15">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=15">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=15">
+  <link rel="manifest" href="manifest.json?v=16">
+  <link rel="icon" href="favicon.ico?v=16" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=16">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=16">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=16">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=16">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -1489,6 +1489,194 @@
       }
     }
 
+
+    /* ===== PATCH 196: DESKTOP - CHIA 2 CỘT CÁC TAB HỦY ĐK / DANH SÁCH / PHÒNG CHỜ / CÀI ĐẶT ===== */
+    @media (min-width:900px){
+      .main-inner:has(#kiemtraScreen.active),
+      .main-inner:has(#danhsachScreen.active),
+      .main-inner:has(#phongchoScreen.active),
+      .main-inner:has(#caidatScreen.active){
+        max-width:1280px;
+      }
+
+      #kiemtraScreen > .card,
+      #danhsachScreen > .card,
+      #phongchoScreen > .card,
+      #caidatScreen > .card{
+        padding:14px;
+      }
+
+      .desktop-split{
+        display:grid;
+        grid-template-columns:320px minmax(0,1fr);
+        gap:14px;
+        align-items:start;
+        width:100%;
+        min-width:0;
+      }
+
+      .desktop-left,
+      .desktop-right{
+        min-width:0;
+      }
+
+      .desktop-panel{
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:8px;
+        box-shadow:0 1px 2px rgba(60,64,67,.16);
+        padding:12px;
+      }
+
+      .desktop-right.desktop-panel{
+        max-height:calc(100dvh - var(--header-height) - var(--tabbar-height) - 128px);
+        overflow:auto;
+        overscroll-behavior:contain;
+      }
+
+      .desktop-panel-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        padding-bottom:10px;
+        margin-bottom:10px;
+        border-bottom:1px solid #edf2ee;
+      }
+
+      .desktop-panel-title{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        color:var(--green-700);
+        font-size:17px;
+        font-weight:700;
+        line-height:1.25;
+      }
+
+      .desktop-export-btn{
+        width:auto !important;
+        min-width:145px;
+        flex:0 0 auto;
+      }
+
+      .list-toolbar.list-main-toolbar,
+      .list-toolbar.waiting-toolbar{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:10px;
+        align-items:stretch;
+      }
+
+      .list-toolbar .toolbar-actions{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:8px;
+        min-width:0;
+        width:100%;
+      }
+
+      .list-toolbar .toolbar-actions .btn,
+      .list-toolbar .toolbar-action,
+      .list-toolbar .btn{
+        width:100%;
+        min-width:0;
+      }
+
+      .list-toolbar .form-group{
+        margin-bottom:0;
+      }
+
+      .cancel-filter-panel .grid-2{
+        grid-template-columns:1fr;
+      }
+
+      .cancel-filter-panel .button-row{
+        margin-top:0;
+      }
+
+      .setup-desktop-layout{
+        align-items:stretch;
+      }
+
+      .setup-menu-card{
+        position:sticky;
+        top:0;
+        display:flex;
+        flex-direction:column;
+        gap:8px;
+        align-self:start;
+      }
+
+      .setup-menu-btn{
+        width:100%;
+        min-height:42px;
+        border:1px solid var(--line);
+        border-radius:4px;
+        background:#fff;
+        color:#374151;
+        display:flex;
+        align-items:center;
+        gap:10px;
+        padding:0 12px;
+        text-align:left;
+        font-size:14px;
+        font-weight:700;
+      }
+
+      .setup-menu-btn i{
+        width:20px;
+        text-align:center;
+        color:var(--green-700);
+      }
+
+      .setup-menu-btn:hover,
+      .setup-menu-btn.active{
+        background:#eef7ef;
+        color:var(--green-800);
+        border-color:#cfe0d2;
+      }
+
+      .setup-panel{
+        display:none;
+      }
+
+      .setup-panel.active{
+        display:block;
+      }
+
+      .setup-content-card .setting-section{
+        margin-bottom:0;
+        box-shadow:none;
+      }
+    }
+
+    @media (max-width:899px){
+      .desktop-split{
+        display:block;
+      }
+
+      .desktop-panel{
+        background:transparent;
+        border:0;
+        border-radius:0;
+        box-shadow:none;
+        padding:0;
+      }
+
+      .desktop-panel-head{
+        display:none;
+      }
+
+      .setup-menu-card{
+        display:none;
+      }
+
+      .setup-panel{
+        display:block !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1503,7 +1691,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=15" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=16" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
@@ -1632,26 +1820,31 @@
       <section id="kiemtraScreen" class="screen">
         <div class="card">
           <h2 class="screen-title"><i class="fas fa-ban"></i> HỦY ĐĂNG KÝ</h2>
-          <div class="grid-2">
-            <div class="form-group">
-              <label for="cancelDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký <span class="text-red">*</span></label>
-              <input class="field" type="date" id="cancelDate">
+          <div class="desktop-split cancel-desktop-layout">
+            <div class="desktop-left desktop-panel cancel-filter-panel">
+              <div class="form-group">
+                <label for="cancelDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký <span class="text-red">*</span></label>
+                <input class="field" type="date" id="cancelDate">
+              </div>
+              <div class="form-group">
+                <label for="cancelCode"><i class="fas fa-barcode"></i> Mã điều trị <span class="text-red">*</span></label>
+                <input class="field" type="text" id="cancelCode" inputmode="numeric" placeholder="Nhập mã điều trị">
+              </div>
+              <div class="button-row">
+                <button id="searchCancelBtn" class="btn btn-full" type="button" onclick="searchRegistrationsForCancel()">
+                  <span class="loader"></span>
+                  <span class="btn-label"><i class="fas fa-search"></i> Tìm</span>
+                </button>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="cancelCode"><i class="fas fa-barcode"></i> Mã điều trị <span class="text-red">*</span></label>
-              <input class="field" type="text" id="cancelCode" inputmode="numeric" placeholder="Nhập mã điều trị">
+            <div class="desktop-right desktop-panel cancel-result-panel">
+              <div class="desktop-panel-head">
+                <div class="desktop-panel-title"><i class="fas fa-list"></i> Danh sách</div>
+              </div>
+              <div id="cancelMessage" class="message"></div>
+              <div id="cancelSearchResult" class="patient-list"></div>
             </div>
           </div>
-
-          <div class="button-row">
-            <button id="searchCancelBtn" class="btn btn-full" type="button" onclick="searchRegistrationsForCancel()">
-              <span class="loader"></span>
-              <span class="btn-label"><i class="fas fa-search"></i> Tìm</span>
-            </button>
-          </div>
-
-          <div id="cancelSearchResult" class="patient-list"></div>
-          <div id="cancelMessage" class="message"></div>
         </div>
       </section>
 
@@ -1869,6 +2062,7 @@
     let failedSource = 'waiting';
     let authState = null;
     let currentTab = 'dangky';
+    let currentSetupPanel = 'needles';
     const inlineMessageTimers = {};
     let alertModalCallback = null;
     let confirmActionCallback = null;
@@ -2906,42 +3100,51 @@
       const currentStatus = document.getElementById('listStatus') ? document.getElementById('listStatus').value : '';
 
       target.innerHTML =
-        '<div class="list-toolbar list-main-toolbar">' +
-          '<div class="form-group inline-small toolbar-date">' +
-            '<label for="listDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký</label>' +
-            '<input class="field" type="date" id="listDate">' +
+        '<div class="desktop-split list-desktop-layout">' +
+          '<div class="desktop-left desktop-panel list-filter-panel">' +
+            '<div class="list-toolbar list-main-toolbar">' +
+              '<div class="form-group inline-small toolbar-date">' +
+                '<label for="listDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký</label>' +
+                '<input class="field" type="date" id="listDate">' +
+              '</div>' +
+              '<div class="form-group inline-fill toolbar-search">' +
+                '<label for="listSearch"><i class="fas fa-search"></i> Tên BN/mã điều trị</label>' +
+                '<input class="field" type="text" id="listSearch" placeholder="Tên BN/mã điều trị">' +
+              '</div>' +
+              '<div class="form-group inline-fill toolbar-location">' +
+                '<label for="listLocation"><i class="fas fa-map-marker-alt"></i> Địa điểm thực hiện</label>' +
+                '<select class="field" id="listLocation"></select>' +
+              '</div>' +
+              '<div class="form-group inline-fill toolbar-status">' +
+                '<label for="listStatus"><i class="fas fa-filter"></i> Lọc trạng thái</label>' +
+                '<select class="field" id="listStatus">' +
+                  '<option value="">Tất cả</option>' +
+                  '<option value="PENDING">Chưa thực hiện</option>' +
+                  '<option value="WAITING">Đang vào phòng chờ</option>' +
+                  '<option value="DONE">Đã thực hiện</option>' +
+                  '<option value="NO_SHOW">BN không đến</option>' +
+                  '<option value="FAILED">Không thực hiện được</option>' +
+                '</select>' +
+              '</div>' +
+              '<div class="toolbar-actions">' +
+                '<button id="viewListBtn" class="btn toolbar-action" type="button" onclick="refreshListData(true)">' +
+                  '<span class="loader"></span><span class="btn-label"><i class="fas fa-list"></i> Xem danh sách</span>' +
+                '</button>' +
+              '</div>' +
+            '</div>' +
           '</div>' +
-          '<div class="form-group inline-fill toolbar-search">' +
-            '<label for="listSearch"><i class="fas fa-search"></i> Tên BN/mã điều trị</label>' +
-            '<input class="field" type="text" id="listSearch" placeholder="Tên BN/mã điều trị">' +
+          '<div class="desktop-right desktop-panel list-result-panel">' +
+            '<div class="desktop-panel-head">' +
+              '<div class="desktop-panel-title"><i class="fas fa-list"></i> Danh sách</div>' +
+              '<button id="exportListBtn" class="btn btn-secondary toolbar-action desktop-export-btn" type="button" onclick="exportCurrentListToExcel()">' +
+                '<span class="loader"></span><span class="btn-label"><i class="fas fa-file-excel"></i> Xuất danh sách</span>' +
+              '</button>' +
+            '</div>' +
+            '<div class="summary-row" id="listSummary"></div>' +
+            '<div id="listMessage" class="message"></div>' +
+            '<div id="listCards" class="patient-list"></div>' +
           '</div>' +
-          '<div class="form-group inline-fill toolbar-location">' +
-            '<label for="listLocation"><i class="fas fa-map-marker-alt"></i> Địa điểm thực hiện</label>' +
-            '<select class="field" id="listLocation"></select>' +
-          '</div>' +
-          '<div class="form-group inline-fill toolbar-status">' +
-            '<label for="listStatus"><i class="fas fa-filter"></i> Lọc trạng thái</label>' +
-            '<select class="field" id="listStatus">' +
-              '<option value="">Tất cả</option>' +
-              '<option value="PENDING">Chưa thực hiện</option>' +
-              '<option value="WAITING">Đang vào phòng chờ</option>' +
-              '<option value="DONE">Đã thực hiện</option>' +
-              '<option value="NO_SHOW">BN không đến</option>' +
-              '<option value="FAILED">Không thực hiện được</option>' +
-            '</select>' +
-          '</div>' +
-          '<div class="toolbar-actions">' +
-            '<button id="viewListBtn" class="btn toolbar-action" type="button" onclick="refreshListData(true)">' +
-              '<span class="loader"></span><span class="btn-label"><i class="fas fa-list"></i> Xem danh sách</span>' +
-            '</button>' +
-            '<button id="exportListBtn" class="btn btn-secondary toolbar-action" type="button" onclick="exportCurrentListToExcel()">' +
-              '<span class="loader"></span><span class="btn-label"><i class="fas fa-file-excel"></i> Xuất danh sách</span>' +
-            '</button>' +
-          '</div>' +
-        '</div>' +
-        '<div class="summary-row" id="listSummary"></div>' +
-        '<div id="listMessage" class="message"></div>' +
-        '<div id="listCards" class="patient-list"></div>';
+        '</div>';
 
       document.getElementById('listDate').value = currentDate || toIsoDate(new Date());
       const listLocationOptions = getListLocationOptions();
@@ -3519,22 +3722,31 @@
       const currentSearch = document.getElementById('waitingSearch') ? document.getElementById('waitingSearch').value : '';
 
       target.innerHTML =
-        '<div class="list-toolbar waiting-toolbar">' +
-          '<div class="form-group inline-small toolbar-date">' +
-            '<label for="waitingDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký</label>' +
-            '<input class="field" type="date" id="waitingDate">' +
+        '<div class="desktop-split waiting-desktop-layout">' +
+          '<div class="desktop-left desktop-panel waiting-filter-panel">' +
+            '<div class="list-toolbar waiting-toolbar">' +
+              '<div class="form-group inline-small toolbar-date">' +
+                '<label for="waitingDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký</label>' +
+                '<input class="field" type="date" id="waitingDate">' +
+              '</div>' +
+              '<div class="form-group inline-fill toolbar-search">' +
+                '<label for="waitingSearch"><i class="fas fa-search"></i> Tìm theo tên hoặc mã điều trị</label>' +
+                '<input class="field" type="text" id="waitingSearch" placeholder="Nhập tên bệnh nhân hoặc mã điều trị">' +
+              '</div>' +
+              '<button id="viewWaitingBtn" class="btn toolbar-action" type="button" onclick="refreshWaitingData(true)">' +
+                '<span class="loader"></span><span class="btn-label"><i class="fas fa-door-open"></i> Xem phòng chờ</span>' +
+              '</button>' +
+            '</div>' +
           '</div>' +
-          '<div class="form-group inline-fill toolbar-search">' +
-            '<label for="waitingSearch"><i class="fas fa-search"></i> Tìm theo tên hoặc mã điều trị</label>' +
-            '<input class="field" type="text" id="waitingSearch" placeholder="Nhập tên bệnh nhân hoặc mã điều trị">' +
+          '<div class="desktop-right desktop-panel waiting-result-panel">' +
+            '<div class="desktop-panel-head">' +
+              '<div class="desktop-panel-title"><i class="fas fa-door-open"></i> Danh sách phòng chờ</div>' +
+            '</div>' +
+            '<div class="summary-row" id="waitingSummary"></div>' +
+            '<div id="waitingMessage" class="message"></div>' +
+            '<div id="waitingCards" class="patient-list"></div>' +
           '</div>' +
-          '<button id="viewWaitingBtn" class="btn toolbar-action" style="margin-bottom:0;min-width:150px;" type="button" onclick="refreshWaitingData(true)">' +
-            '<span class="loader"></span><span class="btn-label"><i class="fas fa-door-open"></i> Xem phòng chờ</span>' +
-          '</button>' +
-        '</div>' +
-        '<div class="summary-row" id="waitingSummary"></div>' +
-        '<div id="waitingMessage" class="message"></div>' +
-        '<div id="waitingCards" class="patient-list"></div>';
+        '</div>';
 
       document.getElementById('waitingDate').value = currentDate || toIsoDate(new Date());
       document.getElementById('waitingSearch').value = currentSearch || '';
@@ -3756,6 +3968,19 @@
     }
 
 
+
+    function showSetupPanel(panelName) {
+      const validPanels = ['needles', 'timeSlots', 'department', 'procedure', 'location'];
+      const panel = validPanels.indexOf(panelName) !== -1 ? panelName : 'needles';
+      currentSetupPanel = panel;
+      document.querySelectorAll('#setupProtectedArea .setup-panel').forEach(function (el) {
+        el.classList.toggle('active', el.dataset.setupPanel === panel);
+      });
+      document.querySelectorAll('#setupProtectedArea .setup-menu-btn').forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.setupPanel === panel);
+      });
+    }
+
     function renderSetupProtectedArea(onComplete) {
       const target = document.getElementById('setupProtectedArea');
       const done = typeof onComplete === 'function' ? onComplete : function () {};
@@ -3773,12 +3998,24 @@
           const needles = data.needles || {};
           const timeSlots = data.timeSlots || [];
           target.innerHTML =
-            renderNeedleConfigSection(needles) +
-            renderTimeSlotConfigSection(timeSlots) +
-            renderSettingSection('department', 'Khoa / Đơn vị', 'fas fa-hospital', departments) +
-            renderSettingSection('procedure', 'Tên thủ thuật', 'fas fa-stethoscope', procedures) +
-            renderSettingSection('location', 'Địa điểm thực hiện', 'fas fa-map-marker-alt', locations) +
-            '<div id="setupMessage" class="message"></div>';
+            '<div class="desktop-split setup-desktop-layout">' +
+              '<div class="desktop-left desktop-panel setup-menu-card">' +
+                '<button class="setup-menu-btn" data-setup-panel="needles" type="button" onclick="showSetupPanel(\'needles\')"><i class="fas fa-syringe"></i><span>Cấu hình kim</span></button>' +
+                '<button class="setup-menu-btn" data-setup-panel="timeSlots" type="button" onclick="showSetupPanel(\'timeSlots\')"><i class="fas fa-clock"></i><span>Khung giờ đăng ký</span></button>' +
+                '<button class="setup-menu-btn" data-setup-panel="department" type="button" onclick="showSetupPanel(\'department\')"><i class="fas fa-hospital"></i><span>Khoa / Đơn vị</span></button>' +
+                '<button class="setup-menu-btn" data-setup-panel="procedure" type="button" onclick="showSetupPanel(\'procedure\')"><i class="fas fa-stethoscope"></i><span>Tên thủ thuật</span></button>' +
+                '<button class="setup-menu-btn" data-setup-panel="location" type="button" onclick="showSetupPanel(\'location\')"><i class="fas fa-map-marker-alt"></i><span>Địa điểm thực hiện</span></button>' +
+              '</div>' +
+              '<div class="desktop-right desktop-panel setup-content-card">' +
+                '<div class="setup-panel" data-setup-panel="needles">' + renderNeedleConfigSection(needles) + '</div>' +
+                '<div class="setup-panel" data-setup-panel="timeSlots">' + renderTimeSlotConfigSection(timeSlots) + '</div>' +
+                '<div class="setup-panel" data-setup-panel="department">' + renderSettingSection('department', 'Khoa / Đơn vị', 'fas fa-hospital', departments) + '</div>' +
+                '<div class="setup-panel" data-setup-panel="procedure">' + renderSettingSection('procedure', 'Tên thủ thuật', 'fas fa-stethoscope', procedures) + '</div>' +
+                '<div class="setup-panel" data-setup-panel="location">' + renderSettingSection('location', 'Địa điểm thực hiện', 'fas fa-map-marker-alt', locations) + '</div>' +
+                '<div id="setupMessage" class="message"></div>' +
+              '</div>' +
+            '</div>';
+          showSetupPanel(currentSetupPanel || 'needles');
           done();
         })
         .withFailureHandler(function (error) {
