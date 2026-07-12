@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=17">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=18">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=17">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=17">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=18">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=18">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=17">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=18">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=17">
-  <link rel="icon" href="favicon.ico?v=17" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=17">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=17">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=17">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=17">
+  <link rel="manifest" href="manifest.json?v=18">
+  <link rel="icon" href="favicon.ico?v=18" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=18">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=18">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=18">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=18">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -1793,6 +1793,39 @@
       }
     }
 
+
+    /* ===== PATCH 198: DESKTOP - ĐƯA TABBAR LÊN TRÊN NHƯ MEDOPS, MOBILE GIỮ NGUYÊN ===== */
+    @media (min-width:900px){
+      .tab-bar{
+        top:var(--header-height)!important;
+        bottom:auto!important;
+        height:var(--tabbar-height)!important;
+        border-top:0!important;
+        border-bottom:1px solid #dde5df!important;
+        box-shadow:0 2px 10px rgba(0,0,0,.08)!important;
+      }
+
+      .tab-bar-inner{
+        max-width:1280px!important;
+      }
+
+      .tab-button.active::before{
+        top:auto!important;
+        bottom:0!important;
+        border-radius:999px 999px 0 0!important;
+      }
+
+      .app-main{
+        top:calc(var(--header-height) + var(--tabbar-height))!important;
+        bottom:0!important;
+        padding-top:10px!important;
+      }
+
+      .scroll-top-btn{
+        bottom:18px!important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1807,7 +1840,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=17" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=18" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
