@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=22">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=23">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=22">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=22">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=23">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=23">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=22">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=23">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=22">
-  <link rel="icon" href="favicon.ico?v=22" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=22">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=22">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=22">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=22">
+  <link rel="manifest" href="manifest.json?v=23">
+  <link rel="icon" href="favicon.ico?v=23" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=23">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=23">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=23">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=23">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2384,6 +2384,65 @@
       }
     }
 
+
+    /* ===== PATCH 203: TAB YÊU CẦU ĐĂNG NHẬP - HIỆN BẢNG ĐĂNG NHẬP CÂN ĐỐI ===== */
+    .protected-login-wrap{
+      width:100%;
+      min-height:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px 8px;
+    }
+
+    .protected-login-card{
+      width:100%;
+      max-width:420px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      box-shadow:0 8px 24px rgba(0,0,0,.08);
+      padding:20px 22px;
+    }
+
+    .protected-login-title{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      color:var(--green-700);
+      font-size:20px;
+      font-weight:800;
+      text-align:center;
+      margin-bottom:8px;
+      line-height:1.25;
+    }
+
+    .protected-login-note{
+      margin:0 0 14px!important;
+      text-align:center;
+    }
+
+    .protected-login-card .form-group{
+      margin-bottom:12px;
+    }
+
+    .protected-login-card .field{
+      height:42px;
+      min-height:42px;
+    }
+
+    .protected-login-card .btn{
+      height:42px;
+      min-height:42px;
+    }
+
+    @media (min-width:900px){
+      .protected-login-wrap{
+        min-height:calc(100dvh - var(--header-height) - var(--tabbar-height) - 170px);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2398,7 +2457,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=22" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=23" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
@@ -2874,9 +2933,27 @@
       const tabBtn = document.querySelector('.tab-button[data-tab="' + tabName + '"]');
       if (tabBtn) tabBtn.classList.add('active');
 
-      if (tabName === 'danhsach') renderListProtectedArea(false);
-      if (tabName === 'phongcho') renderWaitingProtectedArea(false);
-      if (tabName === 'caidat') renderSetupProtectedArea();
+      if (tabName === 'danhsach') {
+        renderListProtectedArea(!hasListAccess());
+        focusFirstLoginInput('list');
+      }
+      if (tabName === 'phongcho') {
+        renderWaitingProtectedArea(!hasListAccess());
+        focusFirstLoginInput('waiting');
+      }
+      if (tabName === 'caidat') {
+        renderSetupProtectedArea(function () {
+          focusFirstLoginInput('setup');
+        });
+      }
+    }
+
+
+    function focusFirstLoginInput(purpose) {
+      setTimeout(function () {
+        const input = document.getElementById(purpose + 'User');
+        if (input && typeof input.focus === 'function') input.focus();
+      }, 80);
     }
 
     function updateHeaderAuth() {
@@ -3509,26 +3586,31 @@
 
     function renderAuthForm(targetId, purpose, forceAdmin) {
       const target = document.getElementById(targetId);
-      const title = forceAdmin ? 'Đăng nhập' : (purpose === 'setup' ? 'Đăng nhập để vào cài đặt' : 'Đăng nhập để xem danh sách');
+      const title = forceAdmin ? 'Đăng nhập Admin' : (purpose === 'setup' ? 'Đăng nhập để vào cài đặt' : 'Đăng nhập để xem nội dung');
       const note = forceAdmin
         ? 'Nội dung dành cho Quản trị viên (Admin).'
         : 'Nội dung dành cho nhân viên Phòng thủ thuật - Khoa Huyết học và Truyền máu.';
       target.innerHTML =
-        '<div class="subnote">' + note + '</div>' +
-        '<div class="form-group">' +
-          '<label for="' + purpose + 'User"><i class="fas fa-user"></i> Tên đăng nhập <span class="text-red">*</span></label>' +
-          '<input class="field" type="text" id="' + purpose + 'User" autocomplete="off">' +
-        '</div>' +
-        '<div class="form-group">' +
-          '<label for="' + purpose + 'Pass"><i class="fas fa-lock"></i> Mật khẩu <span class="text-red">*</span></label>' +
-          '<input class="field" type="password" id="' + purpose + 'Pass" autocomplete="off">' +
-        '</div>' +
-        '<div class="button-row">' +
-          '<button id="' + purpose + 'LoginBtn" class="btn btn-full" type="button" onclick="loginForTab(\'' + purpose + '\',' + (forceAdmin ? 'true' : 'false') + ')">' +
-            '<span class="loader"></span><span class="btn-label"><i class="fas fa-sign-in-alt"></i> ' + title + '</span>' +
-          '</button>' +
-        '</div>' +
-        '<div id="' + purpose + 'LoginMessage" class="message"></div>';
+        '<div class="protected-login-wrap">' +
+          '<div class="protected-login-card">' +
+            '<div class="protected-login-title"><i class="fas fa-lock"></i> ' + title + '</div>' +
+            '<div class="subnote protected-login-note">' + note + '</div>' +
+            '<div class="form-group">' +
+              '<label for="' + purpose + 'User"><i class="fas fa-user"></i> Tên đăng nhập <span class="text-red">*</span></label>' +
+              '<input class="field" type="text" id="' + purpose + 'User" autocomplete="off">' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label for="' + purpose + 'Pass"><i class="fas fa-lock"></i> Mật khẩu <span class="text-red">*</span></label>' +
+              '<input class="field" type="password" id="' + purpose + 'Pass" autocomplete="off">' +
+            '</div>' +
+            '<div class="button-row">' +
+              '<button id="' + purpose + 'LoginBtn" class="btn btn-full" type="button" onclick="loginForTab(\'' + purpose + '\',' + (forceAdmin ? 'true' : 'false') + ')">' +
+                '<span class="loader"></span><span class="btn-label"><i class="fas fa-sign-in-alt"></i> Đăng nhập</span>' +
+              '</button>' +
+            '</div>' +
+            '<div id="' + purpose + 'LoginMessage" class="message"></div>' +
+          '</div>' +
+        '</div>';
 
       const submitOnEnter = function (e) {
         if (e.key === 'Enter') {
