@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=16">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=17">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=16">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=16">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=17">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=17">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=16">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=17">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=16">
-  <link rel="icon" href="favicon.ico?v=16" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=16">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=16">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=16">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=16">
+  <link rel="manifest" href="manifest.json?v=17">
+  <link rel="icon" href="favicon.ico?v=17" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=17">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=17">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=17">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=17">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -1677,6 +1677,122 @@
       }
     }
 
+
+    /* ===== PATCH 197: DESKTOP - KHUNG 2 CỘT CỐ ĐỊNH KÍN MÀN HÌNH, KHÔNG CO THEO NỘI DUNG TAB ===== */
+    @media (min-width:900px){
+      #kiemtraScreen.active,
+      #danhsachScreen.active,
+      #phongchoScreen.active,
+      #caidatScreen.active{
+        height:calc(100dvh - var(--header-height) - var(--tabbar-height) - 34px);
+        min-height:520px;
+        max-height:calc(100dvh - var(--header-height) - var(--tabbar-height) - 34px);
+        overflow:hidden;
+      }
+
+      #kiemtraScreen.active > .card,
+      #danhsachScreen.active > .card,
+      #phongchoScreen.active > .card,
+      #caidatScreen.active > .card{
+        height:100%;
+        min-height:0;
+        max-height:100%;
+        display:flex;
+        flex-direction:column;
+        overflow:hidden;
+        margin-bottom:0;
+      }
+
+      #kiemtraScreen.active > .card > .screen-title,
+      #danhsachScreen.active > .card > .screen-title,
+      #phongchoScreen.active > .card > .screen-title,
+      #caidatScreen.active > .card > .screen-title{
+        flex:0 0 auto;
+      }
+
+      #listProtectedArea,
+      #waitingProtectedArea,
+      #setupProtectedArea{
+        flex:1 1 auto;
+        min-height:0;
+        height:100%;
+        max-height:100%;
+        overflow:hidden;
+      }
+
+      #kiemtraScreen.active .desktop-split,
+      #danhsachScreen.active .desktop-split,
+      #phongchoScreen.active .desktop-split,
+      #caidatScreen.active .desktop-split{
+        flex:1 1 auto;
+        min-height:0;
+        height:100%;
+        max-height:100%;
+        align-items:stretch;
+        overflow:hidden;
+      }
+
+      #kiemtraScreen.active .desktop-left,
+      #kiemtraScreen.active .desktop-right,
+      #danhsachScreen.active .desktop-left,
+      #danhsachScreen.active .desktop-right,
+      #phongchoScreen.active .desktop-left,
+      #phongchoScreen.active .desktop-right,
+      #caidatScreen.active .desktop-left,
+      #caidatScreen.active .desktop-right{
+        height:100%;
+        min-height:0;
+        max-height:100%;
+      }
+
+      #kiemtraScreen.active .desktop-panel,
+      #danhsachScreen.active .desktop-panel,
+      #phongchoScreen.active .desktop-panel,
+      #caidatScreen.active .desktop-panel{
+        height:100%;
+        min-height:0;
+        max-height:100%;
+        overflow:auto;
+        overscroll-behavior:contain;
+      }
+
+      #danhsachScreen.active .list-result-panel,
+      #phongchoScreen.active .waiting-result-panel,
+      #kiemtraScreen.active .cancel-result-panel,
+      #caidatScreen.active .setup-content-card{
+        display:flex;
+        flex-direction:column;
+      }
+
+      #listCards,
+      #waitingCards,
+      #cancelSearchResult{
+        flex:1 1 auto;
+        min-height:0;
+        overflow:auto;
+        overscroll-behavior:contain;
+      }
+
+      #setupProtectedArea .setup-content-card .setup-panel.active{
+        flex:1 1 auto;
+        min-height:0;
+        overflow:auto;
+        overscroll-behavior:contain;
+      }
+    }
+
+    @supports not (height:100dvh){
+      @media (min-width:900px){
+        #kiemtraScreen.active,
+        #danhsachScreen.active,
+        #phongchoScreen.active,
+        #caidatScreen.active{
+          height:calc(100vh - var(--header-height) - var(--tabbar-height) - 34px);
+          max-height:calc(100vh - var(--header-height) - var(--tabbar-height) - 34px);
+        }
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1691,7 +1807,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=16" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=17" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
