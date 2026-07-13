@@ -1,12 +1,11 @@
 {
-  "name": "Đăng ký thủ thuật",
+  "name": "ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI",
   "short_name": "ĐK thủ thuật",
-  "description": "Ứng dụng đăng ký và quản lý bệnh nhân thực hiện thủ thuật.",
+  "description": "Ứng dụng đăng ký thủ thuật của Viện Huyết học và Truyền máu Bạch Mai.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#e77829",
   "orientation": "portrait-primary",
   "icons": [
     {
