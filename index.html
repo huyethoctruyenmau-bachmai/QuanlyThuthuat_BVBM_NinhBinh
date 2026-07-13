@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=39">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=40">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=39">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=39">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=40">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=40">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=39">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=40">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=39">
-  <link rel="icon" href="favicon.ico?v=39" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=39">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=39">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=39">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=39">
+  <link rel="manifest" href="manifest.json?v=40">
+  <link rel="icon" href="favicon.ico?v=40" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=40">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=40">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=40">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=40">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2779,12 +2779,15 @@
 
     /* ===== PATCH 212: TRÁNH BÁO HẾT LƯỢT TRONG LÚC ĐANG TẢI KHUNG GIỜ ===== */
 
+
+    /* ===== PATCH 213: LOAD SLOT THEO NGÀY/CƠ SỞ TRƯỚC, CHỌN ĐỊA ĐIỂM HIỆN NGAY ===== */
+
   </style>
 </head>
 <body class="app-loading">
   <div id="appSplash" class="login-loading-overlay">
     <div class="login-loading-logo">
-      <img src="logo-bvbm.png?v=39" alt="Logo Bệnh viện Bạch Mai">
+      <img src="logo-bvbm.png?v=40" alt="Logo Bệnh viện Bạch Mai">
     </div>
     <p class="login-loading-text" id="loginLoadingText">Đang tải dữ liệu...</p>
     <div class="login-loading-progress" id="loginLoadingProgress">10%</div>
@@ -2804,7 +2807,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=39" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=40" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI</div>
@@ -3195,6 +3198,8 @@
     let setupLoadingFacility = '';
     let registrationState = { slotAvailability: {}, needleInventory: {}, procedureAvailability: [], timeSlots: [] };
     let availabilityLoading = false;
+    let availabilityCache = {};
+    let activeAvailabilityKey = '';
     let currentCancelRow = null;
     let currentListRows = [];
     let currentWaitingRows = [];
@@ -3264,7 +3269,8 @@
       if (cancelFacility && !cancelFacility.value) fillFacilitySelect('cancelFacilityCode', facilityCode);
 
       if (setupCache[facilityCode]) {
-        applySetupData(setupCache[facilityCode], { resetDependentFields: true, refreshAvailability: true });
+        applySetupData(setupCache[facilityCode], { resetDependentFields: true, refreshAvailability: false });
+        refreshSlotsForSelectedDate();
         return;
       }
 
@@ -3507,6 +3513,7 @@
 
     function resetRegistrationDependentFields() {
       availabilityLoading = false;
+      activeAvailabilityKey = '';
       const location = document.getElementById('location');
       const type = document.getElementById('type');
       const timeSelect = document.getElementById('timeSelect');
@@ -3798,33 +3805,61 @@
       renderProcedureRequirementSection();
     }
 
+
+    function getAvailabilityCacheKey(facilityCode, dateIso) {
+      return String(facilityCode || DEFAULT_FACILITY_CODE) + '|' + String(dateIso || '');
+    }
+
+    function applyAvailabilityData(data, cacheKey) {
+      availabilityLoading = false;
+      activeAvailabilityKey = cacheKey || activeAvailabilityKey;
+      registrationState = data || { slotAvailability: {}, needleInventory: {}, procedureAvailability: [], timeSlots: [] };
+      if (data && data.timeSlots) registrationState.timeSlots = data.timeSlots;
+      if (cacheKey) availabilityCache[cacheKey] = registrationState;
+      updateProcedureOptions();
+      updateTimeSlots();
+    }
+
     function refreshSlotsForSelectedDate() {
       const regDate = document.getElementById('regDate').value || toIsoDate(new Date());
       const facilityCode = getSelectedRegistrationFacilityCode();
       document.getElementById('regDate').value = regDate;
 
-      availabilityLoading = true;
-      const timeSelect = document.getElementById('timeSelect');
-      if (timeSelect) timeSelect.innerHTML = '<option value="">Đang tải giờ...</option>';
-
-      const slotInfo = document.getElementById('slotInfoText');
-      if (slotInfo) slotInfo.textContent = '';
-      const typeInfo = document.getElementById('typeInfoText');
-      if (typeInfo) typeInfo.textContent = '';
+      const cacheKey = getAvailabilityCacheKey(facilityCode, regDate);
+      activeAvailabilityKey = cacheKey;
 
       if (setupCache[facilityCode] && (!appData || appData.facilityCode !== facilityCode)) {
         applySetupData(setupCache[facilityCode], { keepCurrentDependentFields: true, refreshAvailability: false });
       }
 
+      if (availabilityCache[cacheKey]) {
+        applyAvailabilityData(availabilityCache[cacheKey], cacheKey);
+        return;
+      }
+
+      availabilityLoading = true;
+      registrationState = {
+        slotAvailability: {},
+        needleInventory: (appData && appData.needles) || {},
+        procedureAvailability: (appData && appData.procedureTypes ? appData.procedureTypes.map(function (name) { return { name: name, enabled: true, reason: '' }; }) : []),
+        timeSlots: (appData && appData.timeSlots) || []
+      };
+
+      const timeSelect = document.getElementById('timeSelect');
+      if (timeSelect) timeSelect.innerHTML = '<option value="">Đang tải giờ...</option>';
+
+      const slotInfo = document.getElementById('slotInfoText');
+      if (slotInfo) slotInfo.textContent = 'Đang tải khung giờ theo ngày và cơ sở.';
+      const typeInfo = document.getElementById('typeInfoText');
+      if (typeInfo) typeInfo.textContent = '';
+
       google.script.run
         .withSuccessHandler(function (data) {
-          availabilityLoading = false;
-          registrationState = data || { slotAvailability: {}, needleInventory: {}, procedureAvailability: [], timeSlots: [] };
-          if (data && data.timeSlots) registrationState.timeSlots = data.timeSlots;
-          updateProcedureOptions();
-          updateTimeSlots();
+          if (activeAvailabilityKey !== cacheKey) return;
+          applyAvailabilityData(data, cacheKey);
         })
         .withFailureHandler(function (error) {
+          if (activeAvailabilityKey !== cacheKey) return;
           availabilityLoading = false;
           if (timeSelect) timeSelect.innerHTML = '<option value="">Lỗi tải giờ</option>';
           showInlineMessage('registrationMessage', 'error', 'Lỗi khi tải dữ liệu đăng ký: ' + error.message);
@@ -3901,7 +3936,13 @@
       select.innerHTML = '<option value="" disabled hidden' + (selectedValue ? '' : ' selected') + '>Chọn giờ</option>';
       if (slotInfo) slotInfo.textContent = '';
 
-      if (!location) return;
+      if (!location) {
+        if (availabilityLoading) {
+          select.innerHTML = '<option value="">Đang tải giờ...</option>';
+          if (slotInfo) slotInfo.textContent = 'Đang tải khung giờ theo ngày và cơ sở.';
+        }
+        return;
+      }
 
       if (availabilityLoading || !hasAvailabilityData) {
         select.innerHTML = '<option value="">Đang tải giờ...</option>';
@@ -3929,7 +3970,7 @@
 
       if (slotInfo) {
         slotInfo.textContent = availableCount > 0
-          ? 'Đã cập nhật slot trống theo ngày, địa điểm và cấu hình khung giờ.'
+          ? 'Đã hiển thị slot trống theo địa điểm đã chọn.'
           : 'Không còn khung giờ trống cho lựa chọn hiện tại.';
       }
 
@@ -4268,6 +4309,7 @@
             };
             saveAuthState();
             delete setupCache[getAuthFacilityCode()];
+            availabilityCache = {};
             loadSetupData(getAuthFacilityCode());
             renderListProtectedArea(true);
             renderWaitingProtectedArea(true);
@@ -5661,6 +5703,7 @@
           if (result && result.success) {
             showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu cấu hình kim.');
             delete setupCache[getAuthFacilityCode()];
+            availabilityCache = {};
             loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
             refreshSlotsForSelectedDate();
@@ -5718,6 +5761,7 @@
             input.value = '';
             showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu thành công.');
             delete setupCache[getAuthFacilityCode()];
+            availabilityCache = {};
             loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
           } else {
@@ -5741,6 +5785,7 @@
           if (result && result.success) {
             showInlineMessage('setupMessage', 'success', result.message || 'Đã xóa.');
             delete setupCache[getAuthFacilityCode()];
+            availabilityCache = {};
             loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
           } else {
