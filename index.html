@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=28">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=29">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=28">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=28">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=29">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=29">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=28">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=29">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=28">
-  <link rel="icon" href="favicon.ico?v=28" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=28">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=28">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=28">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=28">
+  <link rel="manifest" href="manifest.json?v=29">
+  <link rel="icon" href="favicon.ico?v=29" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=29">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=29">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=29">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=29">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2532,9 +2532,149 @@
       font-weight:500!important;
     }
 
+
+    /* ===== PATCH 209: MÀN HÌNH CHỜ LOGO BẠCH MAI KHI LOAD APP ===== */
+    body.app-loading .app-header,
+    body.app-loading .app-main,
+    body.app-loading .tab-bar,
+    body.app-loading .scroll-top-btn{
+      visibility:hidden!important;
+    }
+
+    .app-splash{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,.18), transparent 28%),
+        linear-gradient(135deg, var(--green-700) 0%, var(--green-800) 100%);
+      color:#fff;
+      transition:opacity .22s ease, visibility .22s ease;
+    }
+
+    .app-splash.hidden{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+
+    .splash-card{
+      width:min(430px, calc(100vw - 40px));
+      text-align:center;
+      padding:28px 24px 24px;
+      border-radius:22px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.28);
+      box-shadow:0 18px 48px rgba(0,0,0,.22);
+      backdrop-filter:blur(10px);
+    }
+
+    .splash-logo{
+      width:92px;
+      height:92px;
+      margin:0 auto 14px;
+      border-radius:50%;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 8px 22px rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+
+    .splash-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .splash-hospital{
+      font-size:20px;
+      line-height:1.25;
+      font-weight:800;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+    }
+
+    .splash-unit{
+      margin-top:5px;
+      font-size:14px;
+      line-height:1.35;
+      font-weight:700;
+      text-transform:uppercase;
+      opacity:.96;
+    }
+
+    .splash-app{
+      margin-top:16px;
+      font-size:18px;
+      line-height:1.25;
+      font-weight:800;
+      text-transform:uppercase;
+      color:#fff;
+    }
+
+    .splash-loader{
+      width:34px;
+      height:34px;
+      margin:18px auto 8px;
+      border-radius:50%;
+      border:3px solid rgba(255,255,255,.36);
+      border-top-color:#fff;
+      animation:spin 1s linear infinite;
+    }
+
+    .splash-note{
+      font-size:13px;
+      opacity:.92;
+    }
+
+    @media (max-width:760px){
+      .splash-card{
+        width:min(360px, calc(100vw - 32px));
+        padding:24px 18px 20px;
+        border-radius:20px;
+      }
+
+      .splash-logo{
+        width:82px;
+        height:82px;
+      }
+
+      .splash-hospital{
+        font-size:18px;
+      }
+
+      .splash-unit{
+        font-size:12.5px;
+      }
+
+      .splash-app{
+        font-size:16px;
+      }
+    }
+
   </style>
 </head>
-<body>
+<body class="app-loading">
+  <div id="appSplash" class="app-splash">
+    <div class="splash-card">
+      <div class="splash-logo">
+        <img src="logo-bvbm.png?v=29" alt="Logo Bệnh viện Bạch Mai">
+      </div>
+      <div class="splash-hospital">BỆNH VIỆN BẠCH MAI</div>
+      <div class="splash-unit">VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI</div>
+      <div class="splash-app">ĐĂNG KÝ THỦ THUẬT</div>
+      <div class="splash-loader" aria-hidden="true"></div>
+      <div class="splash-note">Đang tải dữ liệu...</div>
+    </div>
+  </div>
+
   <header class="app-header">
     <div class="header-inner">
       <div id="headerAuth" class="header-auth hidden">
@@ -2546,7 +2686,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=28" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=29" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI</div>
@@ -3008,6 +3148,21 @@
       return '<div class="facility-badge"><i class="fas fa-hospital"></i> Đang xem: ' + escapeHtml(facility.name) + '</div>';
     }
 
+
+    function hideAppSplash() {
+      const splash = document.getElementById('appSplash');
+      if (splash) splash.classList.add('hidden');
+      document.body.classList.remove('app-loading');
+      setTimeout(function () {
+        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+      }, 260);
+    }
+
+    function showAppSplashNote(message) {
+      const note = document.querySelector('#appSplash .splash-note');
+      if (note && message) note.textContent = message;
+    }
+
     function initApp() {
       loadAuthState();
       preventZoom();
@@ -3040,6 +3195,9 @@
       renderSetupProtectedArea();
       setupScrollTopButton();
       showTab(currentTab);
+      setTimeout(function () {
+        if (document.body.classList.contains('app-loading')) hideAppSplash();
+      }, 8000);
     }
 
     function preventZoom() {
@@ -3171,9 +3329,12 @@
             if (document.getElementById('waitingProtectedArea')) renderWaitingProtectedArea(true);
           }
           if (hasSetupAccess() && currentTab === 'caidat') renderSetupProtectedArea();
+          hideAppSplash();
         })
         .withFailureHandler(function (error) {
           showInlineMessage('registrationMessage', 'error', 'Lỗi khi tải dữ liệu SETUP: ' + error.message);
+          showAppSplashNote('Không tải được dữ liệu. Vui lòng kiểm tra kết nối.');
+          setTimeout(hideAppSplash, 900);
         })
         .getSetupData(selectedFacilityCode);
     }
