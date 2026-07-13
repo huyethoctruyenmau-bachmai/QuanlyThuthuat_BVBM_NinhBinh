@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=30">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=31">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=30">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=30">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=31">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=31">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=30">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=31">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=30">
-  <link rel="icon" href="favicon.ico?v=30" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=30">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=30">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=30">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=30">
+  <link rel="manifest" href="manifest.json?v=31">
+  <link rel="icon" href="favicon.ico?v=31" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=31">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=31">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=31">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=31">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2775,7 +2775,7 @@
 <body class="app-loading">
   <div id="appSplash" class="login-loading-overlay">
     <div class="login-loading-logo">
-      <img src="logo-bvbm.png?v=30" alt="Logo Bệnh viện Bạch Mai">
+      <img src="logo-bvbm.png?v=31" alt="Logo Bệnh viện Bạch Mai">
     </div>
     <p class="login-loading-text" id="loginLoadingText">Đang tải dữ liệu...</p>
     <div class="login-loading-progress" id="loginLoadingProgress">0%</div>
@@ -2795,7 +2795,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=30" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=31" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI</div>
@@ -3182,6 +3182,8 @@
       }
     })();
     let appData = { departments: [], procedureTypes: [], locations: [], needles: {}, timeSlots: [] };
+    let setupCache = {};
+    let setupLoadingFacility = '';
     let registrationState = { slotAvailability: {}, needleInventory: {}, procedureAvailability: [], timeSlots: [] };
     let currentCancelRow = null;
     let currentListRows = [];
@@ -3247,9 +3249,21 @@
     }
 
     function handleRegistrationFacilityChange() {
-      loadSetupData(getSelectedRegistrationFacilityCode());
+      const facilityCode = getSelectedRegistrationFacilityCode();
       const cancelFacility = document.getElementById('cancelFacilityCode');
-      if (cancelFacility && !cancelFacility.value) fillFacilitySelect('cancelFacilityCode', getSelectedRegistrationFacilityCode());
+      if (cancelFacility && !cancelFacility.value) fillFacilitySelect('cancelFacilityCode', facilityCode);
+
+      if (setupCache[facilityCode]) {
+        applySetupData(setupCache[facilityCode], { resetDependentFields: true, refreshAvailability: true });
+        return;
+      }
+
+      resetRegistrationDependentFields();
+      const location = document.getElementById('location');
+      const type = document.getElementById('type');
+      if (location) location.innerHTML = '<option value="" selected disabled hidden>Đang tải địa điểm...</option>';
+      if (type) type.innerHTML = '<option value="" selected disabled hidden>Đang tải thủ thuật...</option>';
+      loadSetupData(facilityCode, { resetDependentFields: true, refreshAvailability: true, forceApply: true });
     }
 
     function formatFacilityBadge() {
@@ -3302,7 +3316,7 @@
       updateHeaderAuth();
       fillFacilitySelect('facilityCode', DEFAULT_FACILITY_CODE);
       fillFacilitySelect('cancelFacilityCode', DEFAULT_FACILITY_CODE);
-      loadSetupData(getSelectedRegistrationFacilityCode());
+      loadAllSetupData();
       renderListProtectedArea(true);
       renderWaitingProtectedArea(true);
       renderSetupProtectedArea();
@@ -3425,18 +3439,95 @@
       return authState && authState.role === 'admin';
     }
 
-    function loadSetupData(facilityCode) {
+
+    function setSetupCacheFromPayload(payload) {
+      if (!payload) return;
+      if (payload.facilities && payload.facilities.length) {
+        FACILITY_OPTIONS.splice(0, FACILITY_OPTIONS.length);
+        payload.facilities.forEach(function (item) { FACILITY_OPTIONS.push(item); });
+      }
+      ['HN', 'NB'].forEach(function (code) {
+        if (payload[code]) setupCache[code] = payload[code];
+      });
+      if (payload.facilityCode) setupCache[payload.facilityCode] = payload;
+    }
+
+    function applySetupData(data, options) {
+      options = options || {};
+      if (!data) return;
+      appData = data;
+      if (data.facilityCode) setupCache[data.facilityCode] = data;
+      populateDropdowns({
+        resetDependentFields: options.resetDependentFields === true,
+        keepCurrentDependentFields: options.keepCurrentDependentFields === true
+      });
+      if (options.refreshAvailability !== false) refreshSlotsForSelectedDate();
+    }
+
+    function resetRegistrationDependentFields() {
+      const location = document.getElementById('location');
+      const type = document.getElementById('type');
+      const timeSelect = document.getElementById('timeSelect');
+      if (location) location.value = '';
+      if (type) type.value = '';
+      if (timeSelect) timeSelect.innerHTML = '<option value="" selected disabled hidden>Chọn giờ</option>';
+      const slotInfo = document.getElementById('slotInfoText');
+      if (slotInfo) slotInfo.textContent = '';
+      const typeInfo = document.getElementById('typeInfoText');
+      if (typeInfo) typeInfo.textContent = '';
+      registrationState = {
+        slotAvailability: {},
+        needleInventory: (appData && appData.needles) || {},
+        procedureAvailability: (appData && appData.procedureTypes ? appData.procedureTypes.map(function (name) { return { name: name, enabled: true, reason: '' }; }) : []),
+        timeSlots: (appData && appData.timeSlots) || []
+      };
+    }
+
+    function loadAllSetupData() {
+      google.script.run
+        .withSuccessHandler(function (payload) {
+          setSetupCacheFromPayload(payload);
+          const selectedFacilityCode = getSelectedRegistrationFacilityCode();
+          const selectedData = setupCache[selectedFacilityCode] || setupCache[DEFAULT_FACILITY_CODE] || (payload && payload[selectedFacilityCode]);
+          if (selectedData) {
+            applySetupData(selectedData, { resetDependentFields: false, refreshAvailability: true });
+          }
+          if (hasListAccess()) {
+            if (document.getElementById('listProtectedArea')) renderListProtectedArea(true);
+            if (document.getElementById('waitingProtectedArea')) renderWaitingProtectedArea(true);
+          }
+          if (hasSetupAccess() && currentTab === 'caidat') renderSetupProtectedArea();
+          hideAppSplash();
+        })
+        .withFailureHandler(function () {
+          loadSetupData(getSelectedRegistrationFacilityCode());
+        })
+        .getAllSetupData();
+    }
+
+    function loadSetupData(facilityCode, options) {
+      options = options || {};
       const selectedFacilityCode = facilityCode || getSelectedRegistrationFacilityCode();
+
+      if (setupCache[selectedFacilityCode]) {
+        applySetupData(setupCache[selectedFacilityCode], {
+          resetDependentFields: options.resetDependentFields === true,
+          refreshAvailability: options.refreshAvailability !== false
+        });
+        hideAppSplash();
+        return;
+      }
+
+      setupLoadingFacility = selectedFacilityCode;
       google.script.run
         .withSuccessHandler(function (data) {
-          appData = data || { departments: [], procedureTypes: [], locations: [], needles: {}, timeSlots: [] };
-          if (data && data.facilities && data.facilities.length) {
-            FACILITY_OPTIONS.splice(0, FACILITY_OPTIONS.length);
-            data.facilities.forEach(function (item) { FACILITY_OPTIONS.push(item); });
+          setSetupCacheFromPayload(data);
+          if (setupLoadingFacility === selectedFacilityCode || options.forceApply === true) {
+            applySetupData(data, {
+              resetDependentFields: options.resetDependentFields === true,
+              refreshAvailability: options.refreshAvailability !== false
+            });
           }
-          populateDropdowns();
-          refreshSlotsForSelectedDate();
-
           if (hasListAccess()) {
             if (document.getElementById('listProtectedArea')) renderListProtectedArea(true);
             if (document.getElementById('waitingProtectedArea')) renderWaitingProtectedArea(true);
@@ -3452,13 +3543,32 @@
         .getSetupData(selectedFacilityCode);
     }
 
-    function populateDropdowns() {
+    function populateDropdowns(options) {
+      options = options || {};
+      const currentLocation = options.keepCurrentDependentFields ? (document.getElementById('location') ? document.getElementById('location').value : '') : '';
+      const currentDepartment = options.keepCurrentDependentFields ? (document.getElementById('department') ? document.getElementById('department').value : '') : '';
+      const currentType = options.keepCurrentDependentFields ? (document.getElementById('type') ? document.getElementById('type').value : '') : '';
+
       fillFacilitySelect('facilityCode', getSelectedRegistrationFacilityCode());
       fillFacilitySelect('cancelFacilityCode', getSelectedCancelFacilityCode());
-      fillSelect('department', appData.departments, 'Chọn đơn vị');
-      fillSelect('location', appData.locations, 'Chọn địa điểm');
+      fillSelect('department', appData.departments, 'Chọn đơn vị', currentDepartment);
+      fillSelect('location', appData.locations, 'Chọn địa điểm', currentLocation);
       setHiddenPlaceholder('location', 'Chọn địa điểm');
-      updateProcedureOptions();
+
+      if (options.resetDependentFields) resetRegistrationDependentFields();
+
+      if (currentType && options.keepCurrentDependentFields) {
+        const typeSelect = document.getElementById('type');
+        updateProcedureOptions();
+        if (typeSelect) {
+          const hasType = Array.from(typeSelect.options || []).some(function (option) {
+            return normalizeCompare_(option.value) === normalizeCompare_(currentType);
+          });
+          if (hasType) typeSelect.value = currentType;
+        }
+      } else {
+        updateProcedureOptions();
+      }
     }
 
     function fillSelect(id, items, placeholder, selectedValue) {
@@ -3644,22 +3754,28 @@
       const regDate = document.getElementById('regDate').value || toIsoDate(new Date());
       const facilityCode = getSelectedRegistrationFacilityCode();
       document.getElementById('regDate').value = regDate;
-      document.getElementById('timeSelect').innerHTML = '<option value="">Đang tải giờ...</option>';
-      document.getElementById('type').innerHTML = '<option value="">Đang tải thủ thuật...</option>';
+
+      const timeSelect = document.getElementById('timeSelect');
+      if (timeSelect) timeSelect.innerHTML = '<option value="">Đang tải giờ...</option>';
+
       const slotInfo = document.getElementById('slotInfoText');
       if (slotInfo) slotInfo.textContent = '';
       const typeInfo = document.getElementById('typeInfoText');
       if (typeInfo) typeInfo.textContent = '';
 
+      if (setupCache[facilityCode] && (!appData || appData.facilityCode !== facilityCode)) {
+        applySetupData(setupCache[facilityCode], { keepCurrentDependentFields: true, refreshAvailability: false });
+      }
+
       google.script.run
         .withSuccessHandler(function (data) {
           registrationState = data || { slotAvailability: {}, needleInventory: {}, procedureAvailability: [], timeSlots: [] };
+          if (data && data.timeSlots) registrationState.timeSlots = data.timeSlots;
           updateProcedureOptions();
           updateTimeSlots();
         })
         .withFailureHandler(function (error) {
-          document.getElementById('timeSelect').innerHTML = '<option value="">Lỗi tải giờ</option>';
-          document.getElementById('type').innerHTML = '<option value="">Lỗi tải thủ thuật</option>';
+          if (timeSelect) timeSelect.innerHTML = '<option value="">Lỗi tải giờ</option>';
           showInlineMessage('registrationMessage', 'error', 'Lỗi khi tải dữ liệu đăng ký: ' + error.message);
         })
         .getRegistrationAvailability(isoToDisplayDate(regDate), facilityCode);
@@ -4089,6 +4205,7 @@
               facilityName: result.facilityName || getFacilityByCode(facilityCode).name
             };
             saveAuthState();
+            delete setupCache[getAuthFacilityCode()];
             loadSetupData(getAuthFacilityCode());
             renderListProtectedArea(true);
             renderWaitingProtectedArea(true);
@@ -5481,6 +5598,7 @@
           setButtonLoading(btn, false);
           if (result && result.success) {
             showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu cấu hình kim.');
+            delete setupCache[getAuthFacilityCode()];
             loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
             refreshSlotsForSelectedDate();
@@ -5537,6 +5655,7 @@
           if (result && result.success) {
             input.value = '';
             showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu thành công.');
+            delete setupCache[getAuthFacilityCode()];
             loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
           } else {
@@ -5559,6 +5678,7 @@
           if (btn) setButtonLoading(btn, false);
           if (result && result.success) {
             showInlineMessage('setupMessage', 'success', result.message || 'Đã xóa.');
+            delete setupCache[getAuthFacilityCode()];
             loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
           } else {
