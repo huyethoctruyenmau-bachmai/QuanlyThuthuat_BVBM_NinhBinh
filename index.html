@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=31">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=32">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=31">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=31">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=32">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=32">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=31">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=32">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=31">
-  <link rel="icon" href="favicon.ico?v=31" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=31">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=31">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=31">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=31">
+  <link rel="manifest" href="manifest.json?v=32">
+  <link rel="icon" href="favicon.ico?v=32" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=32">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=32">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=32">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=32">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2770,15 +2770,21 @@
       }
     }
 
+
+    /* ===== PATCH 211: TIẾN TRÌNH MÀN HÌNH CHỜ KHÔNG ĐỨNG 0% ===== */
+    .login-loading-progress{
+      transition:color .18s ease, opacity .18s ease;
+    }
+
   </style>
 </head>
 <body class="app-loading">
   <div id="appSplash" class="login-loading-overlay">
     <div class="login-loading-logo">
-      <img src="logo-bvbm.png?v=31" alt="Logo Bệnh viện Bạch Mai">
+      <img src="logo-bvbm.png?v=32" alt="Logo Bệnh viện Bạch Mai">
     </div>
     <p class="login-loading-text" id="loginLoadingText">Đang tải dữ liệu...</p>
-    <div class="login-loading-progress" id="loginLoadingProgress">0%</div>
+    <div class="login-loading-progress" id="loginLoadingProgress">10%</div>
     <div class="login-loading-sub">Vui lòng chờ trong giây lát</div>
   </div>
 
@@ -2795,7 +2801,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=31" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=32" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI</div>
@@ -3272,10 +3278,40 @@
     }
 
 
+
+    let appLoadingProgressTimer = null;
+    let appLoadingProgressValue = 10;
+
+    function setAppLoadingProgress(value, text) {
+      const progress = document.getElementById('loginLoadingProgress');
+      const note = document.getElementById('loginLoadingText');
+      appLoadingProgressValue = Math.max(appLoadingProgressValue || 0, Math.min(100, Number(value) || 0));
+      if (progress) progress.textContent = Math.round(appLoadingProgressValue) + '%';
+      if (note && text) note.textContent = text;
+    }
+
+    function startAppLoadingProgress() {
+      setAppLoadingProgress(10, 'Đang tải dữ liệu...');
+      if (appLoadingProgressTimer) clearInterval(appLoadingProgressTimer);
+      appLoadingProgressTimer = setInterval(function () {
+        if (!document.body.classList.contains('app-loading')) {
+          clearInterval(appLoadingProgressTimer);
+          appLoadingProgressTimer = null;
+          return;
+        }
+        if (appLoadingProgressValue < 88) {
+          setAppLoadingProgress(appLoadingProgressValue + 3);
+        }
+      }, 220);
+    }
+
     function hideAppSplash() {
       const splash = document.getElementById('appSplash');
-      const progress = document.getElementById('loginLoadingProgress');
-      if (progress) progress.textContent = '100%';
+      if (appLoadingProgressTimer) {
+        clearInterval(appLoadingProgressTimer);
+        appLoadingProgressTimer = null;
+      }
+      setAppLoadingProgress(100, 'Đã tải xong');
       if (splash) splash.classList.add('hidden');
       document.body.classList.remove('app-loading');
       setTimeout(function () {
@@ -3287,10 +3323,11 @@
       const note = document.getElementById('loginLoadingText');
       const progress = document.getElementById('loginLoadingProgress');
       if (note && message) note.textContent = message;
-      if (progress && message) progress.textContent = '';
+      if (progress && message) progress.textContent = '--';
     }
 
     function initApp() {
+      startAppLoadingProgress();
       loadAuthState();
       preventZoom();
       preventPullToRefresh();
@@ -3484,8 +3521,10 @@
     }
 
     function loadAllSetupData() {
+      setAppLoadingProgress(25, 'Đang tải cấu hình 2 cơ sở...');
       google.script.run
         .withSuccessHandler(function (payload) {
+          setAppLoadingProgress(70, 'Đang chuẩn bị giao diện...');
           setSetupCacheFromPayload(payload);
           const selectedFacilityCode = getSelectedRegistrationFacilityCode();
           const selectedData = setupCache[selectedFacilityCode] || setupCache[DEFAULT_FACILITY_CODE] || (payload && payload[selectedFacilityCode]);
@@ -3497,6 +3536,7 @@
             if (document.getElementById('waitingProtectedArea')) renderWaitingProtectedArea(true);
           }
           if (hasSetupAccess() && currentTab === 'caidat') renderSetupProtectedArea();
+          setAppLoadingProgress(95, 'Hoàn tất tải dữ liệu...');
           hideAppSplash();
         })
         .withFailureHandler(function () {
@@ -3510,6 +3550,7 @@
       const selectedFacilityCode = facilityCode || getSelectedRegistrationFacilityCode();
 
       if (setupCache[selectedFacilityCode]) {
+        setAppLoadingProgress(75, 'Đang dùng dữ liệu đã tải sẵn...');
         applySetupData(setupCache[selectedFacilityCode], {
           resetDependentFields: options.resetDependentFields === true,
           refreshAvailability: options.refreshAvailability !== false
@@ -3519,8 +3560,10 @@
       }
 
       setupLoadingFacility = selectedFacilityCode;
+      setAppLoadingProgress(35, 'Đang tải cấu hình cơ sở...');
       google.script.run
         .withSuccessHandler(function (data) {
+          setAppLoadingProgress(78, 'Đang cập nhật danh mục...');
           setSetupCacheFromPayload(data);
           if (setupLoadingFacility === selectedFacilityCode || options.forceApply === true) {
             applySetupData(data, {
