@@ -5,18 +5,18 @@
   <meta charset="UTF-8">
   <title>ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình</title>
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="description" content="Ứng dụng đăng ký thủ thuật - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
+  <meta name="description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=26">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=27">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
-  <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT">
-  <meta property="og:description" content="Ứng dụng đăng ký thủ thuật - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=26">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=26">
+  <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
+  <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=27">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=27">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=26">
+  <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=27">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - Khoa Huyết học và Truyền máu - Bệnh viện Bạch Mai cơ sở Ninh Bình">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=26">
-  <link rel="icon" href="favicon.ico?v=26" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=26">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=26">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=26">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=26">
+  <link rel="manifest" href="manifest.json?v=27">
+  <link rel="icon" href="favicon.ico?v=27" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=27">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=27">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=27">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=27">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2493,6 +2493,29 @@
       }
     }
 
+
+    /* ===== PATCH 207: HAI CƠ SỞ KHÁM CHỮA BỆNH - GIAO DIỆN ===== */
+    .facility-badge{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      width:100%;
+      padding:8px 10px;
+      margin:0 0 10px;
+      border:1px solid #d7ead9;
+      border-radius:8px;
+      background:#f2faf3;
+      color:var(--green-800);
+      font-size:14px;
+      font-weight:700;
+    }
+
+    @media (min-width:900px){
+      .registration-left-panel .form-group:has(#facilityCode){
+        margin-bottom:12px!important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2507,7 +2530,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=26" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=27" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI CƠ SỞ NINH BÌNH</div>
@@ -2527,6 +2550,11 @@
               <div class="desktop-left desktop-panel registration-left-panel">
                 <div class="desktop-panel-head">
                   <div class="desktop-panel-title"><i class="fas fa-calendar-check"></i> Thông tin đăng ký</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="facilityCode"><i class="fas fa-hospital-user"></i> Cơ sở khám chữa bệnh <span class="text-red">*</span></label>
+                  <select class="field" id="facilityCode" required onchange="handleRegistrationFacilityChange()"></select>
                 </div>
 
                 <div class="form-group">
@@ -2653,6 +2681,10 @@
           <h2 class="screen-title"><i class="fas fa-ban"></i> HỦY ĐĂNG KÝ</h2>
           <div class="desktop-split cancel-desktop-layout">
             <div class="desktop-left desktop-panel cancel-filter-panel">
+              <div class="form-group">
+                <label for="cancelFacilityCode"><i class="fas fa-hospital-user"></i> Cơ sở khám chữa bệnh <span class="text-red">*</span></label>
+                <select class="field" id="cancelFacilityCode" required></select>
+              </div>
               <div class="form-group">
                 <label for="cancelDate"><i class="fas fa-calendar-day"></i> Ngày đăng ký <span class="text-red">*</span></label>
                 <input class="field" type="date" id="cancelDate">
@@ -2894,6 +2926,13 @@
     let authState = null;
     let currentTab = 'dangky';
     let currentSetupPanel = 'needles';
+
+    const FACILITY_OPTIONS = [
+      { code: 'HN', name: 'Bệnh viện Bạch Mai cơ sở Hà Nội', suffix: 'CSHN' },
+      { code: 'NB', name: 'Bệnh viện Bạch Mai cơ sở Ninh Bình', suffix: 'CSNB' }
+    ];
+    const DEFAULT_FACILITY_CODE = 'NB';
+
     const inlineMessageTimers = {};
     let alertModalCallback = null;
     let confirmActionCallback = null;
@@ -2912,6 +2951,46 @@
         'Chỉ định "Xét nghiệm mô bệnh học tủy xương (không bao gồm thủ thuật sinh thiết tủy xương)"'
       ]
     };
+
+
+    function getFacilityByCode(code) {
+      const normalized = String(code || '').trim().toUpperCase();
+      return FACILITY_OPTIONS.find(function (item) { return item.code === normalized; }) || FACILITY_OPTIONS.find(function (item) { return item.code === DEFAULT_FACILITY_CODE; }) || FACILITY_OPTIONS[0];
+    }
+
+    function getSelectedRegistrationFacilityCode() {
+      const el = document.getElementById('facilityCode');
+      return el && el.value ? el.value : DEFAULT_FACILITY_CODE;
+    }
+
+    function getSelectedCancelFacilityCode() {
+      const el = document.getElementById('cancelFacilityCode');
+      return el && el.value ? el.value : DEFAULT_FACILITY_CODE;
+    }
+
+    function getAuthFacilityCode() {
+      return authState && authState.facilityCode ? authState.facilityCode : DEFAULT_FACILITY_CODE;
+    }
+
+    function fillFacilitySelect(id, selectedValue) {
+      const select = document.getElementById(id);
+      if (!select) return;
+      const selected = selectedValue || DEFAULT_FACILITY_CODE;
+      select.innerHTML = FACILITY_OPTIONS.map(function (item) {
+        return '<option value="' + escapeHtml(item.code) + '"' + (item.code === selected ? ' selected' : '') + '>' + escapeHtml(item.name) + '</option>';
+      }).join('');
+    }
+
+    function handleRegistrationFacilityChange() {
+      loadSetupData(getSelectedRegistrationFacilityCode());
+      const cancelFacility = document.getElementById('cancelFacilityCode');
+      if (cancelFacility && !cancelFacility.value) fillFacilitySelect('cancelFacilityCode', getSelectedRegistrationFacilityCode());
+    }
+
+    function formatFacilityBadge() {
+      const facility = getFacilityByCode(getAuthFacilityCode());
+      return '<div class="facility-badge"><i class="fas fa-hospital"></i> Đang xem: ' + escapeHtml(facility.name) + '</div>';
+    }
 
     function initApp() {
       loadAuthState();
@@ -2937,7 +3016,9 @@
       });
 
       updateHeaderAuth();
-      loadSetupData();
+      fillFacilitySelect('facilityCode', DEFAULT_FACILITY_CODE);
+      fillFacilitySelect('cancelFacilityCode', DEFAULT_FACILITY_CODE);
+      loadSetupData(getSelectedRegistrationFacilityCode());
       renderListProtectedArea(true);
       renderWaitingProtectedArea(true);
       renderSetupProtectedArea();
@@ -3057,10 +3138,15 @@
       return authState && authState.role === 'admin';
     }
 
-    function loadSetupData() {
+    function loadSetupData(facilityCode) {
+      const selectedFacilityCode = facilityCode || getSelectedRegistrationFacilityCode();
       google.script.run
         .withSuccessHandler(function (data) {
           appData = data || { departments: [], procedureTypes: [], locations: [], needles: {}, timeSlots: [] };
+          if (data && data.facilities && data.facilities.length) {
+            FACILITY_OPTIONS.splice(0, FACILITY_OPTIONS.length);
+            data.facilities.forEach(function (item) { FACILITY_OPTIONS.push(item); });
+          }
           populateDropdowns();
           refreshSlotsForSelectedDate();
 
@@ -3073,10 +3159,12 @@
         .withFailureHandler(function (error) {
           showInlineMessage('registrationMessage', 'error', 'Lỗi khi tải dữ liệu SETUP: ' + error.message);
         })
-        .getSetupData();
+        .getSetupData(selectedFacilityCode);
     }
 
     function populateDropdowns() {
+      fillFacilitySelect('facilityCode', getSelectedRegistrationFacilityCode());
+      fillFacilitySelect('cancelFacilityCode', getSelectedCancelFacilityCode());
       fillSelect('department', appData.departments, 'Chọn đơn vị');
       fillSelect('location', appData.locations, 'Chọn địa điểm');
       setHiddenPlaceholder('location', 'Chọn địa điểm');
@@ -3264,6 +3352,7 @@
 
     function refreshSlotsForSelectedDate() {
       const regDate = document.getElementById('regDate').value || toIsoDate(new Date());
+      const facilityCode = getSelectedRegistrationFacilityCode();
       document.getElementById('regDate').value = regDate;
       document.getElementById('timeSelect').innerHTML = '<option value="">Đang tải giờ...</option>';
       document.getElementById('type').innerHTML = '<option value="">Đang tải thủ thuật...</option>';
@@ -3283,7 +3372,7 @@
           document.getElementById('type').innerHTML = '<option value="">Lỗi tải thủ thuật</option>';
           showInlineMessage('registrationMessage', 'error', 'Lỗi khi tải dữ liệu đăng ký: ' + error.message);
         })
-        .getRegistrationAvailability(isoToDisplayDate(regDate));
+        .getRegistrationAvailability(isoToDisplayDate(regDate), facilityCode);
     }
 
     function updateProcedureOptions() {
@@ -3381,7 +3470,9 @@
 
     function resetRegistrationFormKeepDate() {
       const dateValue = document.getElementById('regDate').value || toIsoDate(new Date());
+      const facilityValue = getSelectedRegistrationFacilityCode();
       document.getElementById('registrationForm').reset();
+      fillFacilitySelect('facilityCode', facilityValue);
       document.getElementById('regDate').value = dateValue;
       populateDropdowns();
       document.getElementById('timeSelect').innerHTML = '<option value="" selected disabled hidden>Chọn giờ</option>';
@@ -3396,6 +3487,8 @@
     function submitRegistrationForm(event) {
       event.preventDefault();
       const formData = {
+        facilityCode: getSelectedRegistrationFacilityCode(),
+        facilityName: getFacilityByCode(getSelectedRegistrationFacilityCode()).name,
         date: isoToDisplayDate(document.getElementById('regDate').value || toIsoDate(new Date())),
         time: (document.getElementById('timeSelect').value || '').split(' (')[0],
         location: document.getElementById('location').value,
@@ -3412,7 +3505,7 @@
         registrationNote: (document.getElementById('registrationNote').value || '').trim()
       };
 
-      if (!formData.date || !formData.time || !formData.location || !formData.type || !formData.name || !formData.age || !formData.department || !formData.room || !formData.bed || !formData.code || !formData.phone) {
+      if (!formData.facilityCode || !formData.date || !formData.time || !formData.location || !formData.type || !formData.name || !formData.age || !formData.department || !formData.room || !formData.bed || !formData.code || !formData.phone) {
         showAlertModal('Vui lòng nhập đầy đủ thông tin bắt buộc.');
         return;
       }
@@ -3461,9 +3554,10 @@
 
     function searchRegistrationsForCancel() {
       const cancelDate = document.getElementById('cancelDate').value || toIsoDate(new Date());
+      const facilityCode = getSelectedCancelFacilityCode();
       const code = (document.getElementById('cancelCode').value || '').trim();
-      if (!cancelDate || !code) {
-        showInlineMessage('cancelMessage', 'error', 'Vui lòng chọn ngày và nhập mã điều trị.');
+      if (!facilityCode || !cancelDate || !code) {
+        showInlineMessage('cancelMessage', 'error', 'Vui lòng chọn cơ sở, chọn ngày và nhập mã điều trị.');
         return;
       }
       const btn = document.getElementById('searchCancelBtn');
@@ -3477,7 +3571,7 @@
           setButtonLoading(btn, false);
           showInlineMessage('cancelMessage', 'error', 'Lỗi khi tìm kiếm: ' + error.message);
         })
-        .searchPatientsByCodeAndDate(isoToDisplayDate(cancelDate), code);
+        .searchPatientsByCodeAndDate(isoToDisplayDate(cancelDate), code, facilityCode);
     }
 
     function renderCancelSearchResult(rows) {
@@ -3646,6 +3740,10 @@
             '<div class="protected-login-title">' + title + '</div>' +
             '<div class="subnote protected-login-note">' + note + '</div>' +
             '<div class="form-group">' +
+              '<label for="' + purpose + 'Facility"><i class="fas fa-hospital-user"></i> Cơ sở khám chữa bệnh <span class="text-red">*</span></label>' +
+              '<select class="field" id="' + purpose + 'Facility"></select>' +
+            '</div>' +
+            '<div class="form-group">' +
               '<label for="' + purpose + 'User"><i class="fas fa-user"></i> Tên đăng nhập <span class="text-red">*</span></label>' +
               '<input class="field" type="text" id="' + purpose + 'User" autocomplete="off">' +
             '</div>' +
@@ -3662,6 +3760,8 @@
           '</div>' +
         '</div>';
 
+      fillFacilitySelect(purpose + 'Facility', getAuthFacilityCode());
+
       const submitOnEnter = function (e) {
         if (e.key === 'Enter') {
           e.preventDefault();
@@ -3673,6 +3773,7 @@
     }
 
     function loginForTab(purpose, forceAdmin) {
+      const facilityCode = (document.getElementById(purpose + 'Facility') && document.getElementById(purpose + 'Facility').value) || DEFAULT_FACILITY_CODE;
       const username = (document.getElementById(purpose + 'User').value || '').trim();
       const password = (document.getElementById(purpose + 'Pass').value || '').trim();
       if (!username || !password) {
@@ -3693,9 +3794,12 @@
               username: username,
               password: password,
               role: result.role,
-              displayName: result.displayName
+              displayName: result.displayName,
+              facilityCode: result.facilityCode || facilityCode,
+              facilityName: result.facilityName || getFacilityByCode(facilityCode).name
             };
             saveAuthState();
+            loadSetupData(getAuthFacilityCode());
             renderListProtectedArea(true);
             renderWaitingProtectedArea(true);
             if (purpose === 'setup') {
@@ -3716,7 +3820,7 @@
           setButtonLoading(btn, false);
           showInlineMessage(purpose + 'LoginMessage', 'error', 'Lỗi đăng nhập: ' + error.message);
         })
-        .authenticateUser(username, password);
+        .authenticateUser(username, password, facilityCode);
     }
 
     function getPatientStatusKey(item) {
@@ -3959,6 +4063,7 @@
       const currentStatus = document.getElementById('listStatus') ? document.getElementById('listStatus').value : '';
 
       target.innerHTML =
+        formatFacilityBadge() +
         '<div class="desktop-split list-desktop-layout">' +
           '<div class="desktop-left desktop-panel list-filter-panel">' +
             '<div class="list-toolbar list-main-toolbar">' +
@@ -4581,6 +4686,7 @@
       const currentSearch = document.getElementById('waitingSearch') ? document.getElementById('waitingSearch').value : '';
 
       target.innerHTML =
+        formatFacilityBadge() +
         '<div class="desktop-split waiting-desktop-layout">' +
           '<div class="desktop-left desktop-panel waiting-filter-panel">' +
             '<div class="list-toolbar waiting-toolbar">' +
@@ -4857,6 +4963,7 @@
           const needles = data.needles || {};
           const timeSlots = data.timeSlots || [];
           target.innerHTML =
+            formatFacilityBadge() +
             '<div class="desktop-split setup-desktop-layout">' +
               '<div class="desktop-left desktop-panel setup-menu-card">' +
                 '<button class="setup-menu-btn" data-setup-panel="needles" type="button" onclick="showSetupPanel(\'needles\')"><i class="fas fa-syringe"></i><span>Cấu hình kim</span></button>' +
@@ -5084,7 +5191,7 @@
           setButtonLoading(btn, false);
           if (result && result.success) {
             showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu cấu hình kim.');
-            loadSetupData();
+            loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
             refreshSlotsForSelectedDate();
           } else {
@@ -5140,7 +5247,7 @@
           if (result && result.success) {
             input.value = '';
             showInlineMessage('setupMessage', 'success', result.message || 'Đã lưu thành công.');
-            loadSetupData();
+            loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
           } else {
             showInlineMessage('setupMessage', 'error', result && result.message ? result.message : 'Không thể lưu dữ liệu.');
@@ -5162,7 +5269,7 @@
           if (btn) setButtonLoading(btn, false);
           if (result && result.success) {
             showInlineMessage('setupMessage', 'success', result.message || 'Đã xóa.');
-            loadSetupData();
+            loadSetupData(getAuthFacilityCode());
             renderSetupProtectedArea();
           } else {
             showInlineMessage('setupMessage', 'error', result && result.message ? result.message : 'Không thể xóa dữ liệu.');
@@ -5197,9 +5304,11 @@
       data = data || {};
       const optionalTests = Array.isArray(data.optionalTests) ? data.optionalTests : (data.optionalTests || getSelectedOptionalTests().tests || 'Không có');
       const note = data.registrationNote || document.getElementById('registrationNote').value || '';
+      const facilityName = data.facilityName || getFacilityByCode(getSelectedRegistrationFacilityCode()).name;
       return '' +
         '<div>Thông tin bệnh nhân đã đăng ký:</div>' +
         '<table class="review-table">' +
+          '<tr><td>Cơ sở</td><td>' + escapeHtml(facilityName || '') + '</td></tr>' +
           '<tr><td>Họ tên</td><td>' + escapeHtml(data.name || '') + '</td></tr>' +
           '<tr><td>Mã điều trị</td><td>' + escapeHtml(data.code || '') + '</td></tr>' +
           '<tr><td>Ngày</td><td>' + escapeHtml(data.date || '') + '</td></tr>' +
