@@ -7,16 +7,16 @@
   <meta name="title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=42">
+  <meta property="og:url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/?v=44">
   <meta property="og:site_name" content="Đăng ký thủ thuật">
   <meta property="og:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta property="og:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=42">
-  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=42">
+  <meta property="og:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=44">
+  <meta property="og:image:secure_url" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=44">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="twitter:description" content="Ứng dụng đăng ký thủ thuật của VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
-  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=42">
+  <meta name="twitter:image" content="https://huyethoctruyenmau-bachmai.github.io/QuanlyThuthuat_BVBM_NinhBinh/icon-512.png?v=44">
   <meta name="application-name" content="ĐĂNG KÝ THỦ THUẬT - VIỆN HUYẾT HỌC VÀ TRUYỀN MÁU BẠCH MAI - BỆNH VIỆN BẠCH MAI">
   <meta name="apple-mobile-web-app-title" content="Đăng ký thủ thuật">
 
@@ -26,12 +26,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="manifest" href="manifest.json?v=42">
-  <link rel="icon" href="favicon.ico?v=42" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=42">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=42">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=42">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=42">
+  <link rel="manifest" href="manifest.json?v=44">
+  <link rel="icon" href="favicon.ico?v=44" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=44">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=44">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=44">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=44">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -2808,6 +2808,77 @@
       display:none!important;
     }
 
+
+    /* ===== PATCH 216: KHÔNG CHO ĐĂNG KÝ THỨ 7, CHỦ NHẬT ===== */
+
+
+    /* ===== PATCH 217: MÃ LƯỢT CHỈ ĐỊNH CHO XN BẮT BUỘC/XN KHÁC ===== */
+    .order-code-inline{
+      width:100%;
+      margin:7px 0 0 26px;
+      display:grid;
+      grid-template-columns:minmax(140px,180px) minmax(0,1fr);
+      gap:8px;
+      align-items:center;
+    }
+
+    .order-code-inline label,
+    .order-code-item label{
+      margin:0!important;
+      font-size:13.5px!important;
+      color:#374151!important;
+      font-weight:600!important;
+    }
+
+    .order-code-inline input,
+    .order-code-item input{
+      height:36px!important;
+      min-height:36px!important;
+      font-size:14px!important;
+      border-radius:8px!important;
+    }
+
+    .required-doc-red-note{
+      color:#d93025!important;
+      font-weight:700!important;
+    }
+
+    .order-code-list{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+      padding:10px;
+      border:1px dashed #cfe0d2;
+      border-radius:10px;
+      background:#fcfffc;
+    }
+
+    .order-code-item{
+      display:grid;
+      grid-template-columns:minmax(0,1.3fr) minmax(160px,.7fr);
+      gap:8px;
+      align-items:center;
+    }
+
+    .order-code-item-name{
+      font-size:14px;
+      color:#1f2937;
+      line-height:1.35;
+      min-width:0;
+      word-break:break-word;
+    }
+
+    @media (max-width:760px){
+      .order-code-inline{
+        margin-left:0;
+        grid-template-columns:1fr;
+      }
+
+      .order-code-item{
+        grid-template-columns:1fr;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2824,7 +2895,7 @@
       </div>
       <div class="header-brand">
         <div class="header-logo">
-          <img src="logo-bvbm.png?v=42" alt="Logo Bệnh viện Bạch Mai">
+          <img src="logo-bvbm.png?v=44" alt="Logo Bệnh viện Bạch Mai">
         </div>
         <div class="header-text">
           <div class="hospital-name">BỆNH VIỆN BẠCH MAI</div>
@@ -2947,8 +3018,9 @@
                     <label class="checkbox-item"><input type="checkbox" id="optionalTestOther" value="Khác" data-optional-test="true"> <span>Khác</span></label>
                   </div>
                   <div id="optionalTestOtherWrap" class="optional-test-other-wrap hidden">
-                    <input class="field" type="text" id="optionalTestOtherText" maxlength="100" placeholder="Nhập chỉ định XN khác">
+                    <input class="field" type="text" id="optionalTestOtherText" maxlength="100" placeholder="Nhập chỉ định XN khác" oninput="renderOptionalOrderCodeFields()">
                   </div>
+                  <div id="optionalOrderCodesWrap" class="order-code-list hidden"></div>
                 </div>
 
                 <div class="form-group">
@@ -3252,6 +3324,154 @@
     };
 
 
+
+    const REQUIRED_ORDER_CODE_KEYS = {
+      cytology: 'Xét nghiệm tế bào học tủy xương',
+      hemogram: 'Huyết đồ',
+      histopathology: 'Xét nghiệm mô bệnh học tủy xương'
+    };
+
+    function getRequiredOrderCodeKey(label) {
+      const normalized = normalizeCompare_(label);
+      if (normalized.indexOf('te bao hoc tuy xuong') !== -1) return 'cytology';
+      if (normalized.indexOf('huyet do') !== -1) return 'hemogram';
+      if (normalized.indexOf('mo benh hoc tuy xuong') !== -1) return 'histopathology';
+      return '';
+    }
+
+    function formatRequiredDocumentHtml(label) {
+      const safe = escapeHtml(label);
+      return safe.replace(
+        /\[chỉ định kèm tủy đồ\]/i,
+        '<span class="required-doc-red-note">[chỉ định kèm tủy đồ]</span>'
+      ).replace(
+        /\(chỉ định kèm tủy đồ\)/i,
+        '<span class="required-doc-red-note">(chỉ định kèm tủy đồ)</span>'
+      );
+    }
+
+    function makeOrderCodeInputId(prefix, key) {
+      return prefix + String(key || '').replace(/[^a-zA-Z0-9_-]/g, '_');
+    }
+
+    function getOrderCodeInputValue(id) {
+      const input = document.getElementById(id);
+      return input ? (input.value || '').trim() : '';
+    }
+
+    function getRequiredOrderCodes() {
+      const data = {};
+      Array.from(document.querySelectorAll('#requiredDocsList input[data-required-doc="true"]')).forEach(function (input) {
+        const key = input.dataset.orderCodeKey || '';
+        if (!key) return;
+        data[key] = {
+          name: REQUIRED_ORDER_CODE_KEYS[key] || input.dataset.docLabel || key,
+          docLabel: input.dataset.docLabel || '',
+          orderCode: getOrderCodeInputValue('requiredOrderCode_' + key)
+        };
+      });
+      return data;
+    }
+
+    function getOptionalOrderCodes() {
+      const result = [];
+      const selected = getSelectedOptionalTests();
+      selected.tests.forEach(function (name, index) {
+        if (normalizeCompare_(name) === normalizeCompare_('Không có')) return;
+        const input = document.querySelector('input[data-optional-order-index="' + index + '"]');
+        result.push({
+          name: name,
+          orderCode: input ? (input.value || '').trim() : ''
+        });
+      });
+      return result;
+    }
+
+    function getRegistrationOrderCodes() {
+      const required = getRequiredOrderCodes();
+      const optionalTests = getOptionalOrderCodes();
+      const summaryParts = [];
+      if (required.cytology && required.hemogram && required.cytology.orderCode) {
+        summaryParts.push('Tế bào học tủy xương/Huyết đồ: ' + required.cytology.orderCode);
+      } else {
+        Object.keys(required).forEach(function (key) {
+          if (required[key].orderCode) summaryParts.push(required[key].name + ': ' + required[key].orderCode);
+        });
+      }
+      if (required.histopathology && required.histopathology.orderCode) {
+        const histoText = 'Mô bệnh học tủy xương: ' + required.histopathology.orderCode;
+        if (summaryParts.indexOf(histoText) === -1) summaryParts.push(histoText);
+      }
+      optionalTests.forEach(function (item) {
+        if (item.orderCode) summaryParts.push(item.name + ': ' + item.orderCode);
+      });
+      return {
+        required: required,
+        optionalTests: optionalTests,
+        summary: summaryParts.join('; ')
+      };
+    }
+
+    function validateRegistrationOrderCodes() {
+      const orderCodes = getRegistrationOrderCodes();
+      const required = orderCodes.required || {};
+      const missing = [];
+
+      Object.keys(required).forEach(function (key) {
+        const item = required[key];
+        if (!item.orderCode) missing.push(item.name);
+      });
+
+      if (required.cytology && required.hemogram && required.cytology.orderCode && required.hemogram.orderCode &&
+          normalizeCompare_(required.cytology.orderCode) !== normalizeCompare_(required.hemogram.orderCode)) {
+        return {
+          ok: false,
+          message: 'Mã lượt chỉ định của Xét nghiệm tế bào học tủy xương và Huyết đồ phải giống nhau.'
+        };
+      }
+
+      (orderCodes.optionalTests || []).forEach(function (item) {
+        if (!item.orderCode) missing.push(item.name);
+      });
+
+      if (missing.length) {
+        return {
+          ok: false,
+          message: 'Vui lòng nhập Mã lượt chỉ định cho:<ul>' + missing.map(function (item) {
+            return '<li>' + escapeHtml(item) + '</li>';
+          }).join('') + '</ul>'
+        };
+      }
+
+      return { ok: true, orderCodes: orderCodes };
+    }
+
+    function renderOptionalOrderCodeFields() {
+      const wrap = document.getElementById('optionalOrderCodesWrap');
+      if (!wrap) return;
+      const selected = getSelectedOptionalTests();
+      const items = selected.tests.filter(function (name) {
+        return normalizeCompare_(name) !== normalizeCompare_('Không có');
+      });
+      if (!items.length) {
+        wrap.classList.add('hidden');
+        wrap.innerHTML = '';
+        return;
+      }
+      wrap.classList.remove('hidden');
+      wrap.innerHTML = items.map(function (name, index) {
+        const id = 'optionalOrderCode_' + index;
+        return '<div class="order-code-item">' +
+          '<div class="order-code-item-name">' + escapeHtml(name) + '</div>' +
+          '<div>' +
+            '<label for="' + id + '">Mã lượt chỉ định <span class="text-red">*</span></label>' +
+            '<input class="field" type="text" id="' + id + '" data-optional-order-index="' + index + '" maxlength="60" placeholder="Nhập mã lượt chỉ định">' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+
     function getFacilityByCode(code) {
       const normalized = String(code || '').trim().toUpperCase();
       return FACILITY_OPTIONS.find(function (item) { return item.code === normalized; }) || FACILITY_OPTIONS.find(function (item) { return item.code === DEFAULT_FACILITY_CODE; }) || FACILITY_OPTIONS[0];
@@ -3326,17 +3546,21 @@
     function showAppSplashNote(message) {}
 
     
+
 function initApp() {
       loadAuthState();
       preventZoom();
       preventPullToRefresh();
 
       const today = new Date();
-      const isoToday = toIsoDate(today);
+      const isoToday = getNextWorkingIsoDate(toIsoDate(today));
       document.getElementById('regDate').value = isoToday;
-      document.getElementById('cancelDate').value = isoToday;
+      document.getElementById('cancelDate').value = toIsoDate(today);
 
-      document.getElementById('regDate').addEventListener('change', refreshSlotsForSelectedDate);
+      document.getElementById('regDate').addEventListener('change', function () {
+        normalizeRegistrationDateToWorkingDay(true);
+        refreshSlotsForSelectedDate();
+      });
       document.getElementById('type').addEventListener('change', renderProcedureRequirementSection);
       document.querySelectorAll('input[data-optional-test="true"]').forEach(function (input) {
         input.addEventListener('change', function () { handleOptionalTestsChange(input); });
@@ -3726,10 +3950,20 @@ function initApp() {
       section.classList.remove('hidden');
       list.innerHTML = requiredDocs.map(function (doc, index) {
         const id = 'requiredDoc_' + index;
-        return '<label class="checkbox-item" for="' + id + '">' +
-          '<input type="checkbox" id="' + id + '" data-required-doc="true" data-doc-label="' + escapeHtml(doc) + '" onchange="updateRequiredDocumentsConfirmButton()">' +
-          '<span>' + escapeHtml(doc) + '</span>' +
-        '</label>';
+        const key = getRequiredOrderCodeKey(doc);
+        const orderInput = key ? (
+          '<div class="order-code-inline">' +
+            '<label for="requiredOrderCode_' + key + '">Mã lượt chỉ định <span class="text-red">*</span></label>' +
+            '<input class="field" type="text" id="requiredOrderCode_' + key + '" maxlength="60" placeholder="Nhập mã lượt chỉ định">' +
+          '</div>'
+        ) : '';
+        return '<div class="required-doc-row">' +
+          '<label class="checkbox-item" for="' + id + '">' +
+            '<input type="checkbox" id="' + id + '" data-required-doc="true" data-doc-label="' + escapeHtml(doc) + '" data-order-code-key="' + escapeHtml(key) + '" onchange="updateRequiredDocumentsConfirmButton()">' +
+            '<span>' + formatRequiredDocumentHtml(doc) + '</span>' +
+          '</label>' +
+          orderInput +
+        '</div>';
       }).join('');
       updateRequiredDocumentsConfirmButton();
     }
@@ -3777,6 +4011,7 @@ function initApp() {
         noneInput.checked = false;
       }
       toggleOptionalTestOtherInput();
+      renderOptionalOrderCodeFields();
     }
 
     function toggleOptionalTestOtherInput() {
@@ -3790,6 +4025,7 @@ function initApp() {
         wrap.classList.add('hidden');
         input.value = '';
       }
+      renderOptionalOrderCodeFields();
     }
 
     function getSelectedOptionalTests() {
@@ -3815,6 +4051,11 @@ function initApp() {
       const otherText = document.getElementById('optionalTestOtherText');
       if (note) note.value = '';
       if (otherText) otherText.value = '';
+      const optionalWrap = document.getElementById('optionalOrderCodesWrap');
+      if (optionalWrap) {
+        optionalWrap.classList.add('hidden');
+        optionalWrap.innerHTML = '';
+      }
       toggleOptionalTestOtherInput();
       renderProcedureRequirementSection();
     }
@@ -3834,8 +4075,41 @@ function initApp() {
       updateTimeSlots();
     }
 
+
+    function isWeekendIsoDate(value) {
+      const date = parseIsoDate(value);
+      if (!date) return false;
+      const day = date.getDay();
+      return day === 0 || day === 6;
+    }
+
+    function getNextWorkingIsoDate(value) {
+      let date = parseIsoDate(value) || new Date();
+      while (date.getDay() === 0 || date.getDay() === 6) {
+        date.setDate(date.getDate() + 1);
+      }
+      return toIsoDate(date);
+    }
+
+    function normalizeRegistrationDateToWorkingDay(showMessage) {
+      const input = document.getElementById('regDate');
+      if (!input) return true;
+      const current = input.value || toIsoDate(new Date());
+      if (!isWeekendIsoDate(current)) return true;
+
+      const nextWorking = getNextWorkingIsoDate(current);
+      input.value = nextWorking;
+      const timeSelect = document.getElementById('timeSelect');
+      if (timeSelect) timeSelect.innerHTML = '<option value="">Chọn địa điểm trước</option>';
+      if (showMessage) {
+        showInlineMessage('registrationMessage', 'error', 'Thứ 7 và Chủ nhật không thực hiện thủ thuật. Hệ thống đã chuyển sang ngày làm việc kế tiếp.');
+      }
+      return false;
+    }
+
     function refreshSlotsForSelectedDate() {
-      const regDate = document.getElementById('regDate').value || toIsoDate(new Date());
+      normalizeRegistrationDateToWorkingDay(false);
+      const regDate = document.getElementById('regDate').value || getNextWorkingIsoDate(toIsoDate(new Date()));
       const facilityCode = getSelectedRegistrationFacilityCode();
       document.getElementById('regDate').value = regDate;
 
@@ -3875,7 +4149,7 @@ function initApp() {
         .withFailureHandler(function (error) {
           if (activeAvailabilityKey !== cacheKey) return;
           availabilityLoading = false;
-          if (timeSelect) timeSelect.innerHTML = '<option value="">Lỗi tải giờ</option>';
+          if (timeSelect) timeSelect.innerHTML = '<option value="">Không có khung giờ đăng ký</option>';
           showInlineMessage('registrationMessage', 'error', 'Lỗi khi tải dữ liệu đăng ký: ' + error.message);
         })
         .getRegistrationAvailability(isoToDisplayDate(regDate), facilityCode);
@@ -4025,8 +4299,14 @@ function initApp() {
         phone: document.getElementById('phone').value,
         requiredDocuments: getSelectedRequiredDocuments(),
         optionalTests: getSelectedOptionalTests().tests,
+        orderCodes: {},
         registrationNote: (document.getElementById('registrationNote').value || '').trim()
       };
+
+      if (isWeekendIsoDate(document.getElementById('regDate').value)) {
+        showAlertModal('Thứ 7 và Chủ nhật không thực hiện thủ thuật. Vui lòng chọn ngày làm việc từ thứ Hai đến thứ Sáu.');
+        return;
+      }
 
       if (!formData.facilityCode || !formData.date || !formData.time || !formData.location || !formData.type || !formData.name || !formData.age || !formData.department || !formData.room || !formData.bed || !formData.code || !formData.phone) {
         showAlertModal('Vui lòng nhập đầy đủ thông tin bắt buộc.');
@@ -4049,6 +4329,13 @@ function initApp() {
         return;
       }
       formData.optionalTests = optionalTestData.tests;
+
+      const orderCodeValidation = validateRegistrationOrderCodes();
+      if (!orderCodeValidation.ok) {
+        showAlertModal(orderCodeValidation.message, 'Thiếu mã lượt chỉ định');
+        return;
+      }
+      formData.orderCodes = orderCodeValidation.orderCodes;
 
       if (formData.registrationNote.length > 500) {
         showAlertModal('Ghi chú không được vượt quá 500 ký tự.');
@@ -5847,6 +6134,7 @@ function initApp() {
           '<tr><td>Địa điểm</td><td>' + escapeHtml(data.location || '') + '</td></tr>' +
           '<tr><td>Thủ thuật</td><td>' + escapeHtml(data.type || '') + '</td></tr>' +
           '<tr><td>Chỉ định XN khác</td><td>' + formatOptionalTestsDisplay(optionalTests) + '</td></tr>' +
+          ((data.orderCodes && data.orderCodes.summary) || data.orderCodeSummary ? '<tr><td>Mã lượt chỉ định</td><td>' + escapeHtml((data.orderCodes && data.orderCodes.summary) || data.orderCodeSummary || '') + '</td></tr>' : '') +
           (note ? '<tr><td>Ghi chú</td><td class="note-text-blue">' + escapeHtml(note) + '</td></tr>' : '') +
         '</table>';
     }
